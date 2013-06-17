@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">    	
+<struts>
+	<constant name="struts.configuration.xml.reload" value="true"></constant>
+	<package name="system"  extends="struts-default">
+		<interceptors>
+			<interceptor name="configdebug" class="com.configdebug.interceptor.ConfigDebugInterceptor"/>
+			<interceptor name="ystechToke" class="com.ystech.core.web.token.YstechTokenInterceptory"></interceptor>
+			<interceptor-stack name="ssz-stack">
+				<interceptor-ref name="configdebug"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="ystechToke"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="ssz-stack" />
+		<global-results>
+		     <result name="error">/strutsError.jsp</result>
+		     <result name="invalid.token">/token.jsp</result>
+		</global-results>
+		
+		<global-exception-mappings>
+		    <exception-mapping exception="java.lang.Exception" result="error"/>
+		</global-exception-mappings>
+		
+ 		<action name="user" class="userAction">
+           <result name="list">/pages/user/list.jsp</result>
+           <result name="edit">/pages/user/edit.jsp</result>
+           <result name="userRole">/pages/user/userRole.jsp</result>
+        </action>
+ 		<action name="resource" class="resourceAction">
+           <result name="list">/pages/resource/list.jsp</result>
+           <result name="edit">/pages/resource/edit.jsp</result>
+        </action>
+ 		<action name="role" class="roleAction">
+           <result name="list">/pages/role/list.jsp</result>
+           <result name="edit">/pages/role/edit.jsp</result>
+           <result name="roleResource">/pages/role/roleResource.jsp</result>
+        </action>
+         <action name="department" class="departmentAction">
+         	 <result name="list">/pages/department/list.jsp</result>
+             <result name="edit">/pages/department/edit.jsp</result>
+         </action>
+         
+        <action name="login" class="loginAction">
+        	<result name="login">/pages/login/login.jsp</result>
+        	<result name="check">/index.jsp</result>
+        </action>
+        <action name="main" class="mainAction">
+        	<result name="index">/pages/login/index.jsp</result>
+        </action>	
+        <action name="compoent" class="compoentController">
+        	<result name="userSelect">/pages/compoent/userSelect.jsp</result>
+        </action>
+        
+        <action name="swfUpload" class="swfUploadAction">
+		  	 <result name="invalid.token">/pages/commons/token.jsp</result>
+		  	 <result name="selfUpload">pages/commons/selfFileupload.jsp</result>
+        </action>
+         
+         <action name="enterprise" class="enterpriseAction">
+         	<result name="enterprise">/pages/system/enterprise/edit.jsp</result>
+         </action>  	
+    </package>
+</struts>

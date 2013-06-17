@@ -1,0 +1,10 @@
+@charset "utf-8";
+/* CSS Document */
+.top{background-color:#f6f6f6; border:solid #FFF 2px; width: 324px; height:37px; float:left;}
+.top_a{width:30px; height:30px; float:left;}
+.top_b{width:190px;height:30px;float:left;padding-left: 5px;}
+.top_b_a{width:190px;height:15px; color:#333;}
+.top_b_b{width:190px;height:15px;}
+.top_b_b_a{width:60px;height:15px;color:#c3bab8;float:left;}
+.top_b_b_b{width:60px;height:15px;color:#5f8643;float:left;}
+.top_c{width:30px;height:30px;color:#244d7b;float:left;}

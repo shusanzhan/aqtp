@@ -1,0 +1,15 @@
+/*pagebar */
+.pagebar{width:520px; height:26px;color:#3366CC; font-weight:normal; }
+.pagebar td {float:right; padding-right: 12px;}
+.pagebar a{border:1px solid #CCCCCC;margin-right:3px; margin:2px;padding:2px 5px;vertical-align:middle;}
+.pagebar .current{background-color:#036CB4;border:1px solid #036CB4;color:#FFFFFF;font-weight:bold;margin:2px 0;padding:2px 4px; vertical-align:middle;}
+.pagebar a:link    { color:#036CB4; text-decoration: none;font-size:12px; font-weight:bolder;}
+.pagebar a:visited { color: #174085; text-decoration: none;font-size:12px; font-weight:bolder;}
+.pagebar a:hover   { color: #666; text-decoration: none;font-size:12px; font-weight:bolder;border:1px solid #999; }
+.pagebar a.next  {background:url("page_next.gif") no-repeat scroll transparent right center;height:19px;line-height:19px;margin:1px 0 0 1px;padding:1px 10px 0 2px;}
+.pagebar a.pre  {background:url("page_pre.gif") no-repeat scroll transparent left center;height:19px;line-height:19px;margin:1px 0 0 1px;padding:1px 2px 0 10px;}
+.pagebar .next2  {background:#F8F8F8 url("page_next2.gif") no-repeat scroll right center;height:19px;line-height:19px;margin:1px 0 0 1px;padding:1px 10px 0 2px;border:1px solid #CCCCCC; vertical-align:middle;}
+.pagebar .pre2  {background:#F8F8F8 url("page_pre2.gif") no-repeat scroll left center;height:19px;line-height:19px;margin:1px 0 0 1px;padding:1px 2px 0 10px;border:1px solid #CCCCCC; vertical-align:middle;}
+.pagebar select{margin:2px;padding:2px 5px; vertical-align:middle;}
+.pagebar input{ vertical-align:middle;}
+#paginationTableLeftTdHtmlId{text-align:left;}

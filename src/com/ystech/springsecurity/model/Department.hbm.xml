@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-5-23 0:03:34 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.ystech.springsecurity.model.Department" table="department" catalog="springsecurity">
+        <id name="dbid" type="java.lang.Integer">
+            <column name="dbid" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="50" />
+        </property>
+        <property name="discription" type="string">
+            <column name="discription" length="200" />
+        </property>
+        <property name="fax" type="string">
+            <column name="fax" length="50" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="50" />
+        </property>
+        <property name="parentId" type="java.lang.Integer" insert="false" update="false">
+        	<column name="parentId"></column>
+        </property>
+        <property name="suqNo" type="java.lang.Integer">
+            <column name="suqNo" />
+        </property>
+        <many-to-one name="manager" column="manager" class="com.ystech.springsecurity.model.User" not-found="ignore"></many-to-one>
+        <many-to-one name= "parent"  not-found="ignore"  column= "parentId"	class= "com.ystech.springsecurity.model.Department" 	/> 
+        <set name= "children" > 
+			<key   column= "parentId "/> 
+			<one-to-many   class= "com.ystech.springsecurity.model.Department"/> 
+		</set> 
+    </class>
+</hibernate-mapping>

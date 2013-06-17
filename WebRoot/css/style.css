@@ -1,0 +1,180 @@
+@CHARSET "UTF-8";
+table {
+    border-collapse: collapse;
+}
+.bodycolor {
+    background: none repeat scroll 0 0 #F6F7F9;
+}
+/**列表页面table头部**/
+.TableList {
+    border: 1px solid #4686C6;
+    border-collapse: collapse;
+    font-size: 9pt;
+    line-height: 21px;
+    padding: 3px;
+}
+.TableHeader {
+    background: none repeat scroll 0 0 #5D99DA;
+    color: #FFFFFF;
+    font-size: 9pt;
+    font-weight: bold;
+    line-height: 21px;
+}
+.TableList .TableHeader th ,.TableList .TableHeader td{
+    background: none repeat scroll 0 0 #5D99DA;
+    border-bottom: 1px solid #4686C6;
+    border-right: 1px solid #4686C6;
+    color: #FFFFFF;
+    font-weight: bold;
+    height: 30px !important;
+    padding: 0;
+    text-align: center;
+}
+.TableList td{
+	border-left: 0px solid #DDDDDD;
+}
+.TableList td{
+	border-top: 1px solid #DDDDDD;
+}
+.span1{
+	width: 60px;
+}
+.span2{
+	width: 80px;
+}
+.span3{
+	width: 120px;
+}
+.span4{
+	width:160px;
+}
+.span5{
+	width: 200px;
+	text-align: left;
+}
+.span6{
+	width: 250px;
+	text-align: left;
+}
+.span7{
+	width:320px;
+	text-align: left;
+}
+.TableTop {
+    border: 0 none;
+    font-size: 12px;
+}
+
+.TableTop td {
+    background: url("../images/tableTop/table_top_bg.png") no-repeat scroll 0 -32px transparent;
+    color: #FFFFFF;
+    font-weight: bold;
+    height: 30px;
+}
+.TableTop td.left {
+    background-position: left 0;
+    width: 5px !important;
+}
+.TableTop td.center {
+    background-position: 0 -32px;
+    background-repeat: repeat-x;
+    text-align: lefts;
+}
+.TableTop td.right {
+    background-position: right -64px;
+    width: 5px !important;
+}
+.buttons {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-top: 1px solid #E0E0E0;
+    padding: 10px;
+    text-align: right;
+}
+
+form {
+	
+}
+from table{
+	width: 92%;
+	border: 1px solid #E0E0E0;
+}
+form table tr{
+	height: 40px;
+}
+form table tr td{
+	padding-left: 12px;
+}
+.formTableTdLeft{
+	width: 200px;
+}
+input, textarea, select {
+    font-family: 宋体;
+    font-size: 13px;
+}
+.input-mini{
+	width: 80px;
+}
+.input-small{
+	width: 120px;
+}
+.input-medium{
+	width: 160px;
+}
+.input-xmedium{
+	width: 220px;
+}
+.input-large{
+	width: 270px;
+}
+.input-xlarge{
+	width: 320px;
+}
+.input-xxlarge{
+	width: 530px;
+}
+.textarea-large{
+	width: 270px;
+	height: 80px;
+}
+.textarea-xlarge{
+	width: 320px;
+	height:80px;
+}
+.textarea-xxlarge{
+	width: 530px;
+	height: 80px;
+}
+.field {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #D3CFC7;
+    border-radius: 3px 3px 3px 3px;
+    padding: 5px;
+}
+.input_validation-failed { 
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 2px solid #FF0000;
+    border-radius: 3px 3px 3px 3px;
+    padding: 5px;
+	color:red;
+}
+.checkbox {
+    height: 13px;
+    position: relative;
+    top: 2px;
+    vertical-align: top;
+    width: 13px;
+}
+.input-btn{
+	display: block; width: 60px; height:30px; 
+	background: url("../images/tableTop/table_top_bg.png") repeat scroll 0px -32px transparent;
+	color: #fff; text-align: center; line-height: 30px; text-decoration: none;
+}
+.select{
+	border: 1px solid #D3CFC7;
+    border-radius: 3px 3px 3px 3px;
+    padding: 5px;
+    font-size: 14px;
+}
+.select option{
+	height: 16px;
+}

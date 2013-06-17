@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<b:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:b="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+   	<!-- web 应用安全配置 -->
+   	<debug/>
+   	<!-- /css、/images、/widgets文件不用过滤 -->
+   	<http  pattern="/css/**" security="none"></http>
+  	<http  pattern="/images/**" security="none"></http>
+   	<http  pattern="/widgets/**" security="none"></http>
+   	<http  pattern="/login/login" security="none"></http>
+   	<http  pattern="/pages/login/login.jsp" security="none"></http>
+   	
+	<!-- 当访问被拒绝时，会转到login/login -->  
+	<http entry-point-ref="authenticationProcessingFilterEntryPoint" access-denied-page="/login/login" access-decision-manager-ref="accessDecisionManager">
+	   	<intercept-url pattern="/**" access="IS_AUTHENTICATED_FULLY" />
+	   
+	    <!-- <form-login login-page="/login/login" authentication-failure-url="/login/login?error=1"  	login-processing-url="/login/check" default-target-url="/main/index" />
+	   
+	    <logout invalidate-session="true" logout-success-url="/login/login" /> 
+	       <logout logout-url="/j_spring_security_logout" logout-success-url="/login/login" invalidate-session="true"/>
+		<logout/>  -->
+		 
+		 <!-- 防止同一用户多次登录，使第二次登录失败  -->
+		<session-management>
+			<concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
+		</session-management>
+		<custom-filter ref="loginFilter" position="FORM_LOGIN_FILTER"  />  
+		<!-- <custom-filter ref="springSecurityFilter" before="FILTER_SECURITY_INTERCEPTOR"/> -->
+	</http>
+	
+	<!-- 登录过滤器，验证登陆用户 -->  
+    <b:bean id="loginFilter"  class="com.ystech.core.security.filter.LoginAuthenticationFilter">  
+        <!-- 处理登录的action -->  
+        <b:property name="filterProcessesUrl" value="/j_spring_security_check"></b:property>  
+                <!-- 验证成功后的处理-->  
+        <b:property name="authenticationSuccessHandler" ref="loginLogAuthenticationSuccessHandler"></b:property>  
+                <!-- 验证失败后的处理-->  
+        <b:property name="authenticationFailureHandler" ref="simpleUrlAuthenticationFailureHandler"></b:property>  
+        <b:property name="authenticationManager" ref="authenticationManager"></b:property>  
+    </b:bean>
+      
+    <b:bean id="loginLogAuthenticationSuccessHandler"  
+        class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">  
+        <b:property name="defaultTargetUrl" value="/main/index"></b:property>  
+    </b:bean>  
+    <b:bean id="simpleUrlAuthenticationFailureHandler"  
+        class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">  
+        <!-- 可以配置相应的跳转方式。属性forwardToDestination为true采用forward false为sendRedirect -->  
+        <b:property name="defaultFailureUrl" value="/login/login?error=1"></b:property>  
+    </b:bean> 
+	
+	
+	
+	<!-- 配置自己的spring security filter  过滤器 过滤器由三部分组成：1、用户所拥有的资源，及操作的资源管理器，2、用户是否具有所操作资源的全权限。3、资源与权限对应的关系 -->
+	<b:bean id="springSecurityFilter" class="com.ystech.core.security.filter.SpringSecurityFilter">
+		<b:property name="authenticationManager" ref="authenticationManager"></b:property>
+		<b:property name="accessDecisionManager" ref="accessDecisionManager"></b:property>
+		<b:property name="securityMetadataSource" ref="securityMetadataSource"></b:property>
+	</b:bean>
+	
+	<!-- 认证服务 用户名称和密码的认证服务 -->
+	<authentication-manager alias="authenticationManager">
+	<!--userDetailsManageImpl 实现 UserDetailsService接口 用于获取用户信息 不知道什么时候执行 -->
+		<authentication-provider user-service-ref="userDetailsManageImpl">
+			<password-encoder hash="md5">
+				<salt-source user-property="userId"/>
+			</password-encoder>
+		</authentication-provider>
+	</authentication-manager>
+	
+	<!-- 自动接收验证事件消息 -->
+	<b:bean id="loggerListener" class="org.springframework.security.authentication.event.LoggerListener"/>
+	
+	<!-- 用户是否具有所操作资源的全权限 -->
+	<b:bean id="accessDecisionManager" class="com.ystech.core.security.service.SpringSecurityAccessDecisionManager">
+	</b:bean>
+	
+	<!--3、资源与权限对应的关系  -->
+	<b:bean id="securityMetadataSource" class="com.ystech.core.security.service.SpringSecurityMetadataSource">
+	</b:bean>
+	
+		<!-- 未登录的切入点 认证切入点，这里使用它的目的是保证当用户登录之前就访问前后台时，会跳转到不同的登录页面-->  
+    <b:bean id="authenticationProcessingFilterEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">  
+        <b:property name="loginFormUrl" value="/login/login"></b:property>  
+    </b:bean> 
+</b:beans>
