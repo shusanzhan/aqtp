@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-6-2 23:21:11 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.ystech.aqtp.model.Enterprise" table="enterprise" >
+        <id name="dbid" type="java.lang.Integer">
+            <column name="dbid" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="50" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="50" />
+        </property>
+        <property name="fax" type="string">
+            <column name="fax" length="50" />
+        </property>
+        <property name="zipCode" type="string">
+            <column name="zipCode" length="50" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="50" />
+        </property>
+        <property name="webAddress" type="string">
+            <column name="webAddress" length="50" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" />
+        </property>
+        <property name="bank" type="string">
+            <column name="bank" length="50" />
+        </property>
+        <property name="account" type="string">
+            <column name="account" length="50" />
+        </property>
+        <property name="content" type="string">
+            <column name="content" length="8000" />
+        </property>
+    </class>
+</hibernate-mapping>

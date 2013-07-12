@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-6-22 16:47:11 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.ystech.aqtp.model.ChickenBatch" table="chickenbatch" catalog="aqtp">
+        <id name="dbid" type="java.lang.Integer">
+            <column name="dbid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="breed" class="com.ystech.aqtp.model.Breed" fetch="select">
+            <column name="breedDbid" />
+        </many-to-one>
+        <many-to-one name="grade" class="com.ystech.aqtp.model.Grade" fetch="select">
+            <column name="gradeLevelDbid" />
+        </many-to-one>
+        <property name="batchNo" type="string">
+            <column name="batchNo" length="50" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="50" />
+        </property>
+        <property name="birthday" type="date">
+            <column name="birthday" length="10" />
+        </property>
+        <property name="age" type="java.lang.Integer">
+            <column name="age" />
+        </property>
+        <property name="outBarDate" type="timestamp">
+            <column name="outBarDate" length="19" />
+        </property>
+        <property name="intoBarDate" type="timestamp">
+            <column name="intoBarDate" length="19" />
+        </property>
+        <set name="healthcares" table="healthcare" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="chickenBatchDbid" />
+            </key>
+            <one-to-many class="com.ystech.aqtp.model.HealthCare" />
+        </set>
+        <set name="breaderbreeds" table="breaderbreed" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="chickenBatchDbid" />
+            </key>
+            <one-to-many class="com.ystech.aqtp.model.BreaderBreed" />
+        </set>
+        <set name="feedfeeders" table="feedfeeder" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="chickenBatchDbid" />
+            </key>
+            <one-to-many class="com.ystech.aqtp.model.FeedFeeder" />
+        </set>
+        <set name="quarantinecertificates" table="quarantinecertificate" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="chickenBatchDbid" />
+            </key>
+            <one-to-many class="com.ystech.aqtp.model.QuarantineCertificate" />
+        </set>
+        <set name="immunes" table="immune" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="chickenBatchDbid" />
+            </key>
+            <one-to-many class="com.ystech.aqtp.model.Immune" />
+        </set>
+        <set name="dimensionas" table="dimensiona" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="chickenBatchDbid" />
+            </key>
+            <one-to-many class="com.ystech.aqtp.model.Dimensiona" />
+        </set>
+    </class>
+</hibernate-mapping>

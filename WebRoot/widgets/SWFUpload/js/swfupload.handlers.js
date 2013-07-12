@@ -16,12 +16,13 @@ function fileQueued(file) {
 		totalSize=totalSize+file.size;
 		//构造文件列表
 		var fileContent="<div id='fileContent"+file.id+"' class='fileContent'>"+
+		"<div id='thumbnail"+file.id+"' class='thumbnail'></div>"+
 		"<div id='uploadFile' class='uploadFile'>"+
 		"<div id='fileName"+file.id+"' class='fileName'><span id=''>"+file.name+"</span><a href='#' onclick='' id='method"+file.id+"'> 删除</a></div>"+
 		"<div id='uploadState"+file.id+"'><span id='state' class='stateWating'>等待上传，请稍后...</span></div>"+
 		"</div>"+
 		"</div>";
-		$("#"+this.customSettings.progressTarget).append(fileContent);;
+		$("#"+this.customSettings.progressTarget).appendTo(fileContent);;
 		//绑定上传文件队列删除方法
 		$("#method"+file.id).bind("click",function(e){
 			swfUpload.cancelUpload(file.id);  
@@ -140,8 +141,9 @@ function uploadProgress(file, bytesLoaded, bytesTotal) {
 	try {
 		//设置文件上传百分比
 		var percent = Math.ceil((bytesLoaded / bytesTotal) * 100);
+		var timeRemaining=SWFUpload.speed.formatTime(file.timeRemaining);
 		var uploadState="<div id='progressbar' class='progressbar'><div id='progress' class='progress' style='width:"+percent+"%'></div></div>" +
-		"<span id='state' class='stateWating'>"+percent+"%</span>";
+		"<span id='state' class='stateWating'>"+percent+"%，剩余时间："+timeRemaining+"</span>";
 		$("#uploadState"+file.id).text("");
 		$("#uploadState"+file.id).append(uploadState);
 		$("#method"+file.id).hide("fast");

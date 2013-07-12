@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<logs>
+	<!-- 日志记录对应关系 
+	<log class="com.ystech.aqtp.model.BreaderBreed" txt="验证码管理">
+		<actionFeild property="dbid" value="验证码ID"></actionFeild>
+	</log>-->
+	<!-- 日志记录对应关系 -->
+	<log class="com.ystech.aqtp.model.User" txt="用户管理">
+		<actionFeild property="dbid" value="用户ID"></actionFeild>
+	</log>
+	<log class="com.ystech.aqtp.model.Role" txt="角色管理">
+		<actionFeild property="dbid" value="角色管理ID"></actionFeild>
+	</log>
+	<log class="com.ystech.aqtp.model.Breed" txt="品系管理">
+		<actionFeild property="dbid" value="品系ID"></actionFeild>
+	</log>
+	<log class="com.ystech.aqtp.model.Breeder" txt="饲养员管理">
+		<actionFeild property="dbid" value="饲养员ID"></actionFeild>
+	</log>
+	<log class="com.ystech.aqtp.model.Drag" txt="药品管理">
+		<actionFeild property="dbid" value="药品ID"></actionFeild>
+	</log>
+	<log class="com.ystech.aqtp.model.Feeder" txt="饲料管理">
+		<actionFeild property="dbid" value="饲料ID"></actionFeild>
+	</log>
+</logs>

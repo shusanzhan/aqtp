@@ -3,6 +3,8 @@
  */
 package com.ystech.core.security.filter;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,9 +18,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.ystech.aqtp.model.LoginLog;
+import com.ystech.aqtp.model.User;
+import com.ystech.aqtp.service.LoginLogManageImpl;
+import com.ystech.aqtp.service.UserManageImpl;
+import com.ystech.core.ip.IPSeeker;
+import com.ystech.core.security.SecurityUserHolder;
 import com.ystech.core.util.Md5;
-import com.ystech.springsecurity.model.User;
-import com.ystech.springsecurity.service.UserManageImpl;
 
 /**
  * @author shusanzhan
@@ -30,7 +36,11 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
     public static final String PASSWORD = "j_password";
    
     private UserManageImpl userManageImpl;
-    
+    private LoginLogManageImpl loginLogManageImpl;
+	 @Resource
+	public void setLoginLogManageImpl(LoginLogManageImpl loginLogManageImpl) {
+		this.loginLogManageImpl = loginLogManageImpl;
+	}
 	public UserManageImpl getUserManageImpl() {
 		return userManageImpl;
 	}
@@ -67,8 +77,8 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 	        username = username.trim();  
 	          
 	        User users = userManageImpl.findBy("userId", username).get(0);  
-	        String calcMD5 = Md5.calcMD5(users.getUserId()+password);
-	        if(users == null || !users.getPassword().equals(calcMD5)) {  
+	        
+	        if(users == null ) {  
 	    /* 
 	        在我们配置的simpleUrlAuthenticationFailureHandler处理登录失败的处理类在这么一段 
 	        这样我们可以在登录失败后，向用户提供相应的信息。 
@@ -84,9 +94,12 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 	     */  
 	            throw new AuthenticationServiceException("用户名或者密码错误！");   
 	        }  
-	          
+	        String calcMD5 = Md5.calcMD5(password+"{"+users.getUserId()+"}"); 
+	        if(!users.getPassword().equals(calcMD5)){
+	        	throw new AuthenticationServiceException("用户名或者密码错误！");  
+	        }
 	        //UsernamePasswordAuthenticationToken实现 Authentication  
-	        UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, calcMD5);  
+	        UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);  
 	        // Place the last username attempted into HttpSession for views  
 	          
 	        // 允许子类设置详细属性  
@@ -95,6 +108,11 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 	        // 运行UserDetailsService的loadUserByUsername 再次封装Authentication 
 	        AuthenticationManager authenticationManager2 = this.getAuthenticationManager();
 	        Authentication authenticate = authenticationManager2.authenticate(authRequest);
+	        
+	        HttpSession session = request.getSession();
+	        //保存登录日志
+	        LoginLog loginLog = getLoginLog(request, session, users);
+	        loginLogManageImpl.save(loginLog);
 	        return authenticate;
 	}
 	
@@ -128,5 +146,46 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
     protected String obtainPassword(HttpServletRequest request) {  
         Object obj = request.getParameter(PASSWORD);  
         return null == obj ? "" : obj.toString();  
-    }  
+    } 
+    /**
+	 * 功能描述：构造用户登录日志记录
+	 * @param request
+	 * @param session
+	 * @param user
+	 * @return
+	 */
+	private LoginLog getLoginLog(HttpServletRequest request,HttpSession session, User user) {
+		String ipAddr = getIpAddr(request);
+		LoginLog loginLog=new LoginLog();
+		loginLog.setUserId(user.getDbid());
+		loginLog.setLoginDate(new Date());
+		loginLog.setIpAddress(getIpAddr(request));
+		loginLog.setSessionId(session.getId());
+		loginLog.setUserName(user.getUserId());
+		IPSeeker  ipSeeker=new IPSeeker();
+		if (ipSeeker.getCountry(ipAddr).contains("局域网")) {
+			loginLog.setLoginAddress(ipSeeker.getCountry(ipAddr));
+		}else{
+			loginLog.setLoginAddress(ipSeeker.getCountry(ipAddr)+":"+ipSeeker.getArea(ipAddr));
+		}
+		return loginLog;
+	}
+	/**
+	 * 功能描述：通过IP地址获取客户端的地域地址
+	 * @param request
+	 * @return
+	 */
+	public String getIpAddr(HttpServletRequest request) {
+		String ip = request.getHeader("x-forwarded-for");
+		if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+		ip = request.getHeader("Proxy-Client-IP");
+		}
+		if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+		ip = request.getHeader("WL-Proxy-Client-IP");
+		}
+		if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+		ip = request.getRemoteAddr();
+		}
+		return ip;
+	}
 }

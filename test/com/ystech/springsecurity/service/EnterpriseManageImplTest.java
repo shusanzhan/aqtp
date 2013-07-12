@@ -8,9 +8,10 @@ import javax.persistence.Temporal;
 
 import org.junit.Test;
 
+import com.ystech.aqtp.model.Enterprise;
+import com.ystech.aqtp.service.EnterpriseManageImpl;
 import com.ystech.core.test.SpringTxTestCase;
 import com.ystech.core.util.TestGenerateUtil;
-import com.ystech.springsecurity.model.Enterprise;
 
 /**
  * @author shusanzhan

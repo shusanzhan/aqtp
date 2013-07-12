@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-11-21 17:13:09 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ystech.aqtp.model.User" table="user" >
+        <id name="dbid" type="java.lang.Integer">
+            <column name="dbid" />
+            <generator class="identity" />
+        </id>
+        <property name="userId" type="string">
+            <column name="userId" length="50" />
+        </property>
+        <property name="realName" type="string">
+            <column name="realName" length="50" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="20" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="20" />
+        </property>
+        <property name="mobilePhone" type="string">
+            <column name="mobilePhone" length="20" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="20" />
+        </property>
+        <set name="roles" table="userRoles" lazy="false">
+			<key column="userId"></key>
+			<many-to-many class="com.ystech.aqtp.model.Role" column="roleId"></many-to-many>            
+        </set>
+        <one-to-one  name="breeder" property-ref="user"  ></one-to-one>
+    </class>
+</hibernate-mapping>

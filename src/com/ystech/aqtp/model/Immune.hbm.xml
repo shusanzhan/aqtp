@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-6-22 16:47:11 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.ystech.aqtp.model.Immune" table="immune" catalog="aqtp">
+        <id name="dbid" type="java.lang.Integer">
+            <column name="dbid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="chickenbatch" class="com.ystech.aqtp.model.ChickenBatch" fetch="select">
+            <column name="chickenBatchDbid" />
+        </many-to-one>
+        <property name="immuneDate" type="date">
+            <column name="immuneDate" length="10" />
+        </property>
+        <property name="immunePerson" type="string">
+            <column name="immunePerson" length="50" />
+        </property>
+        <property name="note" type="string">
+            <column name="note" length="2000" />
+        </property>
+        <set name="immunedrags" table="immunedrag" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="healthCareId" />
+            </key>
+            <one-to-many class="com.ystech.aqtp.model.ImmuneDrag" />
+        </set>
+    </class>
+</hibernate-mapping>

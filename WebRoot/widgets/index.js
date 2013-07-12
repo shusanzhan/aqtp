@@ -38,7 +38,7 @@ jQuery.noConflict();
       if(!id) return;
       closable = (typeof(closable) == 'undefined') ? true : closable;
       selected = (typeof(selected) == 'undefined') ? true : selected;
-      var height = isTouchDevice() ? 'auto' : '100%';
+      var height = false ? 'auto' : '100%';
       $('#tabs_container').tabs('add', {
          id: id,
          title: title,
@@ -1417,12 +1417,12 @@ jQuery.noConflict();
    $(document).ready(function($){
       $('#loading').remove();
 
-      //iPad 等触屏设备
+     /* //iPad 等触屏设备
       if(isTouchDevice())
       {
          $('body').addClass('mobile-body');
          $('#center').addClass('mobile-center');
-      }
+      }*/
 
       //调整窗口大小
       resizeLayout();
@@ -1700,21 +1700,21 @@ function getEvent() //同时兼容ie和ff的写法
 }
 
 function mdate()
-{
+{/*
    var solarTerm=sTerm(OA_TIME.getFullYear(), OA_TIME.getMonth(), OA_TIME.getDate());
    if(solarTerm != "")
-      $('mdate').innerHTML = solarTerm;
+      $('mdate').innerHTML = solarTerm;*/
 }
 function timeview()
 {
-   $('time_area').innerHTML = OA_TIME.toTimeString().substr(0,5);
+   /*$('time_area').innerHTML = OA_TIME.toTimeString().substr(0,5);
    OA_TIME.setSeconds(OA_TIME.getSeconds()+1);
-   window.setTimeout( timeview, 1000);
+   window.setTimeout( timeview, 1000);*/
 }
 
 function GetWeather(beUpdate)
 {
-   var WEATHER_CITY_ID = $('chinacity').options[$('chinacity').selectedIndex].value;
+   /*var WEATHER_CITY_ID = $('chinacity').options[$('chinacity').selectedIndex].value;
    var WEATHER_CITY = $('chinacity').options[$('chinacity').selectedIndex].text;
 
    if(WEATHER_CITY ==  td_lang.inc.msg_28|| WEATHER_CITY == "0")
@@ -1743,7 +1743,7 @@ function GetWeather(beUpdate)
    });
 
    $('area_select').style.display='none';
-   $('weather').style.display='block';
+   $('weather').style.display='block';*/
 }
 
 var relogin = 0;

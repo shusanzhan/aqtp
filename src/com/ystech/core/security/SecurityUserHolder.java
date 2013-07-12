@@ -6,7 +6,7 @@ package com.ystech.core.security;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import com.ystech.springsecurity.model.User;
+import com.ystech.aqtp.model.User;
 
 /**
  * @author shusanzhan

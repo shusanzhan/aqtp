@@ -12,9 +12,18 @@
 <script type="text/javascript" src="${ctx }/widgets/easyvalidator/js/easy_validator.pack.js"></script>
 <script type="text/javascript" src="${ctx }/widgets/artDialog/artDialog.js?skin=default"></script>
 <script type="text/javascript" src="${ctx }/widgets/artDialog/plugins/iframeTools.source.js"></script>
-<title>用户管理</title>
+<title>角色管理</title>
 </head>
 <body class="bodycolor">
+<table class="TableTop" width="100%">
+		<tbody>
+			<tr>
+				<td class="left"></td>
+				<td class="center">角色管理</td>
+				<td class="right"></td>
+			</tr>
+		</tbody>
+</table>
 <div id="search" style="width: 100%; height: 32px;margin-top: 2px;margin-bottom: 8px;">
 	 <form name="searchPageForm" id="searchPageForm" action="${ctx}/role/queryList" method="get">
      <input type="hidden" id="currentPage" name="currentPage" value='${page.currentPageNo}'>
@@ -50,7 +59,7 @@
 		</tr>
 	</c:forEach>
 	 <tr height="34"  >
-       <td colspan="7" align="right" class="border-top: 0px"><%@ include file="../commons/common_pagination.jsp" %></td>
+       <td colspan="5" align="right" class="border-top: 0px"><%@ include file="../commons/common_pagination.jsp" %></td>
      </tr>	
 	</table>
 </div>

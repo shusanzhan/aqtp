@@ -23,10 +23,10 @@ function LoadCss(url)
 	document.write( '<link href="' + url + '" type="text/css" rel="stylesheet" />' ) ;
 }
 
-LoadScript('/inc/js/jquery/jquery.min.js');
-LoadScript('/inc/js/jquery/jquery-ui.custom.min.js');
-LoadScript('/inc/js/jquery/jquery.cookie.js');
-LoadScript('/inc/js/jquery/jquery.dynatree.min.js');
+LoadScript('/widgets/jqueryui/jquery.min.js');
+LoadScript('/widgets/jqueryui/jquery-ui.custom.min.js');
+LoadScript('/widgets/jqueryui/jquery.cookie.js');
+LoadScript('/widgets/jqueryui/jquery.dynatree.min.js');
 
 
 function Tree(id, jsonURL, iconsPath, checkbox, selectMode)

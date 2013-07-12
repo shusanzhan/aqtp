@@ -1,0 +1,68 @@
+/*-------------------------------------
+zTree Style
+
+version:	3.4
+author:		Hunter.z
+email:		hunter.z@263.net
+website:	http://code.google.com/p/jquerytree/
+
+-------------------------------------*/
+
+.ztree {margin:0; padding:5px; color:#333;font-size: 10pt;font-family:"Microsoft Yahei"}
+.ztree li ul{ margin:0; padding:0}
+.ztree li {line-height:30px;padding:0; margin:0; list-style:none; text-align:left; white-space:nowrap; outline:0 }
+.ztree li a {cursor:pointer;width:200px;height:30px;padding-top: 0px;color: #FFFFFF; background: none repeat scroll 0 0 #5D99DA; border-bottom: 1px solid #4686C6;font-size:14px; display: inline-block;}
+.ztree li a:hover {text-decoration:none; background-color: #5D99DA;}
+
+.ztree.showIcon li a span.button.switch {visibility:visible}
+.ztree li a.curSelectedNode {background-color:#D4D4D4;border:0;height:30px;}
+.ztree li span {line-height:30px;}
+.ztree li span.button {margin-top: -7px;}
+.ztree li span.button.switch {width: 16px;height: 16px;}
+.level1{
+	color: red;
+}
+.level1 a{
+   width:200px;height:30px;padding-top: 0px;color: #FFFFFF; background: none repeat scroll 0 0 #D7E9F7; border-bottom: 1px solid #4686C6;font-size:14px;
+}
+
+.ztree li ul.level0 {
+	padding:0;
+	background:none;
+}
+.ztree li ul.level0 a.level1{
+	background: none repeat scroll 0 0 #F6F7F9;
+	border-bottom: 1px solid #CCCCCC;
+	color: #383838;
+	border-left:1px solid #4686C6;
+	border-right:1px solid #4686C6;
+	width:198px;
+	font-size: 12px;
+	display: block;
+	text-decoration:none;
+}
+.ztree li ul.level0 a.level1:HOVER{
+	background: none repeat scroll 0 0 #D7E9F7;
+	text-decoration:none;
+}
+.ztree li ul.level0 a.curSelectedNode{
+   background-color:#D7E9F7;
+   border-left:1px solid #4686C6;
+   border-right:1px solid #4686C6;
+   border-bottom: 1px solid #CCCCCC;
+   font-size: 12px;
+}
+
+.ztree li a.level0 span {font-size: 100%;font-weight: bold;}
+.ztree li span.button.switch.level0 {width: 20px; height:18px}
+.ztree li span.button.switch.level1 {width: 20px; height:20px}
+.ztree li span.button.noline_open {background-image: url("../../images/ar.png");background-position: 0 0;}
+.ztree li span.button.noline_open.level0 {background-image: url("../../images/arrow_d.png");}
+.ztree li span.button.noline_close.level0 {background-image: url("../../images/ar.png");}
+
+.ztree li span.button {line-height:0; margin:0; width:16px; height:16px; display: inline-block; vertical-align:middle;
+	border:0 none; cursor: pointer;outline:none;
+	background-color:transparent; background-repeat:no-repeat; background-attachment: scroll;
+}
+
+

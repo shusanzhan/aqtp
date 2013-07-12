@@ -96,7 +96,9 @@ form {
 }
 from table{
 	width: 92%;
-	border: 1px solid #E0E0E0;
+	border: 1px solid  #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+    border-right: 1px solid #CCCCCC
 }
 form table tr{
 	height: 40px;
@@ -106,6 +108,7 @@ form table tr td{
 }
 .formTableTdLeft{
 	width: 200px;
+    background: none repeat scroll 0 0 #D7E9F7;
 }
 input, textarea, select {
     font-family: 宋体;

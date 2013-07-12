@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-6-22 16:47:11 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.ystech.aqtp.model.LoginLog" table="loginlog" catalog="aqtp">
+        <id name="dbid" type="java.lang.Integer">
+            <column name="dbid" />
+            <generator class="identity" />
+        </id>
+        <property name="userId" type="java.lang.Integer">
+            <column name="userId" />
+        </property>
+        <property name="userName" type="string">
+            <column name="userName" length="50" />
+        </property>
+        <property name="loginDate" type="timestamp">
+            <column name="loginDate" length="19" />
+        </property>
+        <property name="ipAddress" type="string">
+            <column name="ipAddress" length="50" />
+        </property>
+        <property name="loginAddress" type="string">
+            <column name="loginAddress" length="50" />
+        </property>
+        <property name="sessionId" type="string">
+            <column name="sessionId" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>

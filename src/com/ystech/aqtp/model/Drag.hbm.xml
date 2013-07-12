@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-6-22 16:47:11 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.ystech.aqtp.model.Drag" table="drag" catalog="aqtp">
+        <id name="dbid" type="java.lang.Integer">
+            <column name="dbid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="dragtype" class="com.ystech.aqtp.model.DragType" fetch="select">
+            <column name="dragTypeId" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" length="50" />
+        </property>
+        <property name="generateBatch" type="string">
+            <column name="generateBatch" length="100" />
+        </property>
+        <property name="effect" type="string">
+            <column name="effect" length="2000" />
+        </property>
+        <property name="specification" type="string">
+            <column name="specification" length="100" />
+        </property>
+        <property name="directions" type="string">
+            <column name="directions" length="8000" />
+        </property>
+        <property name="note" type="string">
+            <column name="note" length="2000" />
+        </property>
+        <property name="recordId" type="java.lang.Integer">
+            <column name="recordId" />
+        </property>
+        <set name="immunedrags" table="immunedrag" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="dragId" />
+            </key>
+            <one-to-many class="com.ystech.aqtp.model.ImmuneDrag" />
+        </set>
+        <set name="healthcaredrags" table="healthcaredrag" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="dragId" />
+            </key>
+            <one-to-many class="com.ystech.aqtp.model.HealthCareDrag" />
+        </set>
+    </class>
+</hibernate-mapping>

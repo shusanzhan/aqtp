@@ -24,38 +24,37 @@ $(function() {
 	var yOffset = 20; // y distance from mouse
 
 	// input action
-	$("[checkType],[reg],[url]:not([reg]),[tip]")
-			.hover(
-					function(e) {
-						if ($(this).attr('tip') != undefined) {
-							var top = (e.pageY + yOffset);
-							var left = (e.pageX + xOffset);
-							$('body').append(
-									'<p id="vtip"><img id="vtipArrow" src="/widgets/easyvalidator/images/vtip_arrow.png"/>'
-											+ $(this).attr('tip') + '</p>');
-							$('p#vtip').css("top", top + "px").css("left",
-									left + "px");
-							$('p#vtip').bgiframe();
-						}
-					}, function() {
-						if ($(this).attr('tip') != undefined) {
-							$("p#vtip").remove();
-						}
-					}).mousemove(
-					function(e) {
-						if ($(this).attr('tip') != undefined) {
-							var top = (e.pageY + yOffset);
-							var left = (e.pageX + xOffset);
-							$("p#vtip").css("top", top + "px").css("left",
-									left + "px");
-						}
-					}).blur(function() {
+	$("[checkType],[reg],[url]:not([reg]),[tip]").hover(
+			function(e) {
+				if ($(this).attr('tip') != undefined) {
+					var top = (e.pageY + yOffset);
+					var left = (e.pageX + xOffset);
+					$('body').append(
+							'<p id="vtip"><img id="vtipArrow" src="/widgets/easyvalidator/images/vtip_arrow.png"/>'
+									+ $(this).attr('tip') + '</p>');
+					$('p#vtip').css("top", top + "px").css("left",
+							left + "px");
+					$('p#vtip').bgiframe();
+				}
+			}, function() {
+				if ($(this).attr('tip') != undefined) {
+					$("p#vtip").remove();
+				}
+			}).mousemove(
+			function(e) {
+				if ($(this).attr('tip') != undefined) {
+					var top = (e.pageY + yOffset);
+					var left = (e.pageX + xOffset);
+					$("p#vtip").css("top", top + "px").css("left",
+							left + "px");
+				}
+			}).blur(function() {
 				if ($(this).attr("url") != undefined) {
 					ajax_validate($(this));
 				} else if ($(this).attr("reg") != undefined||$(this).attr("checkType") != undefined) {
 					validate($(this));
 				}
-			});
+	});
 });
 
 function validateForm(frmId){
@@ -85,6 +84,7 @@ function validateForm(frmId){
 function validate(obj) {
 	var reg = new RegExp(obj.attr("reg"));
 	var regString=obj.attr("reg");
+	var url=obj.attr("url");
 	var objValue = obj.attr("value");
 	//第一步判断reg正则表达式是否为undefined，如果不为undefined支持原生的验证
 	if(reg!=undefined&&regString!=undefined){
@@ -103,6 +103,16 @@ function validate(obj) {
 			} 
 		  }
 	}
+/*	if(url!=undefined){
+		if(obj.attr("url") == undefined){ 
+			change_error_style(obj,"remove");
+			change_tip(obj,null,"remove"); 
+			return true; 
+		}else{ 
+			return
+			ajax_validate(obj); 
+		} 
+	}*/
 	if (obj.attr('checkType') == "phoneNo") {
 		if (!checkPhoneNo(obj)) {
 			change_error_style(obj, "add");

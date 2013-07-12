@@ -4,89 +4,139 @@
 <%@ include file="../commons/taglib.jsp" %>
 <html>
 <head>
-<title>美都后台管理中心</title>
+<title>质量追溯系统</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="${ctx }/css/index.css" type="text/css" rel="stylesheet">
-
-<script type="text/javascript" src="${ctx }/widgets/jqueryui/jquery.min.js"></script>
-<script type="text/javascript" src="${ctx }/widgets/jqueryui/jquery-ui.custom.min.js"></script>
+<link href="${ctx }/css/style.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" href="${ctx }/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="${ctx }/widgets/ztree/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="${ctx }/widgets/ztree/jquery.ztree.core-3.4.min.js"></script>
 <script type="text/javascript" src="${ctx }/widgets/jqueryui/jquery.cookie.js"></script>
-<script type="text/javascript" src="${ctx }/widgets/jqueryui/jquery.dynatree.min.js"></script>
-<script type="text/javascript" src="${ctx }/widgets/jqueryui/jquery.effects.bounce.min.js"></script>
-<script type="text/javascript" src="${ctx }/widgets/jqueryui/jquery.plugins.js"></script>
-<script type="text/javascript" src="${ctx }/widgets/jqueryui/jquery.ui.autocomplete.min.js"></script>
-<script type="text/javascript" src="${ctx }/widgets/jqueryui/sys_function.js"></script>
-<script type="text/javascript" src="${ctx }/widgets/jqueryui/utility.js"></script>
-<script type="text/javascript" src="${ctx }/widgets/index.js"></script>
-<script type="text/javascript" src="${ctx }/widgets/jqueryui/tree.js"></script>
-<script type="text/javascript" src="${ctx }/widgets/jqueryui/weather.js"></script>
-<script type="text/javascript" src="${ctx }/widgets/jqueryui/sterm.js"></script>
 <script type="text/javascript" src="${ctx }/widgets/artDialog/artDialog.js?skin=default"></script>
+<script type="text/javascript" src="${ctx }/widgets/artDialog/plugins/iframeTools.source.js"></script>
 <script type="text/javascript">
-self.moveTo(0,0);
-self.resizeTo(screen.availWidth,screen.availHeight);
-self.focus();
+function resizeLayout()
+{
+   // 主操作区域高度
+   var wWidth = (window.document.documentElement.clientWidth || window.document.body.clientWidth || window.innerHeight);
+   var wHeight = (window.document.documentElement.clientHeight || window.document.body.clientHeight || window.innerHeight);
+   var nHeight = $('#north').is(':visible') ? $('#north').outerHeight() : 0;
+   var fHeight = $('#funcbar').is(':visible') ? $('#funcbar').outerHeight() : 0;
+   var cHeight = wHeight - nHeight - fHeight - $('#south').outerHeight() - $('#taskbar').outerHeight();
+   $('#center').height(cHeight);
+   
+   $("#center iframe").css({height: cHeight});
 
-var loginUser="${sessionScope.user.name }";
-/* var loginUserId="${sessionScope.user.id }"; */
+/*
+   if(isTouchDevice())
+   {
+      $('.tabs-panel:visible').height(cHeight);
+      if($('.tabs-panel > iframe:visible').height() > cHeight)
+         $('.tabs-panel:visible').height($('.tabs-panel > iframe:visible').height());
+   }
+*/
+   //一级标签宽度
+   var width = wWidth - $('#taskbar_left').outerWidth() - $('#taskbar_right').outerWidth();
+   $('#tabs_container').width(width - $('#tabs_left_scroll').outerWidth() - $('#tabs_right_scroll').outerWidth() - 2);
+   $('#taskbar_center').width(width-1);   //-1是为了兼容iPad
 
-var loginUserId="admin";
-var bEmailPriv = true;
-var bSmsPriv = true;
-var bTabStyle = true;
-var OA_TIME = new Date();
-var bInitWeather = true;
-var weatherCity = "45005";
-var menuExpand = "10";
-var shortcutArray = Array(1,3,42,184,4,147,148,7,8,9,10,16,181,11,130,5,131,132,227,256,83,229,82,182,45,23,194,79,24,20,196,22,105,21,119,35,80,25,81,50,220,49,97,47,98,48,179,63,127,62,128,557,199,556,238,555,251,554,110,553,112,552,53,550,54,221,153,193,217,192,52,190,239,189,240,188,86,187,87,186,88,248,89,244,137,243,138,241,222,597,91,598,92,595,152,594,93,592,94,591,95,588,118,589,237,590,106,587,17,585,18,584,19,583,15,582,76,581,115,209,185,208,235,207,61,205,481,204,482,201,483,202,484,200,485,475,486,474,487,473,488,472,490,470,491,469,492,468,120,467,495,465,496,464,497,463,498,462,499,234,500,233,501,232,503,231,505,230,504,513,506,512,507,39,508,511,515,510,123,129,124,28,125,29,514,509);
-var loginUser = {uid:5, user_id:loginUserId, user_name:loginUser};
-var logoutText = "轻轻的您走了，正如您轻轻的来……";
-var monInterval = {online:120,sms:30};
-var ispirit = "";
-var statusTextScroll = 60;
-var newSmsHtml = "<div onclick='show_sms();' title='点击查看新消息'><img src='/images/sms1.gif' border='0' height='12'> 新消息</div>";
-var newSmsSoundHtml = "<object id='sms_sound' classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' codebase='/inc/swflash.cab' width='0' height='0'><param name='movie' value='/wav/9.swf'><param name=quality value=high><embed id='sms_sound' src='/wav/9.swf' width='0' height='0' quality='autohigh' wmode='opaque' type='application/x-shockwave-flash' plugspace='http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash'></embed></object>";
-var show_ip = 0;
-var unit_name = '精战科技';
-var orgTree0 = orgTree1 = null;
-var jsonURL0 = '';
-var jsonURL1 = '';
-var user_total_count = "5";
-var portalArray = [];
-portalArray["0"] = {src:"${ctx}/images/portal/2.png", url:"portal/group/", title:"集团门户", closable:"true"};
-portalArray["1"] = {src:"${ctx}/images/portal/1.png", url:"portal/crm/", title:"CRM门户", closable:"true"};
-portalArray["2"] = {src:"${ctx}/images/portal/7.png", url:"portal/workflow/", title:"工作流门户", closable:"true"};
-portalArray["3"] = {src:"${ctx}/images/portal/3.png", url:"mytable/intel_view/", title:"企业门户", closable:"true"};
-portalArray["4"] = {src:"${ctx}/images/portal/4.png", url:"portal/personal/", title:"个人桌面", closable:"true"};
-portalArray["5"] = {src:"${ctx}/images/portal/5.png", url:"portal/hrms/", title:"HRMS门户", closable:"true"};
-portalArray["6"] = {src:"${ctx}/images/portal/6.png", url:"portal/info/", title:"资讯门户", closable:"true"};
-var themeArray = [];
-themeArray["10"] = {src:"/images/themeswitch/theme_thumb_10.jpg", title:"宁静的思考"};
-themeArray["11"] = {src:"/images/themeswitch/theme_thumb_11.jpg", title:"爱心与希望"};
-themeArray["12"] = {src:"/images/themeswitch/theme_thumb_12.jpg", title:"纯朴之木屋"};
-var portalLoadArray = ["4","2","0","1"];
+   $('#tabs_container').triggerHandler('_resize');
+};
+function initHideTopbar()
+{
+   //隐藏topbar事件
+   $('#hide_topbar').bind('click', function(){
+      $('#north').slideToggle(300, function(){resizeLayout();});
+      $(this).toggleClass('up');
 
-//-- 一级菜单 --
-var first_array = ["01","10","20","40","50","60","70","80"];
+      var hidden = $(this).attr('class').indexOf('up') >= 0;
+      $.cookie('hideTopbar', (hidden ? '1' : null), {expires:1000, path:'/'});
+   });
 
-//-- 二级菜单 --
-var second_array = [];
-second_array["m01"] = ["1","3","7","8","9","10"];
-second_array["m10"] = ["12","13","14","15","16","17","18"];
-second_array["m20"] = ["21","22","23","24"];
-second_array["m30"] = ["31"];
-second_array["m40"] = ["41"];
-second_array["m50"] = ["51","52","53"];
-second_array["m60"] = ["61"];
-second_array["m70"] = ["71"];
-second_array["m80"] = ["81","82"];
+   if($.cookie('hideTopbar') == '1')
+      $('#hide_topbar').triggerHandler('click');
+}
 
-var third_array = [];
-third_array["f13"] = ["97","98","114"];
-third_array["f21"] = ["211","212","213","214"];
-//-- 当前系统主题
-var ostheme = 11; 
+var curMenu = null, zTree_Menu = null;
+var setting = {
+	view: {
+		showLine: false,
+		showIcon: false,
+		selectedMulti: false,
+		dblClickExpand: false,
+		addDiyDom: addDiyDom
+	},
+	data: {
+		simpleData: {
+			enable: true
+		}
+	},
+	callback: {
+		beforeClick: beforeClick,
+		onClick: onClick
+	}
+};
 
+var zNodes =[
+	{ id:1, pId:0, name:"批次管理", open:true},
+	{ id:11, pId:1, name:"批次管理","target":"contentUrl",url:"${ctx}/pages/chickenBatch/list.jsp"},
+	{ id:12, pId:1, name:"二维码管理","target":"contentUrl",url:"${ctx}/dimensiona/queryList"},
+	{ id:3, pId:0, name:"基础数据"},
+	{ id:31, pId:3, name:"药品管理","target":"contentUrl",url:"${ctx}/drag/queryList"},
+	{ id:32, pId:3, name:"饲料管理","target":"contentUrl",url:"${ctx}/feeder/queryList"},
+	{ id:33, pId:3, name:"饲养员管理","target":"contentUrl",url:"${ctx}/breeder/queryList"},
+	{ id:34, pId:3, name:"品系管理","target":"contentUrl",url:"${ctx}/breed/queryList"},
+	{ id:35, pId:3, name:"评级管理","target":"contentUrl",url:"${ctx}/grade/queryList"},
+	{ id:4, pId:0, name:"系统设置"},
+	{ id:51, pId:4, name:"用户管理","target":"contentUrl",url:"${ctx}/user/queryList"},
+	/* { id:52, pId:4, name:"角色管理","target":"contentUrl",url:"${ctx}/role/queryList"},
+	{ id:53, pId:4, name:"权限管理","target":"contentUrl",url:"${ctx}/resource/queryList"},
+	{ id:54, pId:4, name:"部门管理","target":"contentUrl",url:"${ctx}/department/list"},
+	{ id:57, pId:4, name:"部门管理","target":"contentUrl",url:"${ctx}/enterprise/enterprise"}, */
+	{ id:55, pId:4, name:"登录日志","target":"contentUrl",url:"${ctx}/loginLog/queryList"},
+	{ id:56, pId:4, name:"操作日志","target":"contentUrl",url:"${ctx}/operateLog/queryList"}
+];
+function addDiyDom(treeId, treeNode) {
+	var spaceWidth = 5;
+	var switchObj = $("#" + treeNode.tId + "_switch"),
+	icoObj = $("#" + treeNode.tId + "_ico");
+	switchObj.remove();
+	icoObj.before(switchObj);
+
+	if (treeNode.level > 1) {
+		var spaceStr = "<span style='display: inline-block;width:" + (spaceWidth * treeNode.level)+ "px'></span>";
+		switchObj.before(spaceStr);
+	}
+}
+function onClick(event, treeId, treeNode, clickFlag) {
+}
+
+function beforeClick(treeId, treeNode) {
+	if (treeNode.level == 0 ) {
+		var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+		zTree.expandNode(treeNode);
+		return false;
+	}
+	return true;
+}
+$(document).ready(function(){
+	initHideTopbar();
+	var treeObj = $("#treeDemo");
+	$.fn.zTree.init(treeObj, setting, zNodes);
+	zTree_Menu = $.fn.zTree.getZTreeObj("treeDemo");
+	curMenu = zTree_Menu.getNodes()[0].children[0].children[0];
+	zTree_Menu.selectNode(curMenu);
+
+	treeObj.hover(function () {
+		if (!treeObj.hasClass("showIcon")) {
+			treeObj.addClass("showIcon");
+		}
+	}, function() {
+		treeObj.removeClass("showIcon");
+	});
+	
+});
 </script>
 <title>Index</title>
 </head>
@@ -95,44 +145,9 @@ var ostheme = 11;
 		<div id="north_left">
          	<table><tbody><tr><td><img src="${ctx }/images/product.png" align="absmiddle"></td></tr></tbody></table>
 		</div>
-		<div id="north_right">
-         	<div id="datetime">
-         		<div id="time_area"></div>
-         		<div id="date"></div> 
-         		<div title="农历 九月廿八" id="mdate">霜降</div>
-         	</div>
-         	<c:out value=""></c:out>
-         	<div id="weather" style="display: block;">
-         		<span onclick="$('area_select').style.display='block';$('weather').style.display='none';" title="点击更改城市" class="city">西安</span> 
-         		<img align="absMiddle" src="${ctx }/images/1.gif">  
-         		<span class="weather">多云</span>
-         		<span title="旋转风小于3级" class="temperature">17℃~10℃</span>
-         	</div>
-         <!-- 天气预报 -->
-         <div id="area_select" style="display: none;">
-        	 <div>
-              <select onchange="Province_onchange(this.options.selectedIndex);" id="province">
-              	<option value="选择省">选择省</option>
-	          </select>
-           </div>
-           <div>
-              <select id="chinacity">
-              	<option value="0">选择城市</option>
-              </select>
-           </div>
-           <div>
-              <input type="button" onclick="GetWeather('1');" class="SmallButton" value="确定">
-              <input type="button" onclick="$('area_select').style.display='none';$('weather').style.display='block';" class="SmallButton" value="取消">
-           </div>
-         </div>
-         <!-- 天气预报    结束 -->
-      </div>     
 	</div>
 	<!-- 菜单任务栏   开始 -->
 	<div id="taskbar">
-      <div id="taskbar_left">
-         <a hidefocus="hidefocus" id="start_menu" href="javascript:;"></a>
-      </div>
       <div id="taskbar_center" style="width: 935px;">
          <div id="tabs_left_scroll" style="display: none;"></div>
          <div id="tabs_container" style="width: 876px;">
@@ -144,9 +159,8 @@ var ostheme = 11;
          <div id="tabs_right_scroll" style="display: none;"></div>
       </div>
       <div id="taskbar_right">
-         <a title="门户切换" hidefocus="hidefocus" href="javascript:;" id="portal"></a> 
-         <a title="控制面板" hidefocus="hidefocus" href="javascript:;" id="person_info"></a>
-         <a title="更换皮肤" hidefocus="hidefocus" href="javascript:;" id="theme"></a> 
+         <a title="返回主页" hidefocus="hidefocus" href="${ctx }/main/index" id="theme"></a> 
+         <a title="个人设置" hidefocus="hidefocus" href="javascript:;" id="person_info"></a>
          <a title="注销登录" hidefocus="hidefocus" href="${ctx }/j_spring_security_logout" id="logout">
          <a title="隐藏顶部" hidefocus="hidefocus" href="javascript:;" id="hide_topbar"></a>
       </div>
@@ -156,38 +170,6 @@ var ostheme = 11;
    <!-- 导航菜单 -->
    <div id="start_menu_panel">
       <div class="panel-head"></div>
-      <!-- 登录用户信息 -->
-      <div class="panel-user">
-         <div class="avatar">
-            <img src="/images/avatar/0.gif" align="absmiddle" />
-            <div class="status_icon status_icon_2"></div>
-            <div id="on_status">
-               <a href="javascript:;" status="1" class="on_status_1" hidefocus="hidefocus">在线</a>
-               <a href="javascript:;" status="2" class="on_status_2" hidefocus="hidefocus">忙碌</a>
-               <a href="javascript:;" status="3" class="on_status_3" hidefocus="hidefocus">离开</a>
-            </div>
-         </div>
-         <div class="name" title="部门：系统处/OA项目组
-角色：部门经理">admin</div>
-         <div class="tools">
-            <a class="logout" href="###" onClick="logout();" hidefocus="hidefocus" title="注销"></a>
-            <a class="exit" href="###" onClick="exit();" hidefocus="hidefocus" title="退出"></a>
-         </div>
-      </div>
-      <div class="panel-menu">
-         <!-- 一级菜单 -->
-         <div id="first_panel">
-            <div class="scroll-up"></div>
-            <ul id="first_menu"></ul>
-            <div class="scroll-down"></div>
-         </div>
-         <!-- 二级级菜单 -->
-         <div id="second_panel">
-            <div class="second-panel-head"></div>
-            <div class="second-panel-menu"><ul id="second_menu"></ul></div>
-            <div class="second-panel-foot"></div>
-         </div>
-      </div>
       <div class="panel-foot"></div>
    </div>
    <div id="overlay_startmenu"></div>
@@ -198,6 +180,7 @@ var ostheme = 11;
       <div id="funcbar_right">
       </div>
    </div> 
+  
  <div id="center" style="height: 780px;">
   <!-- 门户切换 -->
       <div id="portal_panel" class="over-mask-layer">
@@ -220,25 +203,28 @@ var ostheme = 11;
          </div>
          <div class="bottom"></div>
       </div>
-      
+	   	<div style="height: 100%;background: none repeat scroll 0 0 #F6F7F9;" class="tabs-panel selected" id="tabs_portal_1_panel" >
+   		<%-- <iframe frameborder="0" style="width: 100%; " marginwidth="0" marginheight="0" framespacing="0" border="0"  src="${ctx }/mainIndex/mainIndex" allowtransparency="true" name="tabs_portal_1_iframe" id="tabs_portal_1_iframe"></iframe> --%>
+   		<div style="width: 208px;float: left;height: 600px;margin-left: 5px;">
+	    	<ul id="treeDemo" class="ztree" style="height: 580px;"></ul>
+		</div> 
+		<div style="float: left;width: 84%;margin-top: 5px;height: 600px;">
+			<iframe frameborder="0" style="width: 100%; " marginwidth="0" marginheight="0" framespacing="0" border="0"  src="${ctx }/pages/mainIndex/left.jsp" allowtransparency="true" name="contentUrl" id="contentUrl"></iframe>
+		</div>
+   		</div>
       <div id="overlay_panel"></div>
  </div>
    
    <div id="south">
    <table>
          <tbody><tr>
-            <td class="left"><div title="共 4 人，2 人在线" onclick="ViewOnlineUser()" id="online_link">在线<span id="user_count">2</span>人</div></td>
-            <td class="left"><div id="new_sms"></div><span style="width:1px;height:1px;" id="new_sms_sound"></span></td>
-            <td class="center">
-            	<div id="status_text"><br>打造中国OA第一品牌<br>体验科技关怀   共创美好未来<br>登陆http://www.tongda2000.com/download/下载试用完整版<br></div>
-            </td>        
-            <td class="right" style="cursor:hand;">
+            <td class="left" style="color:#FFFFFF !important;font-family: Microsoft Yahei ">
+            	<div  id="online_link" style="font-size: 14px;font-weight: bold;text-align: left;float: left;">追踪系统</div>
+            	<div  id="online_link" style="font-size: 14px;font-weight: bold;padding-left: 20px;float: left;">V1.0</div>
+            	<div style="clear: both;"></div>
             </td>
-            <td class="right">
-            	<a hidefocus="hidefocus" title="事务提醒" panel="noc_panel" href="javascript:;" class="ipanel_tab" id="nocbox"></a>
-               <a hidefocus="hidefocus" title="微讯盒子" panel="smsbox_panel" href="javascript:;" class="ipanel_tab" id="smsbox"></a>
-					
-               <a hidefocus="hidefocus" title="组织" panel="org_panel" href="javascript:;" class="ipanel_tab" id="org"></a>
+            <td class="left"><div id="new_sms"></div><span style="width:1px;height:1px;" id="new_sms_sound"></span></td>
+            <td class="right" style="cursor:hand;">
             </td>
          </tr>
       </tbody></table>

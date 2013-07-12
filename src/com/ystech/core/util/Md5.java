@@ -36,6 +36,7 @@ public class Md5 {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(Md5.calcMD5("123456{shusanzhan}"));		
+		//System.out.println(Md5.calcMD5("123456{shusanzhan}"));		
+		System.out.println(Md5.calcMD5("123456admin"));		
 	}
 }

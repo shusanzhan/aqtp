@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
 
+import com.ystech.aqtp.service.ResourceManageImpl;
 import com.ystech.core.test.SpringTxTestCase;
 import com.ystech.core.util.TestGenerateUtil;
 
@@ -19,7 +20,7 @@ public class ResourceManageImplTest extends SpringTxTestCase{
 	@Rollback(false)
 	public void testCRUD() throws Exception {
 		//create
-		com.ystech.springsecurity.model.Resource resource=new com.ystech.springsecurity.model.Resource();
+		com.ystech.aqtp.model.Resource resource=new com.ystech.aqtp.model.Resource();
 
 		resource.setType("type");
 		resource.setContent("content");
@@ -59,7 +60,7 @@ public class ResourceManageImplTest extends SpringTxTestCase{
 
 	}
 	public static void main(String[] args) {
-		TestGenerateUtil.generate(com.ystech.springsecurity.model.Resource.class);
+		TestGenerateUtil.generate(com.ystech.aqtp.model.Resource.class);
 	}
 	
 }

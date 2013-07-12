@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-6-22 16:47:11 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.ystech.aqtp.model.Grade" table="grade" catalog="aqtp">
+        <id name="dbid" type="java.lang.Integer">
+            <column name="dbid" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="50" />
+        </property>
+        <property name="level" type="string">
+            <column name="level" length="50" />
+        </property>
+        <property name="note" type="string">
+            <column name="note" length="2000" />
+        </property>
+        <property name="retailPrice" type="java.lang.Float">
+            <column name="retailPrice" precision="12" scale="0" />
+        </property>
+        <set name="chickenbatches" table="chickenbatch" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="gradeLevelDbid" />
+            </key>
+            <one-to-many class="com.ystech.aqtp.model.ChickenBatch" />
+        </set>
+    </class>
+</hibernate-mapping>

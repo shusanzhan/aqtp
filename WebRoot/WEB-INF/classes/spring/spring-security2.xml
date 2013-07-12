@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<b:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:b="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+   	<!-- web 应用安全配置 -->
+  	<debug/>
+   	<!-- /css、/images、/widgets文件不用过滤-->
+   	<http  pattern="/css/**" security="none"></http>
+  	<http  pattern="/images/**" security="none"></http>
+   	<http  pattern="/widgets/**" security="none"></http>
+   	<http  pattern="/login/login" security="none"></http>
+   	<http  pattern="/pages/login/login.jsp" security="none"></http> 
+   	
+	<!-- 当访问被拒绝时，会转到login/login -->  
+	<http auto-config="true"  access-denied-page="/error403.jsp" >
+        <!-- 实现免登陆验证 -->  
+        <form-login login-page="/login/login" default-target-url="/main/index" 
+        	authentication-failure-url="/login/login?error=true" />
+        
+        <logout invalidate-session="true"  logout-success-url="/login/login" />
+        <session-management invalid-session-url="/login/login">  
+            <concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />  
+        </session-management> 
+        <custom-filter ref="springSecurityFilter" before="FILTER_SECURITY_INTERCEPTOR"/>  
+	</http>
+	
+    
+	
+	<!-- 配置自己的spring security filter  过滤器 过滤器由三部分组成：1、用户所拥有的资源，及操作的资源管理器，2、用户是否具有所操作资源的全权限。3、资源与权限对应的关系 -->
+	<b:bean id="springSecurityFilter" class="com.ystech.core.security.filter.SpringSecurityFilter">
+		<b:property name="authenticationManager" ref="authenticationManager"></b:property>
+		<b:property name="accessDecisionManager" ref="accessDecisionManager"></b:property>
+		<b:property name="securityMetadataSource" ref="securityMetadataSource"></b:property>
+	</b:bean>
+	
+	<!-- 认证服务 用户名称和密码的认证服务 -->
+	<authentication-manager alias="authenticationManager">
+	<!--userDetailsManageImpl 实现 UserDetailsService接口 用于获取用户信息 不知道什么时候执行 -->
+		<authentication-provider user-service-ref="userDetailsManageImpl">
+			<password-encoder hash="md5">
+				<salt-source user-property="userId"/>
+			</password-encoder>
+		</authentication-provider>
+	</authentication-manager>
+	
+	<!-- 自动接收验证事件消息 -->
+	<b:bean id="loggerListener" class="org.springframework.security.authentication.event.LoggerListener"/>
+	
+	<!-- 用户是否具有所操作资源的全权限 -->
+	<b:bean id="accessDecisionManager" class="com.ystech.core.security.service.SpringSecurityAccessDecisionManager">
+	</b:bean>
+	
+	<!--3、资源与权限对应的关系  -->
+	<b:bean id="securityMetadataSource" class="com.ystech.core.security.service.SpringSecurityMetadataSource">
+	</b:bean>
+	
+</b:beans>

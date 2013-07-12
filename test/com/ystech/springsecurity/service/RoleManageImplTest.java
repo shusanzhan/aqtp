@@ -4,9 +4,10 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 
+import com.ystech.aqtp.model.Role;
+import com.ystech.aqtp.service.RoleManageImpl;
 import com.ystech.core.test.SpringTxTestCase;
 import com.ystech.core.util.TestGenerateUtil;
-import com.ystech.springsecurity.model.Role;
 
 public class RoleManageImplTest extends SpringTxTestCase{
 	private RoleManageImpl roleManageImpl;

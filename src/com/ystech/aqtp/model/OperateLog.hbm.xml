@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-7-10 22:53:17 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.ystech.aqtp.model.OperateLog" table="operatelog">
+        <id name="dbid" type="java.lang.Integer">
+            <column name="dbid" />
+            <generator class="identity" />
+        </id>
+        <property name="operator" type="string">
+            <column name="operator" length="50" />
+        </property>
+        <property name="operatedate" type="date">
+            <column name="operatedate" length="10" />
+        </property>
+        <property name="operateobj" type="string">
+            <column name="operateobj" length="200" />
+        </property>
+        <property name="operatetype" type="string">
+            <column name="operatetype" length="200" />
+        </property>
+        <property name="userId" type="java.lang.Integer">
+            <column name="userId" />
+        </property>
+        <property name="operatefeild" type="string">
+            <column name="operatefeild" length="50" />
+        </property>
+        <property name="ipAddress" type="string">
+            <column name="ipAddress" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>

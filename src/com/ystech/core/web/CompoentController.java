@@ -28,12 +28,12 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.ystech.aqtp.model.User;
+import com.ystech.aqtp.service.DepartmentManageImpl;
+import com.ystech.aqtp.service.UserManageImpl;
 import com.ystech.core.util.DateUtil;
 import com.ystech.core.util.PathUtil;
 import com.ystech.core.util.ZipUtils;
-import com.ystech.springsecurity.model.User;
-import com.ystech.springsecurity.service.DepartmentManageImpl;
-import com.ystech.springsecurity.service.UserManageImpl;
 
 
 

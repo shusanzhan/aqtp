@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-6-22 16:47:11 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.ystech.aqtp.model.Dimensiona" table="dimensiona" catalog="aqtp">
+        <id name="dbid" type="java.lang.Integer">
+            <column name="DBID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="chickenbatch" class="com.ystech.aqtp.model.ChickenBatch" fetch="select" not-found="exception">
+            <column name="chickenBatchDbid" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" length="50" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="createDate" length="19" />
+        </property>
+        <property name="quantity" type="java.lang.Integer">
+            <column name="quantity" />
+        </property>
+        <many-to-one name="user" class="com.ystech.aqtp.model.User" fetch="select" not-found="ignore" >
+            <column name="userId" />
+        </many-to-one>
+        <set name="dimensionacodes" table="dimensionacode" inverse="true" lazy="true"  fetch="select" >
+            <key>
+                <column name="dimensionaId" />
+            </key>
+            <one-to-many class="com.ystech.aqtp.model.DimensionaCode" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -17,9 +17,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.ystech.springsecurity.model.Role;
-import com.ystech.springsecurity.model.User;
-import com.ystech.springsecurity.service.UserManageImpl;
+import com.ystech.aqtp.model.Role;
+import com.ystech.aqtp.model.User;
+import com.ystech.aqtp.service.UserManageImpl;
 
 /**
  * @author shusanzhan

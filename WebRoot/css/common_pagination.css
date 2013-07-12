@@ -1,6 +1,6 @@
 /*pagebar */
 .pagebar{width:520px; height:26px;color:#3366CC; font-weight:normal; }
-.pagebar td {float:right; padding-right: 12px;}
+.pagebar td {float:right; padding-right: 12px; border-top: 0px solid #DDDDDD;}
 .pagebar a{border:1px solid #CCCCCC;margin-right:3px; margin:2px;padding:2px 5px;vertical-align:middle;}
 .pagebar .current{background-color:#036CB4;border:1px solid #036CB4;color:#FFFFFF;font-weight:bold;margin:2px 0;padding:2px 4px; vertical-align:middle;}
 .pagebar a:link    { color:#036CB4; text-decoration: none;font-size:12px; font-weight:bolder;}

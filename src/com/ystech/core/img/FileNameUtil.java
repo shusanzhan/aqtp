@@ -28,7 +28,7 @@ public class FileNameUtil {
 					//如：WebRoot/archives/admin/2012-11-20
 					String path = PathUtil.getWebRootPath()	+ System.getProperty("file.separator") + 
 							"archives"+ System.getProperty("file.separator")
-							+ SecurityUserHolder.getCurrentUser().getRealName()
+							+ SecurityUserHolder.getCurrentUser().getDbid()
 							+ System.getProperty("file.separator")
 							+ DateUtil.format(new Date());
 					//判断路径是否存在，如果不存在，创建路径
@@ -42,7 +42,7 @@ public class FileNameUtil {
 					dataFile = new File(PathUtil.getWebRootPath()
 							+ System.getProperty("file.separator") + "archives"
 							+ System.getProperty("file.separator")
-							+ SecurityUserHolder.getCurrentUser().getRealName()
+							+ SecurityUserHolder.getCurrentUser().getDbid()
 							+ System.getProperty("file.separator")
 							+ DateUtil.format(new Date())
 							+ System.getProperty("file.separator")
@@ -52,6 +52,7 @@ public class FileNameUtil {
 
 				}
 			} catch (Exception e) {
+				e.printStackTrace();
 			}
 			return null;
 		}

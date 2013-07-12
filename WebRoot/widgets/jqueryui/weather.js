@@ -71,7 +71,7 @@ n[30] = new Array("0","58968","59356","59357","59358","59359","59360","59361","5
 ///////////////
 function Province_onchange(x,y)
 {
-	$("province").options.selectedIndex=x;
+	/*$("province").options.selectedIndex=x;
 	for (m=$("chinacity").options.length-1;m>0;m--) ///////////清空列表
 		$("chinacity").options[m]=null
    var j=0;
@@ -84,13 +84,13 @@ function Province_onchange(x,y)
 	}
 	if(!y) y=0;
 	$("chinacity").options[y].selected=true; //////默认第一个显示
-}
+*/}
 function init_province()
 {
-   for (m=$("province").options.length-1;m>0;m--) ///////////清空列表
+   /*for (m=$("province").options.length-1;m>0;m--) ///////////清空列表
       $("province").options[m]=null
    for (i=0;i<p.length;i++)
-      $("province").options[i]=new Option(p[i],p[i])
+      $("province").options[i]=new Option(p[i],p[i])*/
 }
 
 function SetCity(city)

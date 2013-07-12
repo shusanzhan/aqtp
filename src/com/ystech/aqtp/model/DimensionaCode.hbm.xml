@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-6-22 16:47:11 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.ystech.aqtp.model.DimensionaCode" table="dimensionacode" catalog="aqtp">
+        <id name="dbid" type="java.lang.Integer">
+            <column name="dbid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="dimensiona" class="com.ystech.aqtp.model.Dimensiona" fetch="select">
+            <column name="dimensionaId" />
+        </many-to-one>
+        <property name="code" type="java.lang.Integer">
+            <column name="code" />
+        </property>
+        <property name="photo" type="string">
+            <column name="photo" length="500" />
+        </property>
+    </class>
+</hibernate-mapping>

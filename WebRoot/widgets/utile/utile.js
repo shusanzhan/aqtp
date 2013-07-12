@@ -32,35 +32,28 @@ $.utile.submitForm = function(frmId, url, state) {
 			var validata = validateForm(frmId);
 			if (validata == true) {
 				var params = getParam(frmId, state);
-				$
-						.post(
-								url,
-								params,
-								function callBack(data) {
-									if (data[0].mark == 0) {// 返回标志为0表示添加数据成功
-										$.utile.tips(data[0].message);
-										if (target == "_self") {
-											setTimeout(
-													function() {
-														window.location.href = data[0].url
-													}, 1000);
-										}
-										if (target == "_parent") {
-											// 同时关闭弹出窗口
-											var dd = window.parent.parent.document;
-											var tabId = getTabID(dd);
-											var win = parent.document
-													.getElementById(tabId).contentWindow;
-											win.document.location.reload();
-										}
-										// 保存数据成功时页面需跳转到列表页面
-									}
-									if (data[0].mark == 1) {// /返回标志为1表示保存数据失败
-										$.utile.tips(data[0].message);
-										// 保存失败时页面停留在数据编辑页面
-									}
-									return;
-								});
+				$.post(url,params,function callBack(data) {
+					if (data[0].mark == 0) {// 返回标志为0表示添加数据成功
+						$.utile.tips(data[0].message);
+						if (target == "_self") {
+							setTimeout(
+									function() {
+										window.location.href = data[0].url
+									}, 1000);
+						}
+						if (target == "_parent") {
+							// 同时关闭弹出窗口
+							var parent = window.parent;
+							window.parent.frames["contentUrl"].location=data[0].url;
+						}
+						// 保存数据成功时页面需跳转到列表页面
+					}
+					if (data[0].mark == 1) {// /返回标志为1表示保存数据失败
+						$.utile.tips(data[0].message);
+						// 保存失败时页面停留在数据编辑页面
+					}
+					return;
+				});
 			} else {
 				return;
 			}
@@ -98,8 +91,8 @@ function checkBefDel() {
 			cancelVal : '关闭',
 			lock : true,
 			time : 3,
-			width : '300',
-			height:'400',
+			width:"250px",
+			height:"80px",
 			cancel : true
 		// 为true等价于function(){}
 		});
@@ -177,20 +170,19 @@ $.utile.showChooseUser = function() {
 /** 删除封装提示信息方法* */
 $.utile.deleteIds = function(url,searchFrm) {
 	var checkBef = checkBefDel();
-	var param=$("#"+searchFrm).serialize();
+	var params=$("#"+searchFrm).serialize();
 	try {
 		if (checkBef == true) {
 			window.top.art.dialog({
 				content : '您确定删除选择数据吗？',
 				icon : 'question',
 				width:"250px",
+				height:"80px",
 				lock : true,
 				ok : function() {// 点击去定按钮后执行方法
 					var param = getCheckBox();
-					$.post(url + "?dbids=" + param + "&datetime=" + new Date(),param,
-							callBack);
+					$.post(url + "?dbids=" + param + "&datetime=" + new Date(),params,	callBack);
 					function callBack(data) {
-
 						if (data[0].mark == 2) {// 关系存在引用，删除时提示用户，用户点击确认后在退回删除页面
 
 							window.top.art.dialog({
@@ -198,6 +190,8 @@ $.utile.deleteIds = function(url,searchFrm) {
 								icon : 'warning',
 								window : 'top',
 								lock : true,
+								width:"200px",
+								height:"80px",
 								ok : function() {// 点击去定按钮后执行方法
 
 									$.utile.close();
@@ -239,6 +233,7 @@ $.utile.deleteById = function(url,searchFrm) {
 		content : '您确启用选择数据吗？',
 		icon : 'warning',
 		width:"250px",
+		height:"80px",
 		window : 'top',
 		lock : true,
 		ok : function() {// 点击去定按钮后执行方法
@@ -249,6 +244,8 @@ $.utile.deleteById = function(url,searchFrm) {
 						content : data[0].message,
 						icon : 'warning',
 						window : 'top',
+						width:"250px",
+						height:"80px",
 						lock : true,
 						ok : function() {// 点击去定按钮后执行方法
 
@@ -290,6 +287,7 @@ $.utile.operatorDataByDbids = function(url,searchFrm,conf) {
 				content : content,
 				icon : 'question',
 				width:"250px",
+				height:"80px",
 				lock : true,
 				ok : function() {// 点击去定按钮后执行方法
 					var param = getCheckBox();
@@ -303,6 +301,8 @@ $.utile.operatorDataByDbids = function(url,searchFrm,conf) {
 								content : data[0].message,
 								icon : 'warning',
 								window : 'top',
+								width:"250px",
+								height:"80px",
 								lock : true,
 								ok : function() {// 点击去定按钮后执行方法
 
@@ -347,6 +347,7 @@ $.utile.operatorDataByDbid = function(url,searchFrm,conf) {
 		content : content,
 		icon : 'warning',
 		width:"250px",
+		height:"80px",
 		window : 'top',
 		lock : true,
 		ok : function() {// 点击去定按钮后执行方法
@@ -357,6 +358,8 @@ $.utile.operatorDataByDbid = function(url,searchFrm,conf) {
 						content : data[0].message,
 						icon : 'warning',
 						window : 'top',
+						width:"250px",
+						height:"80px",
 						lock : true,
 						ok : function() {// 点击去定按钮后执行方法
 							

@@ -26,11 +26,11 @@ import org.springframework.security.web.util.UrlUtils;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
 
-import com.ystech.springsecurity.model.Resource;
-import com.ystech.springsecurity.model.Role;
-import com.ystech.springsecurity.model.User;
-import com.ystech.springsecurity.service.ResourceManageImpl;
-import com.ystech.springsecurity.service.RoleManageImpl;
+import com.ystech.aqtp.model.Resource;
+import com.ystech.aqtp.model.Role;
+import com.ystech.aqtp.model.User;
+import com.ystech.aqtp.service.ResourceManageImpl;
+import com.ystech.aqtp.service.RoleManageImpl;
 
 /**
  * @author shusanzhan

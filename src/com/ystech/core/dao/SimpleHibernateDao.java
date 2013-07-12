@@ -108,13 +108,13 @@ public class SimpleHibernateDao<T> implements EntityDao<T>{
 		delete(get(id));
 	}
 	/**
-	 * 功能描述：
+	 * 功能描述：主要用于批量删除，批量更新数据
 	 * 参数描述：
 	 * 逻辑描述：
 	 * @return
 	 * @throws Exception
 	 */
-	public int excurySql(String sql)  {
+	public int executeSql(String sql)  {
 		Session session = getSession();
 		int executeUpdate = session.createSQLQuery(sql).executeUpdate();
 		return executeUpdate;

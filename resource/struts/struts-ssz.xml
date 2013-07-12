@@ -61,6 +61,46 @@
          
          <action name="enterprise" class="enterpriseAction">
          	<result name="enterprise">/pages/system/enterprise/edit.jsp</result>
-         </action>  	
+         </action>  
+         <action name="mainIndex" class="mainIndexAction">
+         	<result name="mainIndex">/pages/mainIndex/mainIndex.jsp</result>
+         </action>	
+         
+         <!-- 系统数据管理 品级管理 -->
+         <action name="grade"  class="gradeAction">
+         	<result name="list">/pages/grade/list.jsp</result>
+         	<result name="edit">/pages/grade/edit.jsp</result>
+         </action>
+         <!-- 品系管理 -->
+         <action name="breed"  class="breedAction">
+         	<result name="list">/pages/breed/list.jsp</result>
+         	<result name="edit">/pages/breed/edit.jsp</result>
+         </action>
+         <!-- 药品信息管理 -->
+         <action name="drag"  class="dragAction">
+         	<result name="list">/pages/drag/list.jsp</result>
+         	<result name="edit">/pages/drag/edit.jsp</result>
+         </action>
+         <!-- 饲料管理 -->
+         <action name="feeder"  class="feederAction">
+         	<result name="list">/pages/feeder/list.jsp</result>
+         	<result name="edit">/pages/feeder/edit.jsp</result>
+         </action>
+         <!-- 饲养员管理 -->
+         <action name="breeder"  class="breederAction">
+         	<result name="list">/pages/breeder/list.jsp</result>
+         	<result name="edit">/pages/breeder/edit.jsp</result>
+         </action>
+         <action name="operateLog"  class="operateLogAction">
+         	<result name="list">/pages/operateLog/list.jsp</result>
+         </action>
+         <action name="loginLog"  class="loginLogAction">
+         	<result name="list">/pages/loginLog/list.jsp</result>
+         </action>
+         <action name="dimensiona"  class="dimensionaAction">
+         	<result name="list">/pages/dimensiona/list.jsp</result>
+         	<result name="edit">/pages/dimensiona/edit.jsp</result>
+         	<result name="dimCodeList">/pages/dimensiona/codeList.jsp</result>
+         </action>
     </package>
 </struts>
