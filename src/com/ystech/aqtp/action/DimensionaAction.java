@@ -74,6 +74,16 @@ public class DimensionaAction extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
+	public String bathNoEdit() throws Exception {
+		return "bathNoEdit";
+	}
+	/**
+	 * 功能描述：
+	 * 参数描述：
+	 * 逻辑描述：
+	 * @return
+	 * @throws Exception
+	 */
 	public String add() throws Exception {
 		HttpServletRequest request = getRequest();
 		List<ChickenBatch> chickenBatchs = chickenBatchManageImpl.getAll();
@@ -114,8 +124,9 @@ public class DimensionaAction extends BaseController{
 		Integer pageNo = ParamUtil.getIntParam(request, "currentPage", 1);
 		Integer dbid = ParamUtil.getIntParam(request, "dbid", -1);
 		Page page = dimensionaCodeManageImpl.pagedQuerySql(pageNo, pageSize, DimensionaCode.class, "select * from DimensionaCode where dimensionaId=?", new Object[]{dbid});
-				
+		Dimensiona dimensiona2 = dimensionaManageImpl.get(dbid);
 		request.setAttribute("page", page);
+		request.setAttribute("dimensiona", dimensiona2);
 		return "dimCodeList";
 	}
 	/**
@@ -161,7 +172,13 @@ public class DimensionaAction extends BaseController{
 			renderErrorMsg(e, "");
 			return ;
 		}
-		renderMsg("/dimensiona/queryList", "保存数据成功！");
+		Integer addMethod = ParamUtil.getIntParam(request, "addMethod", 0);
+		if(addMethod==2){
+			renderMsg("/dimensiona/queryList", "保存数据成功！");
+		}
+		if(addMethod==1){
+			renderMsg("/chickenBatch/index?dbid="+chickenBatchId, "添加二维码信息成功！");
+		}
 		return ;
 	}
 	/**
@@ -204,8 +221,16 @@ public class DimensionaAction extends BaseController{
 				return ;
 			}
 		}
-		String query = ParamUtil.getQueryUrl(request);
-		renderMsg("/dimensiona/queryList"+query, "删除数据成功！");
+		Integer addMethod = ParamUtil.getIntParam(request, "addMethod", 0);
+		if(addMethod==2){
+			String query = ParamUtil.getQueryUrl(request);
+			renderMsg("/dimensiona/queryList"+query, "删除数据成功！");
+		}
+		if(addMethod==1){
+			Integer chickenBatchId = ParamUtil.getIntParam(request, "chickenBatchDbid", 0);
+			renderMsg("/chickenBatch/index?dbid="+chickenBatchId, "删除数据成功！");
+		}
+		
 		return ;
 	}
 	/**

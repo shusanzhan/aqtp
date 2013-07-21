@@ -64,7 +64,9 @@ table {
     border: 0 none;
     font-size: 12px;
 }
-
+.result{
+	margin-bottom: 30px;
+}
 .TableTop td {
     background: url("../images/tableTop/table_top_bg.png") no-repeat scroll 0 -32px transparent;
     color: #FFFFFF;

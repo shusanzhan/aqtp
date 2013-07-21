@@ -38,7 +38,7 @@
 	</form>
 </div>
 <c:if test="${empty(page.result)||page.result==null }" var="status">
-	<div id="result" style="padding-left: 12px;">
+	<div id="result" class="result"style="padding-left: 12px;">
 		无操作数据！请点击“添加”按钮进行添加数据操作
 	</div>
 </c:if>

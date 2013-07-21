@@ -418,7 +418,7 @@ a.MzTreeLeaf:hover{
 
 /* 二级标签及搜索栏*/
 #funcbar {
-   height:30px;
+   height:12px;
    background:#e5e5e5;
    overflow:hidden;
 }

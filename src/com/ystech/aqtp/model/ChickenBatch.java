@@ -26,7 +26,7 @@ public class ChickenBatch implements java.io.Serializable {
 	private Set quarantinecertificates = new HashSet(0);
 	private Set immunes = new HashSet(0);
 	private Set dimensionas = new HashSet(0);
-
+	private Integer countNum;
 	public ChickenBatch() {
 	}
 
@@ -168,6 +168,14 @@ public class ChickenBatch implements java.io.Serializable {
 
 	public void setDimensionas(Set dimensionas) {
 		this.dimensionas = dimensionas;
+	}
+
+	public Integer getCountNum() {
+		return countNum;
+	}
+
+	public void setCountNum(Integer countNum) {
+		this.countNum = countNum;
 	}
 
 }

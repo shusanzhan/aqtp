@@ -63,7 +63,7 @@
 	</table>
 	</form>
 </div>
-<div class="buttons" style="margin-top: 20px;text-align: left;">
+<div class="buttons" style="margin-top: 20px;text-align: left;margin-bottom: 20px;">
 <a class="ui-state-default" href="javascript:void();" onclick="$.utile.submitForm('frmId','${ctx}/user/saveUserRole')">保存</a>
  <a href="${ctx }/user/queryList"	onclick="" class="ui-state-default">返回</a>
 </div>

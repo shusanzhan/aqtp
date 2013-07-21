@@ -28,11 +28,34 @@
 	 <form name="searchPageForm" id="searchPageForm" action="${ctx}/dimensiona/queryDimCodeList" method="post">
      <input type="hidden" id="currentPage" name="currentPage" value='${page.currentPageNo}'>
      <input type="hidden" id="paramPageSize" name="pageSize" value='${page.pageSize}'>
+     <input type="hidden" id="paramPageSize" name="pageSize" value='${param.status}'>
      <input type="hidden" id="dbid" name="dbid" value='${param.dbid}'>
 	</form>
 </div>
+	<table width="92%" cellspacing="0" cellpadding="0" border="0"  style="margin-top: 10px;margin: 0 auto;margin-bottom: 10px;" align="center">
+	<tr style="border-bottom: 1px solid black;" height="40">
+		<td width="80" align="right">名称：</td><td>${dimensiona.name }</td>
+		<td width="80" align="right">生成日期：</td><td>
+			<fmt:formatDate value="${dimensiona.createDate }" />
+		</td>
+		<td width="80" align="right">生成人：</td><td>
+			${dimensiona.user.realName }
+		</td>
+		<td width="80" align="right">数量：</td><td>
+		<span style="font-size: 14px;color: red;">${dimensiona.quantity }</span>
+		</td>
+		<td></td>
+		</tr>
+	<tr style="border-bottom: 1px solid black;" height="40">
+		<td width="80" align="right">名称：</td><td width="120">${dimensiona.chickenbatch.name }</td>
+		<td width="80" align="right">批次：</td><td width="120">${dimensiona.chickenbatch.batchNo }</td>
+		<td  width="80" align="right">品级：</td><td width="120">${dimensiona.chickenbatch.grade.name }</td>
+		<td  width="80" align="right">品系：</td><td width="120">${dimensiona.chickenbatch.breed.name }</td>
+		<td  width="80" align="center"><a href="${ctx }/chickenBatch/queryList" style="color: blue;">返回</a></td>
+	</tr>
+</table>
 <c:if test="${empty(page.result)||page.result==null }" var="status">
-	<div id="result" style="padding-left: 12px;">
+	<div id="result" class="result"style="padding-left: 12px;">
 	</div>
 </c:if>
 <c:if test="${status==false }">
@@ -65,9 +88,10 @@
 	</table>
 </div>
 </c:if>
-<div class="buttons" style="margin-top: 20px;text-align: left;">
-<a class="ui-state-default" href="javascript:void(-1);" onclick="$.utile.deleteIds('${ctx }/dimensiona/deleteCode','searchPageForm')">删除</a>
-<a class="ui-state-default" href="javascript:void(-1);" onclick="window.location.href='${ctx}/dimensiona/queryList'">返回</a>
+<div class="buttons" style="margin-top: 20px;text-align: left;margin-bottom: 20px;">
+	<a class="ui-state-default" href="javascript:void(-1);" onclick="window.close()">关闭</a>
+	<a class="ui-state-default" href="javascript:void(-1);" onclick="$.utile.deleteIds('${ctx }/dimensiona/deleteCode','searchPageForm')">删除</a>
+	<a class="ui-state-default" href="javascript:void(-1);" onclick="window.location.href='${ctx}/dimensiona/queryList'">返回</a>
 </div>
 </body>
 </html>

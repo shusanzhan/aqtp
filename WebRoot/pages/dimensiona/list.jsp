@@ -38,7 +38,7 @@
 	</form>
 </div>
 <c:if test="${empty(page.result)||page.result==null }" var="status">
-	<div id="result" style="padding-left: 12px;">
+	<div id="result" class="result"style="padding-left: 12px;">
 		无二维码数据！请点击“添加”按钮进行添加数据操作
 	</div>
 </c:if>
@@ -69,9 +69,9 @@
 			<td>
 			<a href="javascript:void(-1)" class="system_right_table_a"	onclick="window.location.href='${ctx}/dimensiona/queryDimCodeList?dbid=${dimensiona.dbid}'">明细</a>
 				<span style="padding: 5px;">|</span>
-			<a href="javascript:void(-1)" class="system_right_table_a"	onclick="$.utile.openDialog('${ctx }/dimensiona/edit?dbid=${dimensiona.dbid}','编辑药品',720,490)">编辑</a>
+			<a href="javascript:void(-1)" class="system_right_table_a"	onclick="$.utile.openDialog('${ctx }/dimensiona/edit?dbid=${dimensiona.dbid}','编辑药品',720,280)">编辑</a>
 				<span style="padding: 5px;">|</span>
-			<a href="javascript:void(-1)"  class="system_right_table_a"	onclick="$.utile.deleteById('${ctx }/dimensiona/delete?dbids=${dimensiona.dbid}','searchPageForm')">删除</a>
+			<a href="javascript:void(-1)"  class="system_right_table_a"	onclick="$.utile.deleteById('${ctx }/dimensiona/delete?dbids=${dimensiona.dbid}&addMethod=2','searchPageForm')">删除</a>
 		</tr>
 	</c:forEach>
 	 <tr height="34"  >
@@ -80,8 +80,8 @@
 	</table>
 </div>
 </c:if>
-<div class="buttons" style="margin-top: 20px;text-align: left;">
-<a class="ui-state-default" href="javascript:void(-1);" onclick="$.utile.openDialog('${ctx}/dimensiona/add','添加药品',720,490)">添加</a>
+<div class="buttons" style="margin-top: 20px;text-align: left;margin-bottom: 20px;">
+<a class="ui-state-default" href="javascript:void(-1);" onclick="$.utile.openDialog('${ctx}/dimensiona/add','添加二维码',720,280)">添加</a>
 <a class="ui-state-default" href="javascript:void(-1);" onclick="$.utile.deleteIds('${ctx }/dimensiona/delete','searchPageForm')">删除</a>
 </div>
 </body>

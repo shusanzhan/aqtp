@@ -63,7 +63,7 @@ img{
 .moduleHeader .text {float: left; font-weight: bold;line-height:30px;cursor:pointer;}
 .moduleHeader .title {float: left; font-weight: bold;line-height:30px;padding-left:10px;}
 .moduleHeader .option {padding: 2px 3px; float: right; cursor: pointer; text-decoration: none;}
-.moduleHeader .close {padding: 2px 3px; float: right; cursor: pointer; text-decoration: none;display:none;}
+.moduleHeader .close {padding: 2px 3px; float: right; cursor: pointer; text-decoration: none;line-height: 28px;}
 .module_body {background: #FFFFFF;font-size: 9pt;margin: 0 !important; overflow-y: auto; padding: 5px 5px;}
 .module_body .moduleType{clear:both;}
 .module_body .moduleTypeLink{line-height:20px;height:20px;overflow:hidden;float:left;}

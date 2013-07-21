@@ -97,7 +97,7 @@
      </tr>	
 	</table>
 </div>
-<div class="buttons" style="margin-top: 20px;text-align: left;">
+<div class="buttons" style="margin-top: 20px;text-align: left;margin-bottom: 20px;">
 	<a class="ui-state-default" href="javascript:void(-1);" onclick="window.location.href='${ctx}/news/add'">添加</a>
 	<a class="ui-state-default" href="javascript:void(-1);" onclick="$.utile.deleteIds('${ctx }/news/delete','searchPageForm')">删除</a>
 	<a class="ui-state-default" href="javascript:void(-1);" onclick="$.utile.deleteIds('${ctx }/news/delete','searchPageForm')">查看阅读记录</a>

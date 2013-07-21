@@ -49,6 +49,7 @@
         </action>
         <action name="main" class="mainAction">
         	<result name="index">/pages/login/index.jsp</result>
+        	<result name="contentIndex">/pages/mainIndex/mainIndex.jsp</result>
         </action>	
         <action name="compoent" class="compoentController">
         	<result name="userSelect">/pages/compoent/userSelect.jsp</result>
@@ -100,7 +101,34 @@
          <action name="dimensiona"  class="dimensionaAction">
          	<result name="list">/pages/dimensiona/list.jsp</result>
          	<result name="edit">/pages/dimensiona/edit.jsp</result>
+         	<result name="bathNoEdit">/pages/dimensiona/bathNoEdit.jsp</result>
          	<result name="dimCodeList">/pages/dimensiona/codeList.jsp</result>
+         </action>
+         <action name="chickenBatch"  class="chickenBatchAction">
+         	<result name="list">/pages/chickenBatch/list.jsp</result>
+         	<result name="edit">/pages/chickenBatch/edit.jsp</result>
+         	<result name="index">/pages/chickenBatch/index.jsp</result>
+         	<!-- 饲料信息 -->
+         	<result name="addFeeder">/pages/chickenBatch/addFeeder.jsp</result>
+         	<result name="showFeeder">/pages/chickenBatch/showFeeder.jsp</result>
+         	<!-- 饲养员信息 -->
+         	<result name="addBreeder">/pages/chickenBatch/addBreeder.jsp</result>
+         	<result name="showBreeder">/pages/chickenBatch/showBreeder.jsp</result>
+         </action>
+         <!-- 检查检疫信息 -->
+         <action name="quarantineCertificate" class="quarantineCertificateAction">
+         	<result name="edit">/pages/quarantineCertificate/quarantineCertificat.jsp</result>
+         	<result name="showQuarantineCertificat">/pages/quarantineCertificate/showQuarantineCertificat.jsp</result>
+         </action>
+         <!-- 免疫信息 -->
+         <action name="immune" class="immuneAction">
+         	<result name="edit">/pages/immune/immune.jsp</result>
+         	<result name="showImmune">/pages/immune/showImmune.jsp</result>
+         </action>
+         <!-- 免疫信息 -->
+         <action name="healthCare" class="healthCareAction">
+         	<result name="edit">/pages/healthCare/healthCare.jsp</result>
+         	<result name="showHealthCare">/pages/healthCare/showHealthCare.jsp</result>
          </action>
     </package>
 </struts>

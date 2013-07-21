@@ -38,7 +38,7 @@
 	</form>
 </div>
 <c:if test="${empty(page.result)||page.result==null }" var="status">
-	<div id="result" style="padding-left: 12px;">
+	<div id="result" class="result"style="padding-left: 12px;">
 		无药品数据！请点击“添加”按钮进行添加数据操作
 	</div>
 </c:if>
@@ -91,7 +91,7 @@
 	</table>
 </div>
 </c:if>
-<div class="buttons" style="margin-top: 20px;text-align: left;">
+<div class="buttons" style="margin-top: 20px;text-align: left;margin-bottom: 20px;">
 <a class="ui-state-default" href="javascript:void(-1);" onclick="$.utile.openDialog('${ctx}/drag/add','添加药品',720,490)">添加</a>
 <a class="ui-state-default" href="javascript:void(-1);" onclick="$.utile.deleteIds('${ctx }/drag/delete','searchPageForm')">删除</a>
 </div>

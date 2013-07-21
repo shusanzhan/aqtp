@@ -26,6 +26,9 @@
         <property name="age" type="java.lang.Integer">
             <column name="age" />
         </property>
+        <property name="countNum" type="java.lang.Integer">
+            <column name="countNum" />
+        </property>
         <property name="outBarDate" type="timestamp">
             <column name="outBarDate" length="19" />
         </property>

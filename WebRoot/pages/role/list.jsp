@@ -63,7 +63,7 @@
      </tr>	
 	</table>
 </div>
-<div class="buttons" style="margin-top: 20px;text-align: left;">
+<div class="buttons" style="margin-top: 20px;text-align: left;margin-bottom: 20px;">
 <a class="ui-state-default" href="javascript:void();" onclick="window.location.href='${ctx}/pages/role/edit.jsp'">添加</a>
 </div>
 </body>

@@ -45,7 +45,7 @@
      </tr>	
 	</table>
 </div>
-<div class="buttons" style="margin-top: 20px;text-align: left;">
+<div class="buttons" style="margin-top: 20px;text-align: left;margin-bottom: 20px;">
 <a class="ui-state-default" href="javascript:void(-1);" onclick="$.utile.openDialog('${ctx}/news/addNewType','添加新闻类型')">添加</a>
 </div>
 </body>

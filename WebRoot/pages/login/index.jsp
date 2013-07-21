@@ -80,7 +80,7 @@ var setting = {
 
 var zNodes =[
 	{ id:1, pId:0, name:"批次管理", open:true},
-	{ id:11, pId:1, name:"批次管理","target":"contentUrl",url:"${ctx}/pages/chickenBatch/list.jsp"},
+	{ id:11, pId:1, name:"批次管理","target":"contentUrl",url:"${ctx}/chickenBatch/queryList"},
 	{ id:12, pId:1, name:"二维码管理","target":"contentUrl",url:"${ctx}/dimensiona/queryList"},
 	{ id:3, pId:0, name:"基础数据"},
 	{ id:31, pId:3, name:"药品管理","target":"contentUrl",url:"${ctx}/drag/queryList"},
@@ -151,7 +151,7 @@ $(document).ready(function(){
       <div id="taskbar_center" style="width: 935px;">
          <div id="tabs_left_scroll" style="display: none;"></div>
          <div id="tabs_container" style="width: 876px;">
-	        <div id="tabs_portal_4" class="selected"> </div>
+	        <div id="tabs_portal_4" > </div>
 	        <div id="tabs_portal_2"></div>
 	        <div id="tabs_portal_0"></div>
 	        <div id="tabs_portal_1"></div>
@@ -181,7 +181,7 @@ $(document).ready(function(){
       </div>
    </div> 
   
- <div id="center" style="height: 780px;">
+ <div id="center" style="height: 500px;">
   <!-- 门户切换 -->
       <div id="portal_panel" class="over-mask-layer">
          <div class="icon"></div>
@@ -208,8 +208,8 @@ $(document).ready(function(){
    		<div style="width: 208px;float: left;height: 600px;margin-left: 5px;">
 	    	<ul id="treeDemo" class="ztree" style="height: 580px;"></ul>
 		</div> 
-		<div style="float: left;width: 84%;margin-top: 5px;height: 600px;">
-			<iframe frameborder="0" style="width: 100%; " marginwidth="0" marginheight="0" framespacing="0" border="0"  src="${ctx }/pages/mainIndex/left.jsp" allowtransparency="true" name="contentUrl" id="contentUrl"></iframe>
+		<div style="float: left;width: 84%;margin-top: 5px;height: 500px;z-overflow: scroll;margin-bottom: 20px;">
+			<iframe frameborder="0" style="width: 100%;overflow: scroll;" marginwidth="0" marginheight="0" framespacing="0" border="0"  scrolling="auto" src="${ctx }/main/contentIndex" allowtransparency="true" name="contentUrl" id="contentUrl"></iframe>
 		</div>
    		</div>
       <div id="overlay_panel"></div>

@@ -18,6 +18,7 @@
 	<form action="" name="frmId" id="frmId" style="margin-bottom: 40px;" target="_parent">
 		<s:token></s:token>
 		<input type="hidden" name="dimensiona.dbid" id="dbid" value="${dimensiona.dbid }">
+		<input type="hidden" name="addMethod" id="addMethod" value="2">
 		<table border="1" align="center" cellpadding="0" cellspacing="0" style="width: 92%;">
 			<tr height="42">
 				<td class="formTableTdLeft" style="width: 60px;" style="width: 60px;">名称:&nbsp;</td>
