@@ -1,16 +1,3 @@
+/.gitignore
 /com
-/configdebug.properties
-/db.properties
-/ehcache_hibernate.xml
-/hibernate.cfg.xml
-/hibernate.reveng.xml
-/image.properties
-/log.record.xml
-/log4j.properties
-/spring
-/spring-config.xml
-/spring-security.xml
-/struts
-/struts.properties
-/struts.xml
 /runtime

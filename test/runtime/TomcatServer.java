@@ -11,7 +11,7 @@ import org.hibernate.cache.spi.UpdateTimestampsCache;
 public class TomcatServer {
 
 	private final Log log = LogFactory.getLog(TomcatServer.class);
-	private static final Integer DEFAULT_PORT = 8091;// 端口
+	private static final Integer DEFAULT_PORT = 8093;// 端口
 	private static final String DEFAULT_APP_PATH = "/WebRoot";// 配置项目的发布目录名称
 	private static final String APP_CONTEXT_PATH = "";// 配置项目的访问名称
 
