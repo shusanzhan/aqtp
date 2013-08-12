@@ -28,6 +28,8 @@
            <result name="list">/pages/user/list.jsp</result>
            <result name="edit">/pages/user/edit.jsp</result>
            <result name="userRole">/pages/user/userRole.jsp</result>
+           <result name="editSelf">/pages/user/editSelf.jsp</result>
+           <result name="modifyPassword">/pages/user/modifyPassword.jsp</result>
         </action>
  		<action name="resource" class="resourceAction">
            <result name="list">/pages/resource/list.jsp</result>
@@ -103,6 +105,7 @@
          	<result name="edit">/pages/dimensiona/edit.jsp</result>
          	<result name="bathNoEdit">/pages/dimensiona/bathNoEdit.jsp</result>
          	<result name="dimCodeList">/pages/dimensiona/codeList.jsp</result>
+         	<result name="printDimensiona">/pages/dimensiona/printDimensiona.jsp</result>
          </action>
          <action name="chickenBatch"  class="chickenBatchAction">
          	<result name="list">/pages/chickenBatch/list.jsp</result>

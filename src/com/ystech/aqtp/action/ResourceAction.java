@@ -41,12 +41,24 @@ public class ResourceAction extends BaseController {
 	public void save() throws Exception {
 		HttpServletRequest request = this.getRequest();
 		Integer parentId = ParamUtil.getIntParam(request, "parentId", -1);
-		if(parentId>0){
-			Resource resource2 = resourceManageImpl.get(parentId);
-			resource.setParent(resource2);
-		}
+		Resource parent=null;
 		try {
-			resourceManageImpl.save(resource);
+			if(parentId>0){
+				parent= resourceManageImpl.get(parentId);
+			}
+			if(null!=resource.getDbid()&&resource.getDbid()>0){
+				Resource resource2 = resourceManageImpl.get(resource.getDbid());
+				resource2.setContent(resource.getContent());
+				resource2.setMenu(resource.getMenu());
+				resource2.setOrderNo(resource.getOrderNo());
+				resource2.setParent(parent);
+				resource2.setTitle(resource.getTitle());
+				resource2.setType(resource.getType());
+				resourceManageImpl.save(resource2);
+			}else{
+				resource.setParent(parent);
+				resourceManageImpl.save(resource);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			renderErrorMsg(e, "");

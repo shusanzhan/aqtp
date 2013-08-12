@@ -1,7 +1,11 @@
 package com.ystech.aqtp.action;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +14,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.access.ConfigAttribute;
+import org.springframework.security.access.SecurityConfig;
 import org.springframework.stereotype.Component;
 
 import com.ystech.aqtp.model.Resource;
@@ -17,6 +23,7 @@ import com.ystech.aqtp.model.Role;
 import com.ystech.aqtp.service.ResourceManageImpl;
 import com.ystech.aqtp.service.RoleManageImpl;
 import com.ystech.core.dao.support.Page;
+import com.ystech.core.security.service.SpringSecurityMetadataSource;
 import com.ystech.core.util.ParamUtil;
 import com.ystech.core.web.BaseController;
 @Component("roleAction")
@@ -107,6 +114,9 @@ public class RoleAction extends BaseController{
 			}
 			try{
 				roleManageImpl.save(role2);
+				Map<String, Collection<ConfigAttribute>> resourceMap = SpringSecurityMetadataSource.resourceMap;
+				Map<String, Collection<ConfigAttribute>> loadResourceDefine = loadResourceDefine(resourceMap);
+				SpringSecurityMetadataSource.resourceMap=loadResourceDefine;
 			}catch (Exception e) {
 				e.printStackTrace();
 				renderErrorMsg(e, "");
@@ -188,5 +198,34 @@ public class RoleAction extends BaseController{
 			return rBuffer.toString();
 		}
 		return null;
+	}
+	// 加载所有资源与权限的关系初始化数据
+	private Map<String, Collection<ConfigAttribute>>  loadResourceDefine(Map<String, Collection<ConfigAttribute>> resourceMap) {
+		if (resourceMap == null) {
+			resourceMap = new HashMap<String, Collection<ConfigAttribute>>();
+		}else{
+			List<Role> roles = roleManageImpl.getAll();
+			if(null!=roles){
+				for (Role role : roles) {
+					Set<Resource> resources = role.getResources();
+					ConfigAttribute ca = new SecurityConfig(role.getName());
+					if (null != resources && resources.size() > 0) {
+						for (Resource resource : resources) {
+							String url=resource.getContent();
+							if(resourceMap.containsKey(url)){
+								Collection<ConfigAttribute> value = resourceMap.get(url);
+							     value.add(ca);
+							     resourceMap.put(url, value);
+							}else{
+								Collection<ConfigAttribute> atts = new ArrayList<ConfigAttribute>();
+							     atts.add(ca);
+							     resourceMap.put(url, atts);
+							}
+						}
+					}
+				}
+			}
+		}
+		return resourceMap;
 	}
 }

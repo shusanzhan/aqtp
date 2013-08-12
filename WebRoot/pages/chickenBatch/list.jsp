@@ -56,7 +56,7 @@
 	<c:forEach var="chickenBatch" items="${page.result }">
 		<tr height="32" align="center">
 			<td><input type='checkbox' name="id" id="id1" value="${chickenBatch.dbid }"/></td>
-			<td>${chickenBatch.name }</td>
+			<td><a href="${ctx}/ireportPdf/impage">${chickenBatch.name }</a></td>
 			<td>${chickenBatch.batchNo }</td>
 			<td>${chickenBatch.grade.name }</td>
 			<td>${chickenBatch.breed.name }</td>

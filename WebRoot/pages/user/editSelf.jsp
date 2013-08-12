@@ -69,14 +69,14 @@ window.onload = function() {
 
 }
 </script>
-<title>用户添加</title>
+<title>个人设置-编辑个人信息</title>
 </head>
 <body class="bodycolor">
 	<table class="TableTop" width="100%">
 		<tbody>
 			<tr>
 				<td class="left"></td>
-				<td class="center">添加用户</td>
+				<td class="center">修改信息</td>
 				<td class="right"></td>
 			</tr>
 		</tbody>
@@ -90,7 +90,7 @@ window.onload = function() {
 			<tr height="42">
 				<td class="formTableTdLeft" style="width: 60px;">用户ID:&nbsp;</td>
 				<td ><input type="text" name="user.userId" id="userId"
-					value="${user.userId }" class="input-large field" title="用户ID" url="${ctx }/user/validateUser"	checkType="string,5,20" tip="用户名不能为空,并且5-20个字符"><span style="color: red;">*</span></td>
+					value="${user.userId }" class="input-large field" readonly="readonly" title="用户ID" ></td>
 				<td rowspan="4" colspan="2">
 				<table  border="0" cellpadding="0" cellspacing="0" style="width: 500px;" height="200">
 					<tr>
@@ -162,11 +162,8 @@ window.onload = function() {
 					value="${breeder.graduationSchool }" class="input-xlarge field" title="毕业学校"></td>
 			</tr>
 		</table>
-		<div class="buttons" style="margin-top: 20px;">
-			<a href="javascript:void()"
-					onclick="$.utile.submitForm('frmId','${ctx}/user/saveEdit')"
-					class="ui-state-default">保存</a> 
-		    <a href="${ctx }/user/queryList"	onclick="" class="ui-state-default">返回</a>
+		<div class="buttons" style="margin-top: 20px;text-align: center;">
+			<a href="javascript:void(-1)"	onclick="$.utile.submitForm('frmId','${ctx}/user/saveEditSelf')" class="ui-state-default" >保存</a> 
 		</div>
 	</form>
 </body>

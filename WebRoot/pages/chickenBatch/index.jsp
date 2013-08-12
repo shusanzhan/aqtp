@@ -292,18 +292,19 @@
 					    				${dimensiona.name }
 					    			</a>
 					    		</span> 
-					    		<span style="width: 120px;float: left;">
+					    		<span style="width: 110px;float: left;">
 					    		 	<fmt:formatDate value="${dimensiona.createDate }" />	
 					    		</span>
-					    		<span style="width: 90px;float: left;">
+					    		<span style="width: 60px;float: left;">
 					    		 	${dimensiona.quantity }	
 					    		</span>
 					    		<span style="width: 100px;float: left;">
 					    		 	${dimensiona.user.realName }	
 					    		</span>
-					    		<span style="width: 80px;float: left;">
+					    		<span style="width: 120px;float: left;">
 					    			<a target="" href="javascript:void(-1)"  style="" onclick="window.open('${ctx}/dimensiona/queryDimCodeList?dbid=${dimensiona.dbid}&status=chickenIndex')">明细</a>
 					    			<a target="" href="javascript:void(-1)"  style="" onclick="$.utile.deleteById('${ctx }/dimensiona/delete?dbids=${dimensiona.dbid}&chickenBatchDbid=${chickenBatch.dbid }&addMethod=1')">删除</a>
+					    			<a target="" href="javascript:void(-1)"  style="" onclick="window.location.href='${ctx}/dimensiona/exportPDF?dbid=${dimensiona.dbid}'">导出PDF</a>
 					    			
 					    		</span>
 					    		<span style="clear: both;"></span>

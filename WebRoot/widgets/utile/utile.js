@@ -280,7 +280,10 @@ $.utile.operatorDataByDbids = function(url,searchFrm,conf) {
 		content=conf;
 	}
 	var checkBef = checkBefDel();
-	var param=$("#"+searchFrm).serialize();
+	var params;
+	if(null!=searchFrm&&searchFrm!=undefined){
+		params=$("#"+searchFrm).serialize();
+	}
 	try {
 		if (checkBef == true) {
 			window.top.art.dialog({
@@ -291,7 +294,7 @@ $.utile.operatorDataByDbids = function(url,searchFrm,conf) {
 				lock : true,
 				ok : function() {// 点击去定按钮后执行方法
 					var param = getCheckBox();
-					$.post(url + "?dbids=" + param + "&datetime=" + new Date(),param,
+					$.post(url + "?dbids=" + param + "&datetime=" + new Date(),params,
 							callBack);
 					function callBack(data) {
 
@@ -342,7 +345,7 @@ $.utile.operatorDataByDbid = function(url,searchFrm,conf) {
 	if(null!=conf&&conf!=undefined){
 		content=conf;
 	}
-	var param=$("#"+searchFrm).serialize();
+	var params=$("#"+searchFrm).serialize();
 	window.top.art.dialog({
 		content : content,
 		icon : 'warning',
@@ -351,7 +354,7 @@ $.utile.operatorDataByDbid = function(url,searchFrm,conf) {
 		window : 'top',
 		lock : true,
 		ok : function() {// 点击去定按钮后执行方法
-			$.post(url + "&datetime=" + new Date(),param,function callBack(data) {
+			$.post(url + "&datetime=" + new Date(),params,function callBack(data) {
 				if (data[0].mark == 2) {// 关系存在引用，删除时提示用户，用户点击确认后在退回删除页面
 					
 					window.top.art.dialog({

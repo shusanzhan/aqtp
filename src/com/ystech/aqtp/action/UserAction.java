@@ -20,6 +20,7 @@ import com.ystech.aqtp.service.BreederManageImpl;
 import com.ystech.aqtp.service.RoleManageImpl;
 import com.ystech.aqtp.service.UserManageImpl;
 import com.ystech.core.dao.support.Page;
+import com.ystech.core.security.SecurityUserHolder;
 import com.ystech.core.util.Md5;
 import com.ystech.core.util.ParamUtil;
 import com.ystech.core.web.BaseController;
@@ -79,9 +80,14 @@ public class UserAction extends BaseController{
 			//保存用户信息
 			String calcMD5 = Md5.calcMD5("123456{"+user.getUserId()+"}");
 			user.setPassword(calcMD5);
+			Integer dbid = user.getDbid();
+			if(null!=dbid&&dbid>0){
+				User user2 = userManageImpl.get(dbid);
+				Set<Role> roles = user2.getRoles();
+				user.setRoles(roles);
+			}
 			userManageImpl.save(user);
 			
-			//保存饲养员信息
 			breeder.setUser(user);
 			breeder.setName(user.getRealName());
 			breederManageImpl.save(breeder);
@@ -102,6 +108,48 @@ public class UserAction extends BaseController{
 			request.setAttribute("breeder", user.getBreeder());
 		}
 		return "edit";
+	}
+	/**
+	 * 功能描述：保存用户信息
+	 * @throws Exception
+	 */
+	public void saveEdit() throws Exception {
+		try{
+			//保存用户信息
+			String calcMD5 = Md5.calcMD5("123456{"+user.getUserId()+"}");
+			Integer dbid = user.getDbid();
+			User user2 = userManageImpl.get(dbid);
+			user2.setEmail(user.getEmail());
+			user2.setMobilePhone(user.getMobilePhone());
+			user2.setPassword(user.getPassword());
+			user2.setPhone(user.getPhone());
+			user2.setRealName(user.getRealName());
+			user2.setUserId(user.getUserId());
+			user2.setPassword(calcMD5);
+			userManageImpl.save(user2);
+			
+			if(null==breeder.getDbid()||breeder.getDbid()<=0){
+				breeder.setUser(user);
+				breeder.setName(user.getRealName());
+				breederManageImpl.save(breeder);
+			}
+			else{
+				Breeder breeder2 = breederManageImpl.get(breeder.getDbid());
+				breeder2.setUser(user2);
+				breeder2.setName(user2.getRealName());
+				breeder2.setEducationalBackground(breeder.getEducationalBackground());
+				breeder2.setBirthday(breeder.getBirthday());
+				breeder2.setGraduationSchool(breeder.getGraduationSchool());
+				breeder2.setPhoto(breeder.getPhoto());
+				breeder2.setSex(breeder.getSex());
+				breederManageImpl.save(breeder2);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			renderErrorMsg(e, "");
+		}
+		renderMsg("/user/queryList", "保存数据成功！");
+		return ;
 	}
 	public void delete() throws Exception {
 		HttpServletRequest request = this.getRequest();
@@ -152,7 +200,111 @@ public class UserAction extends BaseController{
 		}
 		
 	}
-	
+	/**
+	 * 功能描述：个人设置-设置用户信息
+	 * @return
+	 * @throws Exception
+	 */
+	public String editSelf() throws Exception {
+		User user = SecurityUserHolder.getCurrentUser();
+		HttpServletRequest request = this.getRequest();
+		if(null!=user&&user.getDbid()>0){
+			User user2 = userManageImpl.get(user.getDbid());
+			request.setAttribute("user", user2);
+			request.setAttribute("breeder", user2.getBreeder());
+		}
+		return "editSelf";
+	}
+	/**
+	 * 功能描述：保存用户信息
+	 * @throws Exception
+	 */
+	public void saveEditSelf() throws Exception {
+		try{
+			//保存用户信息
+			String calcMD5 = Md5.calcMD5("123456{"+user.getUserId()+"}");
+			Integer dbid = user.getDbid();
+			User user2 = userManageImpl.get(dbid);
+			user2.setEmail(user.getEmail());
+			user2.setMobilePhone(user.getMobilePhone());
+			user2.setPassword(user.getPassword());
+			user2.setPhone(user.getPhone());
+			user2.setRealName(user.getRealName());
+			user2.setUserId(user.getUserId());
+			user2.setPassword(calcMD5);
+			userManageImpl.save(user2);
+			
+			Breeder breeder2 = breederManageImpl.get(breeder.getDbid());
+			breeder2.setUser(user2);
+			breeder2.setName(user2.getRealName());
+			breeder2.setEducationalBackground(breeder.getEducationalBackground());
+			breeder2.setBirthday(breeder.getBirthday());
+			breeder2.setGraduationSchool(breeder.getGraduationSchool());
+			breeder2.setPhoto(breeder.getPhoto());
+			breeder2.setSex(breeder.getSex());
+			breederManageImpl.save(breeder2);
+		}catch (Exception e) {
+			e.printStackTrace();
+			renderErrorMsg(e, "");
+		}
+		renderMsg("/user/editSelf", "保存数据成功！");
+		return ;
+	}
+	/**
+	 * 功能描述：修改密码
+	 * @return
+	 * @throws Exception
+	 */
+	public String modifyPassword() throws Exception {
+		User user = SecurityUserHolder.getCurrentUser();
+		HttpServletRequest request = this.getRequest();
+		if(null!=user&&user.getDbid()>0){
+			User user2 = userManageImpl.get(user.getDbid());
+			request.setAttribute("user", user2);
+		}
+		return "modifyPassword";
+	}
+	/**
+	 * 功能描述：修改密码
+	 * @return
+	 * @throws Exception
+	 */
+	public void updateModifyPassword() throws Exception {
+		HttpServletRequest request = getRequest();
+		Integer dbid = ParamUtil.getIntParam(request, "dbid", -1);
+		String oldPassword = request.getParameter("oldPassword");
+		String password = request.getParameter("password");
+		if(null==oldPassword||oldPassword.trim().length()<=0){
+			renderErrorMsg(new Throwable("输入旧密码错误！"), "");
+			return ;
+		}
+		if(null==password||password.trim().length()<=0){
+			renderErrorMsg(new Throwable("密码输入错误！"), "");
+			return ;
+		}
+		try{
+			if (dbid>0) {
+				User user2 = userManageImpl.get(dbid);
+				String password2 = user2.getPassword();
+				String calcMD5 = Md5.calcMD5(oldPassword+"{"+user2.getUserId()+"}");
+				if(password2.equals(calcMD5)){
+					user2.setPassword(Md5.calcMD5(password+"{"+user2.getUserId()+"}"));
+					userManageImpl.save(user2);
+				}else{
+					renderErrorMsg(new Throwable("旧密码输入错误！"), "");
+					return ;	
+				}
+			} else {
+				renderErrorMsg(new Throwable("操作数据错误！"), "");
+				return ;
+			}	
+		}catch (Exception e) {
+			e.printStackTrace();
+			renderErrorMsg(e, "");
+		}
+		renderMsg("/user/modifyPassword", "修改密码成功！");
+		return ;
+	}
 	public void saveUserRole() throws Exception {
 		HttpServletRequest request = this.getRequest();
 		Integer dbid = ParamUtil.getIntParam(request, "dbid", -1);

@@ -28,13 +28,13 @@
 	 <form name="searchPageForm" id="searchPageForm" action="${ctx}/loginLog/queryList" method="post">
      <input type="hidden" id="currentPage" name="currentPage" value='${page.currentPageNo}'>
      <input type="hidden" id="paramPageSize" name="pageSize" value='${page.pageSize}'>
-	 <table>
+	 <%-- <table>
 		<tr>
 			<td>登录用户：</td>
 			<td><input type="text" id="userName" name="userName" class="input-small field" value="${param.userName}"></input></td>
 			<td><input type="submit" value="查询"></input></td>
 		</tr>
-	 </table>
+	 </table> --%>
 	</form>
 </div>
 <c:if test="${empty(page.result)||page.result==null }" var="status">
@@ -73,5 +73,8 @@
 	</table>
 </div>
 </c:if>
+<div class="buttons" style="margin-top: 20px;text-align: left;margin-bottom: 20px;">
+	<a class="ui-state-default" href="javascript:void(-1);" onclick="	$.utile.deleteIds('${ctx }/loginLog/delete','searchPageForm')">删除</a>
+</div>
 </body>
 </html>

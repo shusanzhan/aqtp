@@ -74,7 +74,7 @@ public class ChickenBatch implements java.io.Serializable {
 		this.grade = grade;
 	}
 
-	public String getBatchNo() {
+	public String   getBatchNo() {
 		return this.batchNo;
 	}
 

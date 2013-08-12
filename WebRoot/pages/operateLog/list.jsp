@@ -73,5 +73,8 @@
 	</table>
 </div>
 </c:if>
+<div class="buttons" style="margin-top: 20px;text-align: left;margin-bottom: 20px;">
+	<a class="ui-state-default" href="javascript:void(-1);" onclick="	$.utile.deleteIds('${ctx }/operateLog/delete','searchPageForm')">删除</a>
+</div>
 </body>
 </html>

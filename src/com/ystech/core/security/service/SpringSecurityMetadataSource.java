@@ -40,7 +40,7 @@ public class SpringSecurityMetadataSource implements
 		FilterInvocationSecurityMetadataSource {
 	private ResourceManageImpl resourceManageImpl;
 	private RoleManageImpl roleManageImpl;
-	private static Map<String, Collection<ConfigAttribute>> resourceMap = null;
+	public static Map<String, Collection<ConfigAttribute>> resourceMap = null;
 	public SpringSecurityMetadataSource() {
 		// loadResourceDefine();
 	}

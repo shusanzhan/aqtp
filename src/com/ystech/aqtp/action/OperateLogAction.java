@@ -56,4 +56,28 @@ public class OperateLogAction extends BaseController{
 		request.setAttribute("page", page);
 		return "list";
 	}
+	/**
+	 * 功能描述：删除操作日志信息
+	 * @throws Exception
+	 */
+	public void delete() throws Exception {
+		HttpServletRequest request = this.getRequest();
+		String dbids = request.getParameter("dbids");
+		int contNum=0;
+		if(null!=dbids&&dbids.trim().length()>0){
+			try {
+				contNum = operateLogManageImpl.deleteByIds(dbids);
+			} catch (Exception e) {
+				e.printStackTrace();
+				renderErrorMsg(e, "");
+				return ;
+			}
+		}else{
+			renderErrorMsg(new Throwable("未选择操作数据！"), "");
+			return ;
+		}
+		String query = ParamUtil.getQueryUrl(request);
+		renderMsg("/operateLog/queryList"+query, "成功删除数据【"+contNum+"】！");
+		return;
+	}
 }

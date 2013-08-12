@@ -69,6 +69,8 @@
 			<td>
 			<a href="javascript:void(-1)" class="system_right_table_a"	onclick="window.location.href='${ctx}/dimensiona/queryDimCodeList?dbid=${dimensiona.dbid}'">明细</a>
 				<span style="padding: 5px;">|</span>
+			<a href="javascript:void(-1)" class="system_right_table_a"	onclick="window.location.href='${ctx}/dimensiona/exportPDF?dbid=${dimensiona.dbid}'">导出PDF</a>
+				<span style="padding: 5px;">|</span>
 			<a href="javascript:void(-1)" class="system_right_table_a"	onclick="$.utile.openDialog('${ctx }/dimensiona/edit?dbid=${dimensiona.dbid}','编辑药品',720,280)">编辑</a>
 				<span style="padding: 5px;">|</span>
 			<a href="javascript:void(-1)"  class="system_right_table_a"	onclick="$.utile.deleteById('${ctx }/dimensiona/delete?dbids=${dimensiona.dbid}&addMethod=2','searchPageForm')">删除</a>

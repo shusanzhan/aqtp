@@ -4,13 +4,18 @@
 package com.ystech.aqtp.action;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.jasper.tagplugins.jstl.core.Param;
@@ -26,6 +31,7 @@ import com.ystech.aqtp.model.ChickenBatch;
 import com.ystech.aqtp.model.Dimensiona;
 import com.ystech.aqtp.model.DimensionaCode;
 import com.ystech.aqtp.model.User;
+import com.ystech.aqtp.pdf.ItextPdfManageImpl;
 import com.ystech.aqtp.service.ChickenBatchManageImpl;
 import com.ystech.aqtp.service.DimensionaCodeManageImpl;
 import com.ystech.aqtp.service.DimensionaManageImpl;
@@ -34,6 +40,7 @@ import com.ystech.core.security.SecurityUserHolder;
 import com.ystech.core.util.DateUtil;
 import com.ystech.core.util.ParamUtil;
 import com.ystech.core.util.PathUtil;
+import com.ystech.core.util.ZipUtils;
 import com.ystech.core.web.BaseController;
 
 /**
@@ -295,6 +302,77 @@ public class DimensionaAction extends BaseController{
 	    }  
 	    String pathResult = pathFile.replaceAll("\\\\", "/").replace(PathUtil.getWebRootPath(), "");
 	    return pathResult;
-	}  
+	}
+	/**
+	 * 功能描述：
+	 * 参数描述：
+	 * 逻辑描述：
+	 * @return
+	 * @throws Exception
+	 */
+	public String printDimensiona() throws Exception {
+		HttpServletRequest request = getRequest();
+		Integer dbid = ParamUtil.getIntParam(request, "dbid", -1);
+		List<DimensionaCode> dimensionaCodes = dimensionaCodeManageImpl.findBy("dimensiona.dbid", dbid);
+		Dimensiona dimensiona2 = dimensionaManageImpl.get(dbid);
+		request.setAttribute("dimensionaCodes", dimensionaCodes);
+		request.setAttribute("dimensiona", dimensiona2);
+		return "printDimensiona";
+	}
+	/**
+	 * 功能描述：
+	 * 参数描述：
+	 * 逻辑描述：
+	 * @return
+	 * @throws Exception
+	 */
+	public void exportPDF() throws Exception {
+		HttpServletRequest request = getRequest();
+		HttpServletResponse response = getResponse();
+		Integer dbid = ParamUtil.getIntParam(request, "dbid", -1);
+		try{
+			Dimensiona dimensionas = dimensionaManageImpl.get(dbid);
+			ChickenBatch chickenBatch = dimensionas.getChickenbatch();
+			List<DimensionaCode> dimensionaCodes=new ArrayList<DimensionaCode>();
+			if(null!=dimensionas){
+				 dimensionaCodes = dimensionaCodeManageImpl.findBy("dimensiona.dbid", dimensionas.getDbid());
+			}
+			ItextPdfManageImpl imItextPdfManageImpl=new ItextPdfManageImpl();
+			//生存PDF文件
+			String createPdf = imItextPdfManageImpl.createPdf(chickenBatch,dimensionas,dimensionaCodes);
+			
+			File file = new File(createPdf);
+			byte[] b = new byte[100];
+			int len = 0;
+			InputStream is = new FileInputStream(file);
+			// 防止IE缓存
+			response.setHeader("pragma", "no-cache");
+			response.setHeader("cache-control", "no-cache");
+			response.setDateHeader("Expires", 0);
+
+			// 设置编码
+			request.setCharacterEncoding("UTF-8");
+			// 设置输出的格式
+			response.reset();
+			response.setContentType("application/pdf;charset=UTF-8");
+			//response.setContentType("application/octet-stream;charset=UTF-8");// 解决在弹出文件下载框不能打开文件的问题
+			// 解决在弹出文件下载框不能打开文件的问题
+			response.addHeader("Content-Disposition", "attachment;filename=" + ZipUtils.toUtf8String(file.getName()));// );
+			ServletOutputStream outputStream = response.getOutputStream();
+			// 循环取出流中的数据
+			while ((len = is.read(b)) > 0) {
+				outputStream.write(b, 0, len);
+			}
+			is.close();
+			response.flushBuffer();
+			outputStream.flush();
+			outputStream.close();
+			directlyOutput(request);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ;
+	}
 }
 

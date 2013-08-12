@@ -90,12 +90,15 @@ var zNodes =[
 	{ id:35, pId:3, name:"评级管理","target":"contentUrl",url:"${ctx}/grade/queryList"},
 	{ id:4, pId:0, name:"系统设置"},
 	{ id:51, pId:4, name:"用户管理","target":"contentUrl",url:"${ctx}/user/queryList"},
-	/* { id:52, pId:4, name:"角色管理","target":"contentUrl",url:"${ctx}/role/queryList"},
+	{ id:52, pId:4, name:"角色管理","target":"contentUrl",url:"${ctx}/role/queryList"},
 	{ id:53, pId:4, name:"权限管理","target":"contentUrl",url:"${ctx}/resource/queryList"},
-	{ id:54, pId:4, name:"部门管理","target":"contentUrl",url:"${ctx}/department/list"},
+	/*{ id:54, pId:4, name:"部门管理","target":"contentUrl",url:"${ctx}/department/list"},
 	{ id:57, pId:4, name:"部门管理","target":"contentUrl",url:"${ctx}/enterprise/enterprise"}, */
 	{ id:55, pId:4, name:"登录日志","target":"contentUrl",url:"${ctx}/loginLog/queryList"},
-	{ id:56, pId:4, name:"操作日志","target":"contentUrl",url:"${ctx}/operateLog/queryList"}
+	{ id:56, pId:4, name:"操作日志","target":"contentUrl",url:"${ctx}/operateLog/queryList"},
+	{ id:6, pId:0, name:"个人设置"},
+	{ id:61, pId:6, name:"个人信息","target":"contentUrl",url:"${ctx}/user/editSelf"},
+	{ id:62, pId:6, name:"修改密码","target":"contentUrl",url:"${ctx}/user/modifyPassword"}
 ];
 function addDiyDom(treeId, treeNode) {
 	var spaceWidth = 5;
@@ -122,11 +125,12 @@ function beforeClick(treeId, treeNode) {
 }
 $(document).ready(function(){
 	initHideTopbar();
+	resizeLayout();
 	var treeObj = $("#treeDemo");
 	$.fn.zTree.init(treeObj, setting, zNodes);
 	zTree_Menu = $.fn.zTree.getZTreeObj("treeDemo");
-	curMenu = zTree_Menu.getNodes()[0].children[0].children[0];
-	zTree_Menu.selectNode(curMenu);
+	/* curMenu = zTree_Menu.getNodes()[0].children[0].children[0];
+	zTree_Menu.selectNode(curMenu); */
 
 	treeObj.hover(function () {
 		if (!treeObj.hasClass("showIcon")) {
@@ -160,7 +164,7 @@ $(document).ready(function(){
       </div>
       <div id="taskbar_right">
          <a title="返回主页" hidefocus="hidefocus" href="${ctx }/main/index" id="theme"></a> 
-         <a title="个人设置" hidefocus="hidefocus" href="javascript:;" id="person_info"></a>
+         <a title="个人设置" hidefocus="hidefocus" href="${ctx}/user/editSelf"  target="contentUrl" id="person_info"></a>
          <a title="注销登录" hidefocus="hidefocus" href="${ctx }/j_spring_security_logout" id="logout">
          <a title="隐藏顶部" hidefocus="hidefocus" href="javascript:;" id="hide_topbar"></a>
       </div>

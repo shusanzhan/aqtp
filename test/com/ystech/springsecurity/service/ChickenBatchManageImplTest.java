@@ -3,6 +3,10 @@
  */
 package com.ystech.springsecurity.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -10,9 +14,14 @@ import org.springframework.stereotype.Component;
 
 import com.ystech.aqtp.model.Breed;
 import com.ystech.aqtp.model.ChickenBatch;
+import com.ystech.aqtp.model.Dimensiona;
+import com.ystech.aqtp.model.DimensionaCode;
 import com.ystech.aqtp.model.Grade;
+import com.ystech.aqtp.pdf.ItextPdfManageImpl;
 import com.ystech.aqtp.service.BreedManageImpl;
 import com.ystech.aqtp.service.ChickenBatchManageImpl;
+import com.ystech.aqtp.service.DimensionaCodeManageImpl;
+import com.ystech.aqtp.service.DimensionaManageImpl;
 import com.ystech.aqtp.service.GradeManageImpl;
 import com.ystech.core.dao.HibernateEntityDao;
 import com.ystech.core.test.SpringTxTestCase;
@@ -24,7 +33,8 @@ import com.ystech.core.util.TestGenerateUtil;
  */
 public class ChickenBatchManageImplTest extends SpringTxTestCase{
 	private ChickenBatchManageImpl chickenBatchManageImpl;
-
+	private DimensionaCodeManageImpl dimensionaCodeManageImpl;
+	private DimensionaManageImpl dimensionaManageImpl;
 	@Resource
 	public void setChickenBatchManageImpl(
 			ChickenBatchManageImpl chickenBatchManageImpl) {
@@ -42,7 +52,15 @@ public class ChickenBatchManageImplTest extends SpringTxTestCase{
 	public void setGradeManageImpl(GradeManageImpl gradeManageImpl) {
 		this.gradeManageImpl = gradeManageImpl;
 	}
-	
+	@Resource
+	public void setDimensionaCodeManageImpl(
+			DimensionaCodeManageImpl dimensionaCodeManageImpl) {
+		this.dimensionaCodeManageImpl = dimensionaCodeManageImpl;
+	}
+	@Resource
+	public void setDimensionaManageImpl(DimensionaManageImpl dimensionaManageImpl) {
+		this.dimensionaManageImpl = dimensionaManageImpl;
+	}
 	@Test
 	public void testCRUD() throws Exception {
 		//create
@@ -112,6 +130,25 @@ public class ChickenBatchManageImplTest extends SpringTxTestCase{
 		//delete
 		chickenBatchManageImpl.deleteById(chickenBatch.getDbid());
 
+	}
+	@Test
+	public void testPDF() throws Exception {
+		ChickenBatch chickenBatch = chickenBatchManageImpl.get(1);
+		List<Dimensiona> dimensionas = dimensionaManageImpl.findBy("chickenbatch.dbid", 1);
+		List<DimensionaCode> di=new ArrayList<DimensionaCode>();
+		for (Dimensiona object : dimensionas) {
+			if(null!=object){
+				List<DimensionaCode> dimensionaCodes = dimensionaCodeManageImpl.findBy("dimensiona.dbid", object.getDbid());
+				di.addAll(dimensionaCodes);
+			}
+		}
+		try{
+			ItextPdfManageImpl testPdf=new ItextPdfManageImpl();
+			testPdf.createPdf(chickenBatch,dimensionas.get(0), di);
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 	public static void main(String[] args) {
 		TestGenerateUtil.generate(ChickenBatch.class);
