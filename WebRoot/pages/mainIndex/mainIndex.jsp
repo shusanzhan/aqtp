@@ -29,7 +29,12 @@
 			    		<c:forEach items="${chickenBatchs }" var="chickenBatch" end="5">
 			    			<div  style="text-align: left;border-bottom:1px dashed  #000000 ;height: 30px;line-height: 30px;">
 			    				<span style="width: 100px;float: left;">
+			    				<c:if test="${fn:length(chickenBatch.name)>=4 }" var="status">
+			    					${fn:substring(chickenBatch.name,0,4)  }...
+			    				</c:if>
+					    		<c:if test="${status==false }">
 					    			${chickenBatch.name }
+					    		</c:if>
 					    		</span> 
 					    			<span style="width: 120px;float: left;">
 					    			${chickenBatch.batchNo }
@@ -93,7 +98,12 @@
 			    		<c:forEach items="${dimensionas }" var="dimensiona" end="5">
 			    			<div  style="text-align: left;border-bottom:1px dashed  #000000 ;height: 30px;line-height: 30px;">
 			    				<span style="width: 100px;float: left;">
+			    				<c:if test="${fn:length(dimensiona.name )>=5 }" var="status">
+			    					${fn:substring(dimensiona.name,0,5)  }...
+			    				</c:if>
+					    		<c:if test="${status==false }">
 					    			${dimensiona.name }
+					    		</c:if>
 					    		</span> 
 					    			<span style="width: 100px;float: left;">
 					    			<fmt:formatDate value="${dimensiona.createDate }" pattern="yyyy-MM-dd"/>
@@ -127,7 +137,14 @@
 			    		<c:forEach items="${breeders }" var="breeder" end="5">
 				    		<div  style="text-align: left;border-bottom:1px dashed  #000000 ;height: 30px;line-height: 30px; ">
 				    			<span style="width: 100px;float: left;">
-					    			<a target="_blank" href="javascript:void(-1)"  style="">${breeder.name }</a>
+					    			<a target="_blank" href="javascript:void(-1)"  style="">
+					    			<c:if test="${fn:length(breeder.name)>3 }" var="status">
+					    				${fn:substring(breeder.name,0,3) }...
+					    			</c:if>
+					    			<c:if test="${status==false }">
+					    				${breeder.name }
+					    			</c:if>
+					    			</a>
 					    		</span> 
 					    		<span style="width: 100px;float: left;">
 					    			<fmt:formatDate value="${breeder.birthday }" pattern="yyyy-MM-dd"/>

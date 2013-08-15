@@ -14,5 +14,8 @@ import com.ystech.core.dao.HibernateEntityDao;
  */
 @Component("healthCareDragManageImpl")
 public class HealthCareDragManageImpl extends HibernateEntityDao<HealthCareDrag> {
-
+	public int deleteByHealthCareDbid(Integer dbid) {
+		int delete = executeSql("delete from healthCareDrag where healthCareId="+dbid);
+		return delete;
+	}
 }

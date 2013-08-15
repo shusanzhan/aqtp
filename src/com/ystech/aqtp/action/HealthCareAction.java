@@ -3,9 +3,14 @@
  */
 package com.ystech.aqtp.action;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -81,17 +86,19 @@ public class HealthCareAction extends BaseController{
 	public void save() throws Exception {
 		HttpServletRequest request = getRequest();
 		Integer chickenBatchDbid = ParamUtil.getIntParam(request, "chickenBatchDbid", -1);
-		String[] dragIds = request.getParameterValues("dragIds");
-		String[] doses = request.getParameterValues("doses");
+		String[] dragIds = request.getParameterValues("dragId");
+		String[] doses = request.getParameterValues("dose");
 		if (chickenBatchDbid<0) {
 			renderErrorMsg(new Throwable("没有选择数据，请确认！"), "");
 			return ;
 		}
-		
 		ChickenBatch chickenBatch = chickenBatchManageImpl.get(chickenBatchDbid);
 		try {
 			healthCare.setChickenbatch(chickenBatch);
 			healthCareManageImpl.save(healthCare);
+			
+			//先清空原来数据
+			int deleteByHealthCareDbid = healthCareDragManageImpl.deleteByHealthCareDbid(healthCare.getDbid());
 			
 			if(null!=dragIds&&dragIds.length>0){
 				for (int i = 0; i < doses.length; i++) {
@@ -126,6 +133,9 @@ public class HealthCareAction extends BaseController{
 		if(dbid>-1){
 			HealthCare healthCare2 = healthCareManageImpl.get(dbid);
 			request.setAttribute("healthCare", healthCare2);
+			List<HealthCareDrag> healthCareDrags = healthCareDragManageImpl.findBy("healthcare.dbid", healthCare2.getDbid());
+			request.setAttribute("healthCareDrags", healthCareDrags);
+			request.setAttribute("healthCareDragSize", healthCareDrags.size());
 		}
 		return "edit";
 	}
@@ -142,6 +152,8 @@ public class HealthCareAction extends BaseController{
 		if(dbid>-1){
 			HealthCare healthCare2 = healthCareManageImpl.get(dbid);
 			request.setAttribute("healthCare", healthCare2);
+			List<HealthCareDrag> healthCareDrags = healthCareDragManageImpl.findBy("healthcare.dbid", healthCare2.getDbid());
+			request.setAttribute("healthCareDrags", healthCareDrags);
 		}
 		return "showHealthCare";
 	}
@@ -170,5 +182,34 @@ public class HealthCareAction extends BaseController{
 		renderMsg("/chickenBatch/index?dbid="+chickenBatchDbid, "删除免疫信息成功！");
 		return ;
 	}
-	
+	/**
+	 * 功能描述：
+	 * 参数描述：
+	 * 逻辑描述：
+	 * @return
+	 * @throws Exception
+	 */
+	public void autoDrag() throws Exception {
+		HttpServletRequest request = this.getRequest();
+		String dragName = request.getParameter("q");
+		List<Drag> drags=new ArrayList<Drag>();
+		drags= dragManageImpl.executeSql("select * from drag where name like ? or pingyin like ?", new Object[]{"%"+dragName+"%","%"+dragName+"%",});
+		if(null==drags||drags.size()<0){
+			drags = dragManageImpl.getAll();
+		}
+		JSONArray  array=new JSONArray();
+		if(null!=drags&&drags.size()>0){
+			for (Drag drag : drags) {
+				JSONObject object=new JSONObject();
+				object.put("dbid", drag.getDbid());
+				object.put("name", drag.getName());
+				array.put(object);
+			}
+			renderJson(array.toString());
+		}else{
+			renderJson("1");
+		}
+		
+		return ;
+	}
 }

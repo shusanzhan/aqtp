@@ -15,4 +15,13 @@ import com.ystech.core.dao.HibernateEntityDao;
 @Component("immuneDragManageImpl")
 public class ImmuneDragManageImpl extends HibernateEntityDao<ImmuneDrag>{
 
+	/**
+	 * @param dbid
+	 * @return
+	 */
+	public int deleteByHealthCareDbid(Integer dbid) {
+			int delete = executeSql("delete from ImmuneDrag where healthCareId="+dbid);
+			return delete;
+		}
+
 }

@@ -29,6 +29,9 @@
         <property name="note" type="string">
             <column name="note" length="2000" />
         </property>
+        <property name="pingyin" type="string">
+            <column name="pingyin" length="50" />
+        </property>
         <property name="recordId" type="java.lang.Integer">
             <column name="recordId" />
         </property>

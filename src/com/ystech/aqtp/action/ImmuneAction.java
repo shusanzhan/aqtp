@@ -3,6 +3,8 @@
  */
 package com.ystech.aqtp.action;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.ystech.aqtp.model.ChickenBatch;
 import com.ystech.aqtp.model.Drag;
+import com.ystech.aqtp.model.HealthCareDrag;
 import com.ystech.aqtp.model.Immune;
 import com.ystech.aqtp.model.ImmuneDrag;
 import com.ystech.aqtp.service.ChickenBatchManageImpl;
@@ -76,8 +79,8 @@ public class ImmuneAction extends BaseController{
 	public void save() throws Exception {
 		HttpServletRequest request = getRequest();
 		Integer chickenBatchDbid = ParamUtil.getIntParam(request, "chickenBatchDbid", -1);
-		String[] dragIds = request.getParameterValues("dragIds");
-		String[] doses = request.getParameterValues("doses");
+		String[] dragIds = request.getParameterValues("dragId");
+		String[] doses = request.getParameterValues("dose");
 		if (chickenBatchDbid<0) {
 			renderErrorMsg(new Throwable("没有选择数据，请确认！"), "");
 			return ;
@@ -87,7 +90,8 @@ public class ImmuneAction extends BaseController{
 		try {
 			immune.setChickenbatch(chickenBatch);
 			immuneManageImpl.save(immune);
-			
+			//先清空原来数据
+			int deleteByHealthCareDbid = immuneDragManageImpl.deleteByHealthCareDbid(immune.getDbid());
 			if(null!=dragIds&&dragIds.length>0){
 				for (int i = 0; i < doses.length; i++) {
 					ImmuneDrag immuneDrag=new ImmuneDrag();
@@ -118,10 +122,18 @@ public class ImmuneAction extends BaseController{
 	public String edit() throws Exception {
 		HttpServletRequest request = getRequest();
 		Integer dbid = ParamUtil.getIntParam(request, "dbid",-1);
-		if(dbid>-1){
-			Immune immune2 = immuneManageImpl.get(dbid);
-			request.setAttribute("immune", immune2);
+		try{
+			if(dbid>-1){
+				Immune immune2 = immuneManageImpl.get(dbid);
+				request.setAttribute("immune", immune2);
+				List<ImmuneDrag> immuneDrags = immuneDragManageImpl.findBy("immune.dbid", immune2.getDbid());
+				request.setAttribute("immuneDrags", immuneDrags);
+				request.setAttribute("immuneDragSize", immuneDrags.size());
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
+		
 		return "edit";
 	}
 	/**
@@ -137,6 +149,8 @@ public class ImmuneAction extends BaseController{
 		if(dbid>-1){
 			Immune immune2 = immuneManageImpl.get(dbid);
 			request.setAttribute("immune", immune2);
+			List<ImmuneDrag> immuneDrags = immuneDragManageImpl.findBy("immune.dbid", immune2.getDbid());
+			request.setAttribute("immuneDrags", immuneDrags);
 		}
 		return "showImmune";
 	}

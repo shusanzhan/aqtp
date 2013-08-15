@@ -33,19 +33,26 @@
 			<tr height="32">
 				<td class="formTableTdLeft" style="width: 60px;">药品:&nbsp;</td>
 				<td colspan="3">
-					<table  border="0" cellpadding="0" cellspacing="0" style="width: 300px;" height="200">
-					<tr>
-						<td height="200" width="260" style="">
+					<table id="dragTable"  border="1" cellpadding="0" cellspacing="0" style="width: 520px;margin-top: 5px;margin-bottom: 5px;">
+					<tr height="30" >
+						<td width="250" >
+							药品名称
 						</td>
-						<td height="40" width="40">
-						<div id="div1">
-							<div style="padding-left: 5px;">
-							<span id="spanButtonPlaceholder1"></span> <br />
-						</div>
-						<div id="uploadFileContent" class="uploadFileContent"></div>
-						</div>
-					</td>
+						<td  width="220">
+							用量
+						</td>
 					</tr>
+					<c:forEach var="healthCareDrag" items="${healthCareDrags }" varStatus="i">
+					 <tr>
+						<td>
+							<input type='text' name="dragName" id="drageName${i.index+1}" onFocus="autoByName('dragName${i.index+1}')" value="${healthCareDrag.drag.name }" class="input-medium field">
+							<input type='hidden' name='dragId'  id='dragId${i.index+1}' value='${healthCareDrag.drag.dbid }' class='input-medium field'>
+						</td>
+						<td>
+							<input type='text' name="dose" id="dose" value="${healthCareDrag.dose }" class="input-medium field">
+						</td>
+					</tr> 
+					</c:forEach>
 				</table>
 				</td>
 			</tr>

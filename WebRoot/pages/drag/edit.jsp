@@ -12,6 +12,7 @@
 <script type="text/javascript" src="${ctx }/widgets/utile/utile.js"></script>
 <script type="text/javascript" src="${ctx }/widgets/easyvalidator/js/jquery.bgiframe.min.js"></script>
 <script type="text/javascript" src="${ctx }/widgets/easyvalidator/js/easy_validator.pack.js"></script>
+<script type="text/javascript" src="${ctx}/widgets/charscode.js"></script>
 <title>添加药品</title>
 </head>
 <body class="bodycolor">
@@ -22,7 +23,10 @@
 			<tr height="42">
 				<td class="formTableTdLeft" style="width: 60px;" style="width: 60px;">名称:&nbsp;</td>
 				<td ><input type="text" name="drag.name" id="name"
-					value="${drag.name }" class="input-medium field" title="药品名称"	checkType="string,1,50" tip="药品名称不能为空,并且1-50个字符"><span style="color: red;">*</span></td>
+					value="${drag.name }" class="input-medium field" title="药品名称" onchange="pingyin.value = getCharsCode(this.value);"	checkType="string,1,50" tip="药品名称不能为空,并且1-50个字符">
+					<input type="hidden" name="drag.pingyin" id="pingyin" value="${drag.pingyin }">
+					<span style="color: red;">*</span></td>
+					
 				<td class="formTableTdLeft" style="width: 60px;">药品类型:&nbsp;</td>
 				<td >
 					<select class="select field" id="dragTypeId" name="dragTypeId" style="width: 120px;">

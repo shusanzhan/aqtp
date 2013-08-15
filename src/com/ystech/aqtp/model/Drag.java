@@ -19,6 +19,7 @@ public class Drag implements java.io.Serializable {
 	private String directions;
 	private String note;
 	private Integer recordId;
+	private String pingyin;
 	private Set immunedrags = new HashSet(0);
 	private Set healthcaredrags = new HashSet(0);
 
@@ -126,6 +127,14 @@ public class Drag implements java.io.Serializable {
 
 	public void setHealthcaredrags(Set healthcaredrags) {
 		this.healthcaredrags = healthcaredrags;
+	}
+
+	public String getPingyin() {
+		return pingyin;
+	}
+
+	public void setPingyin(String pingyin) {
+		this.pingyin = pingyin;
 	}
 
 }

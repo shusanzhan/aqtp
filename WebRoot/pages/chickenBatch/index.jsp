@@ -323,7 +323,7 @@
 			      <a class="expand" href="javascript:_resize(23);"></a>      <span onclick="_resize(23);" class="text" id="module_23_text">保健信息</span>
 			      <span style="cursor: move; width: 191px;" class="title" id="module_23_title"></span>
 			      <span class="close" id="module_23_op" >
-			      	<a  href="javascript:void(-1);"  onclick="$.utile.openDialog('${ctx}/healthCare/add?chickenBatchDbid=${chickenBatch.dbid }','保健信息',720,500)"
+			      	<a  href="javascript:void(-1);"  onclick="$.utile.openDialog('${ctx}/healthCare/add?chickenBatchDbid=${chickenBatch.dbid }&chickenBatchDbid=${chickenBatch.dbid }','保健信息',720,500)"
 			      	 style="color: white;">添加</a>&nbsp;
 			      </span>
 			    </h4>
@@ -338,7 +338,7 @@
 				    		<div  style="text-align: left;border-bottom:1px dashed  #000000 ;height: 30px;line-height: 30px;">
 				    			<span style="width: 100px;float: left;">
 					    			<a target="" href="javascript:void(-1)" 
-					    				onclick="$.utile.openDialog('${ctx}/healthCare/showHealthCare?dbid=${healthCare.dbid}','查看保健信息',740,498)" >
+					    				onclick="$.utile.openDialog('${ctx}/healthCare/showHealthCare?dbid=${healthCare.dbid}&chickenBatchDbid=${chickenBatch.dbid }','查看保健信息',740,498)" >
 					    				${healthCare.name }
 					    			</a>
 					    		</span> 
