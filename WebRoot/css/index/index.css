@@ -1,0 +1,172 @@
+@CHARSET "UTF-8";
+body{
+	font-size: 14px;
+	font-family: '微软雅黑','serif';
+	background-color: #ffffff;
+}
+img {
+	border: 0 px;
+}
+a {
+	text-decoration: none;
+	color: #000000;
+}
+
+body, h1, h2, h3, p, div, dl, dt, dd, ul, ol, li, table, th, td, form, button, input, textarea, legend, hr {
+    margin: 0;
+    padding: 0;
+}
+div, li, ul, dl, dd, dt {
+    overflow: hidden;
+    width: auto;
+}
+.clear{
+	clear: both;
+}
+.contWith{
+	width: 1024px;margin:0 auto;
+}
+.top{
+	height: 100px;
+}
+.logo{
+	margin-left: 6px;margin-top:23px;background-image: url("../../images/index/logo.png");background-repeat: no-repeat;width: 349px;height: 63px;
+	float: left;
+}
+.top .operater{
+	width: 200px;height: 64px;margin-top: 23px;float: right;
+	margin-right: 6px;
+}
+.oper{
+	color: #817c7c;font-size: 13px;
+}
+.con{
+	font-size: 16px;margin-top: 4px;font-weight: bold;
+}
+.nav{
+	width: 100%;height: 36px;background-image: url("../../images/index/nav.png");background-repeat: repeat-x;
+	font-size: 15px;
+}
+.nav ul{
+	list-style: none;
+}
+.nav li{
+	float: left;width: 125px;text-align: center;line-height: 36px;
+}
+.liImg{
+	width: 2px;height: 36px;background-image: url("../../images/index/col.png");
+}
+.nav a{
+	color: #ffffff;
+}
+.banner{
+	height: 455px;
+}
+#pb1 {
+    background: url("../../images/index/banner/banner1.jpg") repeat-x scroll center center ;
+}
+#pb2 {
+    background: url("../../images/index/banner/banner1.jpg") repeat-x scroll center center ;
+}
+#pb3 {
+    background: url("../../images/index/banner/banner1.jpg") repeat-x scroll center center ;
+}
+#pb4 {
+    background: url("../../images/index/banner/banner1.jpg") repeat-x scroll center center ;
+}
+#pb5 {
+    background: url("../../images/index/banner/banner1.jpg") repeat-x scroll center center ;
+}
+.contentPanel{
+	margin-top: 30px;margin-top: 20px;
+}
+.contBan{
+	width: 314px;height: 300px;float: left;margin-left: 5px;
+}
+.conBanMar{
+	margin-left: 5px;margin-right: 20px;
+}
+.contTitle{
+	width: 312px;text-align: left;cursor: pointer;
+}
+.renaanjj{
+	width: 81px;height: 31px;background-image: url("../../images/index/renanjj.png"); 
+}
+.renaanzxdt{
+	width: 82px;height: 31px;background-image: url("../../images/index/renanzxdt.png"); 
+}
+.renaanlxwm{
+	margin-top:12px;width: 82px;height: 31px;background-image: url("../../images/index/renanlxwm.png"); 
+}
+.conImg{
+	margin-top: 5px;width: 312px;
+}
+.content{
+	width: 285px;font-size: 13px;color: #343232;margin-top: 5px;line-height: 20px;
+}
+.more{
+	margin-top:12px;width: 78px;height: 18px;cursor: pointer;
+}
+.moreJj{
+	background-image: url("../../images/index/moreJj.png");
+}
+.moreZx{
+	background-image: url("../../images/index/moreZx.png");
+}
+.comtentImg{
+	width: 110px;height: 60px;float: left;cursor: pointer;
+}
+.comtentTitle{
+	float: left;margin-left: 5px;width: 190px;cursor: pointer;
+}
+.content ul{
+	list-style: square inherit;margin-top: 6px;
+}
+.content li {
+	list-style-type: square;border-bottom: 1px dashed black;margin-top: 8px;
+}
+.content ul li img{
+	margin-bottom: 2px;margin-right: 5px;
+}
+.content ul li p{
+	margin-left: 18px;font-size: 10px;margin-bottom: 2px;
+}
+.zhuis{
+	width: 290px;height: 91px;background-image: url("../../images/index/zhuis.png");
+}
+.zsInput{
+	width: 200px;height:26px;margin: 0 auto;margin-top: 48px;background-image: url("../../images/index/zsInput.png");
+}
+.zsInput input{
+	width: 158px;height: 26px;margin-left: 12px;border: 0px;background-color: #E9EFE4;float: left;
+}
+.zsSearch{
+	background-image: url("../../images/index/serarch.png");height: 25px;width: 30px;float: left;margin-top: 1px;cursor: pointer;
+}
+.buttomOpe{
+	width: 100%;height: 80px;background-color: #323031;
+}
+.buttomInf{
+	width: 100%;height: 40px;background-color: #201e1f;
+}
+.line{
+	background-image: url("../../images/index/line.png");margin: auto;height: 1px;
+}
+.buttomInf span{
+	height: 40px;line-height: 40px;color: #ffffff
+}
+.buttonUl{
+	height: 30px;margin: 0 auto;
+}
+.buttonUl ul{
+	list-style: none;
+}
+.buttonUl li{
+	float: left;text-align: center;line-height: 30px;color: #ffffff;margin-left: 5px;margin-right: 5px;
+}
+.buttonUl li a{
+	color: #ffffff;
+}
+.buliImg{
+	width: 1px;height: 13px;background-image: url("../../images/index/butcol.png");margin-top: 10px;
+}

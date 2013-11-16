@@ -275,7 +275,11 @@ public class DimensionaAction extends BaseController{
 	//生成二维码 
 	private String dimensionaPhoto(Dimensiona dimensiona,String name) { 
 		String pathFile="";
-		 String content ="dbid:"+dimensiona.getDbid()+";chickenBatchDbid:"+dimensiona.getChickenbatch().getDbid();  // "CN:男;COP:公司;ZW:职务";// 二维码内容  
+		 //String content ="dbid:"+dimensiona.getDbid()+";chickenBatchDbid:"+dimensiona.getChickenbatch().getDbid();  // "CN:男;COP:公司;ZW:职务";// 二维码内容
+		ChickenBatch chickenbatch = dimensiona.getChickenbatch();
+		/* String content ="鸡批次信息:"+chickenbatch.getName()+"为"+chickenbatch.getBatchNo()+",品级为"+chickenbatch.getGrade().getName()+",品系为"+chickenbatch.getBreed().getName()
+				 +".出栏总数量为："+chickenbatch.getCountNum()+"\r\n"+"http://cd.qq.com/a/20130815/002866.htm";*/
+		String content ="http://cd.qq.com/a/20130815/002866.html";
 	    try {  
 	    	String path =  PathUtil.getWebRootPath()+System.getProperty("file.separator")+
 	        		"dimensiona"+System.getProperty("file.separator")+

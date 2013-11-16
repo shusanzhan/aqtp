@@ -258,8 +258,9 @@ public class ItextPdfManageImpl {
 			celltemp.setBorder(0);
 			pdfPTable.addCell(celltemp);
 			
-			
-			String No="No"+dimensionaCode.getDimensiona().getDbid()+""+dimensionaCode.getCode()+""+dimensionaCode.getDimensiona().getChickenbatch().getBatchNo();
+			//批次信息
+			//String No="No"+dimensionaCode.getDimensiona().getDbid()+""+dimensionaCode.getCode()+""+dimensionaCode.getDimensiona().getChickenbatch().getBatchNo();
+			String No="No"+dimensionaCode.getDimensiona().getChickenbatch().getBatchNo();
 			
 			PdfPCell batchNoCell = setDimenisonValue(No);
 			batchNoCell.setBorder(0);

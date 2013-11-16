@@ -1,0 +1,138 @@
+/* CSS Document */
+body{ margin:0; padding:0;}
+.skdslider{
+ height: 455px;
+ position: relative;
+}
+.skdslider ul.slides{ margin:0; padding:0; list-style-type:none;}
+
+.skdslider ul.slides li
+{
+   height: 455px;
+   left: 0;
+   position: absolute;
+   top: 0;
+   display: none;
+   width:100%;
+}
+.skdslider ul.slides li img{
+    width: 100%;
+	height:100%;
+	border:0;
+}
+.divSkds{
+	 background-image: url("../../images/index/skd/me.png");
+	 width: 100%;
+	 height: 24px;
+	 margin-top: 431px;
+	 position: absolute;
+}
+.skdslider .slide-navs {
+	list-style-type: none;
+	margin: 0 auto; 
+    height: 24px;
+    width: 1024px;
+    padding-right: 160px;
+}
+
+.skdslider .slide-navs li {
+    float: right;
+	background: url("../../images/index/skd/slide-bg.png") no-repeat scroll 0 0 transparent;
+	height:18px;
+	width:18px;
+	margin-right:4px;
+	margin-top:3px;
+	cursor:pointer;
+}
+.skdslider .slide-navs li.current-slide {
+  background: url("../../images/index/skd/slide-bg-active.png") no-repeat scroll 0 0 transparent;
+}
+.skdslider .slide-desc {
+    background: url("../../images/index/skd/slide_desc.png") repeat scroll 0 0 transparent;
+    left: 0;
+    padding: 6px 25px 10px 85px;
+    position: absolute;
+    top: 327px;
+    width: 50%;
+}
+.skdslider .slide-desc > h2 {
+    color: #CFDB0C;
+    font-family: 'Oswald';
+    font-size: 25px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+.skdslider .slide-desc > p {
+    color: #FFFFFF;
+    font-family: 'Oswald';
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 5px;
+}
+.skdslider .slide-desc > p a.more {
+    color:#990000;
+	font-size:20px;
+    float: right;
+    height: 18px;
+    width: 22px;
+	text-decoration:none;
+}
+.skdslider .slide-desc > p a.more:hover {
+text-decoration:underline;
+}
+
+.skdslider a.prev{
+    background: url("../../images/index/skd/left.png") no-repeat scroll 0 0 transparent;
+	width:35px;
+	height:35px;
+	display:block;
+	cursor:pointer;
+	position:absolute;
+	top:44%;
+	left:2%;
+	
+}
+
+.skdslider a.next{
+    background: url("../../images/index/skd/right.png") no-repeat scroll 0 0 transparent;
+	width:35px;
+	height:35px;
+	display:block;
+	cursor:pointer;
+	position:absolute;
+	top:44%;
+	right:2%;
+	
+}
+.skdslider a.prev:hover{
+  
+}
+.skdslider a.next:hover{
+  
+}
+
+.skdslider a.play{
+    background: url("../../images/index/skd/play.png") no-repeat scroll center center #e1e1e1;
+	width:35px;
+	height:35px;
+	display:none;
+	cursor:pointer;
+	position:absolute;
+	top:44%;
+	left:48%;
+	
+}
+
+.skdslider a.pause{
+    background: url("../../images/index/skd/pause.png") no-repeat scroll center center #e1e1e1;
+	width:35px;
+	height:35px;
+	display:none;
+	cursor:pointer;
+	position:absolute;
+	top:44%;
+	left:48%;
+	
+}

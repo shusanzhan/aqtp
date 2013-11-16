@@ -78,6 +78,10 @@
 	<classpathentry kind="lib" path="tomcat/tomcat-embed-logging-log4j.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/core.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/javase.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/itext-pdfa-5.4.3.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/itext-xtra-5.4.3.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/itextpdf-5.4.3.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/itext-asian.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
