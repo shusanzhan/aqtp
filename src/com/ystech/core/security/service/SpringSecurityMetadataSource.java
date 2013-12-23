@@ -63,10 +63,9 @@ public class SpringSecurityMetadataSource implements
 		this.roleManageImpl = roleManageImpl;
 	}
 
-	@Override
 	public Collection<ConfigAttribute> getAttributes(Object object) {
 		String requestUrl = ((FilterInvocation) object).getRequestUrl();
-		System.out.println("requestUrl is " + requestUrl);
+		//System.out.println("requestUrl is " + requestUrl);
 
 		int firstQuestionMarkIndex = requestUrl.indexOf("?");
 		if (firstQuestionMarkIndex != -1) {
@@ -79,7 +78,7 @@ public class SpringSecurityMetadataSource implements
 		Collection<ConfigAttribute> collection=new ArrayList<ConfigAttribute>();
 		while (ite.hasNext()) {
 			String resURL = ite.next();
-			System.out.println("========="+resourceMap.get(resURL)+"----"+resURL);
+			//System.out.println("========="+resourceMap.get(resURL)+"----"+resURL);
 			
 			if (requestUrl.equals(resURL)) {
 				Collection<ConfigAttribute> coll1 = resourceMap.get(resURL);
@@ -89,12 +88,10 @@ public class SpringSecurityMetadataSource implements
 		return collection;
 	}
 
-	@Override
 	public Collection<ConfigAttribute> getAllConfigAttributes() {
 		return null;
 	}
 
-	@Override
 	public boolean supports(Class<?> clazz) {
 		return true;
 	}

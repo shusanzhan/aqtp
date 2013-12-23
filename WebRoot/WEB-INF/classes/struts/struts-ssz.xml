@@ -133,5 +133,15 @@
          	<result name="edit">/pages/healthCare/healthCare.jsp</result>
          	<result name="showHealthCare">/pages/healthCare/showHealthCare.jsp</result>
          </action>
+         
+          <action name="newsType" class="newsTypeAction">
+			<result name="list">/pages/newsType/list.jsp</result>
+			<result name="edit">/pages/newsType/edit.jsp</result>
+         </action>
+         <action name="news" class="newsAction">
+			<result name="list">/pages/news/list.jsp</result>
+			<result name="edit">/pages/news/edit.jsp</result>
+			<result name="add">/pages/news/add.jsp</result>
+         </action>
     </package>
 </struts>

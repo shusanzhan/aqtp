@@ -279,7 +279,7 @@ public class DimensionaAction extends BaseController{
 		ChickenBatch chickenbatch = dimensiona.getChickenbatch();
 		/* String content ="鸡批次信息:"+chickenbatch.getName()+"为"+chickenbatch.getBatchNo()+",品级为"+chickenbatch.getGrade().getName()+",品系为"+chickenbatch.getBreed().getName()
 				 +".出栏总数量为："+chickenbatch.getCountNum()+"\r\n"+"http://cd.qq.com/a/20130815/002866.htm";*/
-		String content ="http://cd.qq.com/a/20130815/002866.html";
+		String content ="http://www.renanshengtai.com/wapHome/home?batchNo="+chickenbatch.getBatchNo();
 	    try {  
 	    	String path =  PathUtil.getWebRootPath()+System.getProperty("file.separator")+
 	        		"dimensiona"+System.getProperty("file.separator")+
@@ -297,7 +297,7 @@ public class DimensionaAction extends BaseController{
 	        		name+".png";
 	        BitMatrix byteMatrix;  
 	        byteMatrix = new MultiFormatWriter().encode(new String(content.getBytes("UTF-8"),"iso-8859-1"),  
-	                BarcodeFormat.QR_CODE, 200, 200);  
+	                BarcodeFormat.QR_CODE, 100, 100);  
 	        File file = new File(pathFile);  
 	        MatrixToImageWriter.writeToFile(byteMatrix, "png", file);  
 	    } catch (Exception e) {  

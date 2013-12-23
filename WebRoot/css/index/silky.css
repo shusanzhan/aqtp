@@ -1,0 +1,92 @@
+@CHARSET "UTF-8";
+
+body {
+	font-size: 14px;
+	font-family: '微软雅黑', 'serif';
+	background-color: #ffffff;
+}
+
+img {
+	border: 0 px;
+}
+
+a {
+	text-decoration: none;
+	color: #000000;
+}
+
+body,h1,h2,h3,p,div,dl,dt,dd,ul,ol,li,table,th,td,form,button,input,textarea,legend,hr
+	{
+	margin: 0;
+	padding: 0;
+}
+
+div,li,ul,dl,dd,dt {
+	overflow: hidden;
+	width: auto;
+}
+
+.clear {
+	clear: both;
+}
+
+.textContent {
+	font-size: 14px;
+	margin-left: 14px;
+	margin-right: 14px;
+	margin-top: 14px;
+	margin-bottom: 32px;
+	line-height: 200%;
+	margin-top: 12px;
+	margin-bottom: 24px;
+}
+
+.textContent span {
+	font-size: 16px;
+	font-weight: bold;
+	color: #235e06;
+}
+
+.companyBanner {
+	height: 215px;
+	background-image: url("../../images/index/company/company.jpg");
+}
+.conTitle{
+		margin-left:14px;margin-right:14px;border-bottom:1px black dotted;
+	}
+.title{
+	font-size: 28px;font-weight: bold;color: #1b4d04;margin-bottom: 12px;
+}
+.container{
+	width: 1000px;margin-bottom: 12px;
+}
+.containerTitle{
+	font-size: 16px;
+	font-weight: bold;
+	color: #000000;
+	width: 960px;
+	margin-top: 12px;margin-bottom: 24px;
+}
+.containerTitle,.containerTitleLeft{
+	text-align: left;padding-left: 32px;
+}
+.containerTitleRight{
+	text-align: right;padding-right: 64px;
+}
+.containerT{
+	margin: 5px;width: 100%;
+}
+.containerImg{
+	width: 320px;height: 250px;float: left;
+}
+.containerImgRight{
+	width: 320px;height: 250px;float: left;margin-left: 12px;
+}
+.containerText{
+	margin-left:12px;width: 640px;height: 250px;float: left;
+}
+.containerTextRight{
+	width: 640px;height: 250px;float: left;
+}
+.split{
+	margin: 0px auto;background-image: url("../../images/index/xfwgj/split.png");margin-top: 24px;margin-bottom: 12px;width: 960px;height: 2px;

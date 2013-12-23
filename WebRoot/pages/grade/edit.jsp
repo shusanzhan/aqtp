@@ -25,7 +25,7 @@
 					value="${grade.name }" class="input-small field" title="名称"	checkType="string,1,20" tip="级别名称为必填项,并且1-20个字符"><span style="color: red;">*</span></td>
 				<td class="formTableTdLeft" style="width: 60px;">零售价格:&nbsp;</td>
 				<td ><input type="text" name="grade.retailPrice" id="retailPrice"
-					value="${grade.retailPrice }" class="input-small field" title="用户名"	checkType="integer" tip="零售价格不能为空"><span style="color: red;">*</span></td>
+					value="${grade.retailPrice }" class="input-small field" title="用户名"	checkType="float,1.0,2000.0" tip="零售价格不能为空"><span style="color: red;">*</span></td>
 			</tr>
 			<tr height="42">
 				<td class="formTableTdLeft" style="width: 40px;">级别:&nbsp;</td>

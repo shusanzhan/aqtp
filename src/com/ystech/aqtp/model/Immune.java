@@ -12,6 +12,7 @@ import java.util.Set;
 public class Immune implements java.io.Serializable {
 
 	private Integer dbid;
+	private String name;
 	private ChickenBatch chickenbatch;
 	private Date immuneDate;
 	private String immunePerson;
@@ -76,6 +77,14 @@ public class Immune implements java.io.Serializable {
 
 	public void setImmunedrags(Set immunedrags) {
 		this.immunedrags = immunedrags;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

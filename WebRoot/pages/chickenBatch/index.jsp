@@ -125,16 +125,16 @@
 					    		 	<fmt:formatDate value="${quarantineCertificate.awardDate }" />	
 					    		</span>
 					    		<span style="width: 120px;float: left;">
-					    			<c:if test="${fn:length(quarantineCertificate.awardGroup)>10 }" var="status">
-					    				${fn:substring(quarantineCertificate.awardGroup,0,10) }...
+					    			<c:if test="${fn:length(quarantineCertificate.awardGroup)>8 }" var="status">
+					    				${fn:substring(quarantineCertificate.awardGroup,0,8) }...
 					    			</c:if>
 					    			<c:if test="${status==false }">
 					    				${quarantineCertificate.awardGroup }
 					    			</c:if>
 					    		</span>
 					    		<span style="width: 160px;float: left;">
-					    			<c:if test="${fn:length(quarantineCertificate.note)>10 }" var="status">
-					    				${fn:substring(quarantineCertificate.note,0,10) }...
+					    			<c:if test="${fn:length(quarantineCertificate.note)>8 }" var="status">
+					    				${fn:substring(quarantineCertificate.note,0,8) }...
 					    			</c:if>
 					    			<c:if test="${status==false }">
 					    				${quarantineCertificate.note}&nbsp;
@@ -197,7 +197,7 @@
 					    			</c:if>
 					    		</span>
 					    		<span style="width: 60px;float: left;">
-					    			<a target="" href="javascript:void(-1)"  style="" onclick="$.utile.openDialog('${ctx }/immune/edit?dbid=${immune.dbid}&chickenBatchDbid=${chickenBatch.dbid }','编辑检疫证明信息',740,498)">编辑</a>
+					    			<a target="" href="javascript:void(-1)"  style="" onclick="$.utile.openDialog('${ctx }/immune/edit?dbid=${immune.dbid}&chickenBatchDbid=${chickenBatch.dbid }','编辑免疫信息',740,498)">编辑</a>
 					    			<a target="" href="javascript:void(-1)"  style="" onclick="$.utile.deleteById('${ctx }/immune/delete?dbids=${immune.dbid}&chickenBatchDbid=${chickenBatch.dbid }')">删除</a>
 					    		</span>
 					    		<span style="clear: both;"></span>

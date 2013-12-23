@@ -12,7 +12,8 @@
   	<http  pattern="/images/**" security="none"></http>
    	<http  pattern="/widgets/**" security="none"></http>
    	<http  pattern="/login/login" security="none"></http>
-   	<http  pattern="/pages/login/login.jsp" security="none"></http> 
+   	<http  pattern="/home/**" security="none"></http> 
+   	<http  pattern="/wapHome/**" security="none"></http> 
    	
 	<!-- 当访问被拒绝时，会转到login/login -->  
 	<http use-expressions="true"  entry-point-ref="authenticationProcessingFilterEntryPoint" >

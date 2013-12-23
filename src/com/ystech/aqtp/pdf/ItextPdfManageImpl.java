@@ -22,9 +22,11 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.ystech.aqtp.model.Breed;
 import com.ystech.aqtp.model.ChickenBatch;
 import com.ystech.aqtp.model.Dimensiona;
 import com.ystech.aqtp.model.DimensionaCode;
+import com.ystech.aqtp.model.Grade;
 import com.ystech.core.util.DateUtil;
 import com.ystech.core.util.PathUtil;
 
@@ -143,11 +145,24 @@ public class ItextPdfManageImpl {
 		firstPdfPTable.addCell(batchNoLable);
 		firstPdfPTable.addCell(batchNoValue);
 		PdfPCell gradeLable = setLableCell("品级");
-		PdfPCell gradeValue = setCellValue(chickenBatch.getGrade().getName());
+		Grade grade = chickenBatch.getGrade();
+		PdfPCell gradeValue=null;
+		if(null!=grade){
+			gradeValue= setCellValue(chickenBatch.getGrade().getName());
+		 }else{
+			gradeValue=setCellValue("特级");
+		}
 		firstPdfPTable.addCell(gradeLable);
 		firstPdfPTable.addCell(gradeValue);
 		PdfPCell breedLable = setLableCell("品级");
-		PdfPCell breedValue = setCellValue(chickenBatch.getBreed().getName());
+		Breed breed = chickenBatch.getBreed();
+		PdfPCell breedValue=null;
+		if(null!=breedValue){
+			breedValue = setCellValue(chickenBatch.getBreed().getName());
+		}
+		else{
+			breedValue=setCellValue("无品系");
+		}
 		firstPdfPTable.addCell(breedLable);
 		firstPdfPTable.addCell(breedValue);
 		
@@ -212,16 +227,16 @@ public class ItextPdfManageImpl {
 	 */
 	public PdfPTable getDimensionaCode(List<DimensionaCode> dimensionaCodes) throws MalformedURLException, IOException, DocumentException {
 		int size = dimensionaCodes.size();
-		PdfPTable pdfPTable=new PdfPTable(6);
-		pdfPTable.setWidthPercentage(size/6*100); 
+		PdfPTable pdfPTable=new PdfPTable(8);
+		pdfPTable.setWidthPercentage(size/8*100); 
 		for (DimensionaCode dimensionaCode : dimensionaCodes) {
 			PdfPTable dimensionaCodeTable = setDimensionCode(dimensionaCode);
 			PdfPCell cell=new PdfPCell(dimensionaCodeTable);
 			cell.setBorder(0);
 			pdfPTable.addCell(cell);
 		}
-		if(size<6){
-			for (int i = 0; i < 6-size; i++) {
+		if(size<8){
+			for (int i = 0; i < 8-size; i++) {
 				PdfPTable dimensionaCodeTable = setDimensionCode(null);
 				PdfPCell cell=new PdfPCell(dimensionaCodeTable);
 				cell.setBorder(0);
@@ -242,30 +257,29 @@ public class ItextPdfManageImpl {
 		PdfPTable pdfPTable=new PdfPTable(1);
 		if(dimensionaCode!=null){
 			pdfPTable.getDefaultCell().setBorder(0);//设置表格默认为无边框
-			pdfPTable.setTotalWidth(70);// 设置表格的宽度
+			pdfPTable.setTotalWidth(60);// 设置表格的宽度
 			pdfPTable.setLockedWidth(true);// 设置表格的宽度固定 
 			//设置图片信息
 			Image img = Image.getInstance(PathUtil.getWebRootPath()+dimensionaCode.getPhoto());
 			//BaseColor bgcolorwrite = new BaseColor(255, 255, 255); //底色灰色
-			img.scaleAbsolute(mmTopx(20),mmTopx(20));
+			img.scaleAbsolute(mmTopx(15),mmTopx(15));
 			
 			PdfPCell celltemp = new PdfPCell(img) ; 
 			celltemp.setBorder(Rectangle.NO_BORDER);
 			celltemp.setBorder(0);
 			celltemp.setVerticalAlignment(PdfPCell.ALIGN_CENTER);
 			celltemp.setVerticalAlignment(PdfPCell.ALIGN_CENTER);
-			//celltemp.setBackgroundColor(bgcolorwrite);
 			celltemp.setBorder(0);
 			pdfPTable.addCell(celltemp);
 			
 			//批次信息
 			//String No="No"+dimensionaCode.getDimensiona().getDbid()+""+dimensionaCode.getCode()+""+dimensionaCode.getDimensiona().getChickenbatch().getBatchNo();
-			String No="No"+dimensionaCode.getDimensiona().getChickenbatch().getBatchNo();
-			
+			String No=dimensionaCode.getDimensiona().getChickenbatch().getBatchNo();
 			PdfPCell batchNoCell = setDimenisonValue(No);
 			batchNoCell.setBorder(0);
 			batchNoCell.setVerticalAlignment(PdfPCell.ALIGN_CENTER);
 			batchNoCell.setVerticalAlignment(PdfPCell.ALIGN_CENTER);
+			batchNoCell.setPaddingTop(-8.0f);
 			pdfPTable.addCell(batchNoCell);
 		}
 		return pdfPTable;
@@ -347,13 +361,13 @@ public class ItextPdfManageImpl {
 		return pdfPTable;
 	}
 	
-	//处理二维码数据
+	//处理二维码数据,每一行处理8条数据
 	public List<List<DimensionaCode>> getDimensionaCodeFouth(List<DimensionaCode> codes) {
 		List<List<DimensionaCode>> diList=new ArrayList<List<DimensionaCode>>();
 		if(null!=codes&&codes.size()>0){
 			List<DimensionaCode> codes2=new ArrayList<DimensionaCode>();
 			for (int i = 0; i < codes.size(); i++) {
-				if(i%6==0&&i!=0){
+				if(i%8==0&&i!=0){
 					diList.add(codes2);
 					codes2=new ArrayList<DimensionaCode>();
 					codes2.add(codes.get(i));

@@ -240,10 +240,10 @@
 	</div>
 	<div class="right">
 		<ul class="info">
-			<li class="title"><h2>实现方法说明</h2>
-				<ul class="list">
-				<li>利用 beforeRightClick / onRightClick 事件回调函数简单实现的右键菜单</li>
-				<li class="highlight_red">Demo 中的菜单比较简陋，你完全可以配合其他自定义样式的菜单图层混合使用</li>
+			<li class="title"><h2>说明</h2>
+				<ul class="list" style="color: red;">
+					<li>1、资源管理可以对菜品进行添加、编辑、删除操作。  </li>
+					<li>2、选中资源点击鼠标右键，在弹出框上面有增加、编辑、删除操作。 </li>
 				</ul>
 			</li>
 		</ul>

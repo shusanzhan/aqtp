@@ -30,7 +30,7 @@ div, li, ul, dl, dd, dt {
 	height: 100px;
 }
 .logo{
-	margin-left: 6px;margin-top:23px;background-image: url("../../images/index/logo.png");background-repeat: no-repeat;width: 349px;height: 63px;
+	margin-left: 6px;margin-top:23px;background-image: url("../../images/index/logo.png");background-repeat: no-repeat;width: 350px;height: 64px;
 	float: left;
 }
 .top .operater{
@@ -40,7 +40,7 @@ div, li, ul, dl, dd, dt {
 .oper{
 	color: #817c7c;font-size: 13px;
 }
-.con{
+.conn{
 	font-size: 16px;margin-top: 4px;font-weight: bold;
 }
 .nav{
@@ -60,7 +60,7 @@ div, li, ul, dl, dd, dt {
 	color: #ffffff;
 }
 .banner{
-	height: 455px;
+	height: 380px;
 }
 #pb1 {
     background: url("../../images/index/banner/banner1.jpg") repeat-x scroll center center ;
@@ -144,10 +144,10 @@ div, li, ul, dl, dd, dt {
 	background-image: url("../../images/index/serarch.png");height: 25px;width: 30px;float: left;margin-top: 1px;cursor: pointer;
 }
 .buttomOpe{
-	width: 100%;height: 80px;background-color: #323031;
+	width: 100%;height: 80px;background-color: #323031;font-size: 13px;margin-top: 50px;
 }
 .buttomInf{
-	width: 100%;height: 40px;background-color: #201e1f;
+	width: 100%;height: 40px;background-color: #201e1f;font-size: 13px;
 }
 .line{
 	background-image: url("../../images/index/line.png");margin: auto;height: 1px;

@@ -321,7 +321,26 @@ public class HibernateEntityDao<T> extends SimpleHibernateDao<T>{
 		Assert.isTrue(beginPos != -1, " hql : " + hql   + " must has a keyword 'from'");
 		return hql.substring(beginPos);
 	}
-
+	/**
+	 * 通过原生sql进行数据统计,原生sql的变量，必须与hql对应；
+	 * 通过hql进行数据查询分页
+	 * @param pageNo
+	 * @param pageSize
+	 * @param hql
+	 * @param countSql
+	 * @param values
+	 * @return
+	 */
+	public Page pagedQueryHqlSql(int pageNo,int pageSize,String countSql,String hql,Object...values ){
+		System.out.println("======"+countSql);
+		long count = countSqlResult(countSql, values);
+		if(count<1){
+			return new Page<T>();
+		}
+		int start = Page.getStartOfPage(pageNo, pageSize);
+		List<T> list = createQuery(hql, values).setFirstResult(start).setMaxResults(pageSize).list();
+		return new Page(start, count, pageSize, list);
+	}
 	/**
 	 * 去除hql的orderby 子句，用于pagedQuery.
 	 * 

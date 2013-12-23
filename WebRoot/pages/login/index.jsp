@@ -113,6 +113,8 @@ function addDiyDom(treeId, treeNode) {
 	}
 }
 function onClick(event, treeId, treeNode, clickFlag) {
+	var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+	zTree.expandNode(treeNode, null, null, null, true);
 }
 
 function beforeClick(treeId, treeNode) {
@@ -122,15 +124,87 @@ function beforeClick(treeId, treeNode) {
 		return false;
 	}
 	return true;
+} 
+var curExpandNode = null;
+function beforeExpand(treeId, treeNode) {
+	var pNode = curExpandNode ? curExpandNode.getParentNode():null;
+	var treeNodeP = treeNode.parentTId ? treeNode.getParentNode():null;
+	var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+	for(var i=0, l=!treeNodeP ? 0:treeNodeP.children.length; i<l; i++ ) {
+		if (treeNode !== treeNodeP.children[i]) {
+			zTree.expandNode(treeNodeP.children[i], false);
+		}
+	}
+	while (pNode) {
+		if (pNode === treeNode) {
+			break;
+		}
+		pNode = pNode.getParentNode();
+	}
+	if (!pNode) {
+		singlePath(treeNode);
+	}
+
+}
+function singlePath(newNode) {
+	if (newNode === curExpandNode) return;
+	if (curExpandNode && curExpandNode.open==true) {
+		var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+		if (newNode.parentTId === curExpandNode.parentTId) {
+			zTree.expandNode(curExpandNode, false);
+		} else {
+			var newParents = [];
+			while (newNode) {
+				newNode = newNode.getParentNode();
+				if (newNode === curExpandNode) {
+					newParents = null;
+					break;
+				} else if (newNode) {
+					newParents.push(newNode);
+				}
+			}
+			if (newParents!=null) {
+				var oldNode = curExpandNode;
+				var oldParents = [];
+				while (oldNode) {
+					oldNode = oldNode.getParentNode();
+					if (oldNode) {
+						oldParents.push(oldNode);
+					}
+				}
+				if (newParents.length>0) {
+					zTree.expandNode(oldParents[Math.abs(oldParents.length-newParents.length)-1], false);
+				} else {
+					zTree.expandNode(oldParents[oldParents.length-1], false);
+				}
+			}
+		}
+	}
+	curExpandNode = newNode;
+}
+function onExpand(event, treeId, treeNode) {
+	curExpandNode = treeNode;
 }
 $(document).ready(function(){
 	initHideTopbar();
 	resizeLayout();
-	var treeObj = $("#treeDemo");
+	 $.post("${ctx}/main/userResource","",function(data){
+		//alert(data);
+		var treeObj = $("#treeDemo");
+		$.fn.zTree.init(treeObj, setting, data);
+		zTree_Menu = $.fn.zTree.getZTreeObj("treeDemo");
+
+		treeObj.hover(function () {
+			if (!treeObj.hasClass("showIcon")) {
+				treeObj.addClass("showIcon");
+			}
+		}, function() {
+			treeObj.removeClass("showIcon");
+		});
+	}) 
+	/* var treeObj = $("#treeDemo");
 	$.fn.zTree.init(treeObj, setting, zNodes);
 	zTree_Menu = $.fn.zTree.getZTreeObj("treeDemo");
-	/* curMenu = zTree_Menu.getNodes()[0].children[0].children[0];
-	zTree_Menu.selectNode(curMenu); */
 
 	treeObj.hover(function () {
 		if (!treeObj.hasClass("showIcon")) {
@@ -138,8 +212,7 @@ $(document).ready(function(){
 		}
 	}, function() {
 		treeObj.removeClass("showIcon");
-	});
-	
+	}); */
 });
 </script>
 <title>Index</title>

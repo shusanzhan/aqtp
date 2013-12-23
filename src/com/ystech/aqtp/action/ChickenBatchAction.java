@@ -206,6 +206,13 @@ public class ChickenBatchAction extends BaseController{
 		if(null!=dbids&&dbids.length>0){
 			try {
 				for (Integer dbid : dbids) {
+					/*Set healthcares = chickenBatch2.getHealthcares();
+					if(healthcares.)
+					healthCareManageImpl.executeSql("delete from healthCare where chickenBatchDbid="+dbid);
+					dimensionaManageImpl.executeSql("delete from dimensiona where chickenBatchDbid="+dbid);
+					feedFeederManageImpl.executeSql("delete from feedFeeder where chickenBatchDbid="+dbid);
+					quarantineCertificateManageImpl.executeSql("delete from quarantinecertificate where chickenBatchDbid="+dbid);
+					immuneManageImpl.executeSql("delete from immune where chickenBatchDbid="+dbid);*/
 					chickenBatchManageImpl.deleteById(dbid);
 				}
 			} catch (Exception e) {

@@ -36,6 +36,9 @@
     <listener>
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
     </listener>
+     <listener>
+		<listener-class>com.ystech.aqtp.core.listener.ApplicationListener</listener-class>
+	</listener>
     <!-- log4j 配置  结束 -->
     
      <!-- 设置servlet编码开始 -->
@@ -73,6 +76,7 @@
     </listener>
     <!-- Spring配置文件结束 -->
     
+    
     <!-- spring security 安全框架配置-->
     <filter>
     	<filter-name>springSecurityFilterChain</filter-name>
@@ -102,7 +106,6 @@
             /*
 		</url-pattern>
 	</filter-mapping>
-	
     <!-- UrlRewriteFilter简化URL,有利于搜索引擎收录 -->
 	<filter>
 
@@ -154,8 +157,9 @@
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
 	</filter-mapping>
+	
    <!-- error -->
-	<!-- <error-page>
+	 <error-page>
 		<error-code>500</error-code>
 		<location>/error.jsp</location>
 	</error-page>
@@ -170,7 +174,7 @@
 	<error-page>
 		<exception-type>java.lang.NoSuchMethodException</exception-type>
 		<location>/error.jsp</location>
-	</error-page>  -->
+	</error-page>
 
   <display-name>Welcome to Tomcat</display-name>
   <description>

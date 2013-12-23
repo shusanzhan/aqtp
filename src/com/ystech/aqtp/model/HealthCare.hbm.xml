@@ -8,7 +8,7 @@
             <column name="dbid" />
             <generator class="identity" />
         </id>
-        <many-to-one name="chickenbatch" class="com.ystech.aqtp.model.ChickenBatch" fetch="select">
+        <many-to-one name="chickenbatch" class="com.ystech.aqtp.model.ChickenBatch" fetch="select" >
             <column name="chickenBatchDbid" />
         </many-to-one>
         <property name="name" type="string">
@@ -20,7 +20,7 @@
         <property name="endDate" type="date">
             <column name="endDate" length="10" />
         </property>
-        <set name="healthcaredrags" table="healthcaredrag" inverse="true" lazy="true" fetch="select">
+        <set name="healthcaredrags" table="healthcaredrag" inverse="true" lazy="true" fetch="select" cascade="delete">
             <key>
                 <column name="healthCareId" />
             </key>

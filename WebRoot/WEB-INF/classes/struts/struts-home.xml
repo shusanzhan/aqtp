@@ -16,8 +16,7 @@
 		</interceptors>
 		<default-interceptor-ref name="ssz-home" />
 		<global-results>
-		     <result name="error">/strutsError.jsp</result>
-		     <result name="invalid.token">/token.jsp</result>
+		     <result name="error">/error.jsp</result>
 		</global-results>
 		
 		<global-exception-mappings>
@@ -25,7 +24,17 @@
 		</global-exception-mappings>
 		
  		<action name="home" class="homeAction">
-           <result name="home">/pages/index/home.jsp</result>
+           <result name="home">/pages/index/index.jsp</result>
+           <result name="intro">/pages/index/intro.jsp</result>
+           <result name="read">/pages/index/read.jsp</result>
+           <result name="search">/pages/index/search.jsp</result>
+        </action>
+ 		<action name="wapHome" class="wapHomeAction">
+           <result name="home">/pages/wap/index.jsp</result>
+           <result name="fodder">/pages/wap/fodder.jsp</result>
+           <result name="baojian">/pages/wap/baojian.jsp</result>
+           <result name="mianyi">/pages/wap/mianyi.jsp</result>
+           <result name="jianyi">/pages/wap/jianyi.jsp</result>
         </action>
  		
     </package>

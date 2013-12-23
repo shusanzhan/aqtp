@@ -21,16 +21,15 @@ public class FileNameUtil {
 	 * @return
 	 */
 	public static File getResourceFile(String fileName){
+		   System.out.println("====================================================================="+fileName);
 			File dataFile = null;
 			try {
 				if (null != fileName && !fileName.trim().equals("")) {// getName()返回文件名称，如果是空字符串，说明没有选择文件。
 					//保存文件路径规则：WebRoot根目录/archives/username/2012-11-20
 					//如：WebRoot/archives/admin/2012-11-20
 					String path = PathUtil.getWebRootPath()	+ System.getProperty("file.separator") + 
-							"archives"+ System.getProperty("file.separator")
-							+ SecurityUserHolder.getCurrentUser().getDbid()
-							+ System.getProperty("file.separator")
-							+ DateUtil.format(new Date());
+							"archives"+ System.getProperty("file.separator")+
+							"image"+System.getProperty("file.separator");
 					//判断路径是否存在，如果不存在，创建路径
 					File file = new File(path);
 					boolean exists = file.exists();
@@ -40,13 +39,10 @@ public class FileNameUtil {
 					//文件命名规则为：20121120805022+加文件名称
 					//如：20121120093622psb.jpg
 					dataFile = new File(PathUtil.getWebRootPath()
-							+ System.getProperty("file.separator") + "archives"
-							+ System.getProperty("file.separator")
-							+ SecurityUserHolder.getCurrentUser().getDbid()
-							+ System.getProperty("file.separator")
-							+ DateUtil.format(new Date())
-							+ System.getProperty("file.separator")
-							+ DateUtil.formatFile(new Date()) + fileName);
+							+ System.getProperty("file.separator") + 
+							"archives" + System.getProperty("file.separator")+
+							"image"+System.getProperty("file.separator")
+							+DateUtil.formatFile(new Date())+fileName);
 					return dataFile;
 				} else {
 

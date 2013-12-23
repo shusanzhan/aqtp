@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-11-12 15:43:36 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.ystech.aqtp.model.News" table="news">
+        <id name="dbid" type="int">
+            <column name="dbid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="newstype" class="com.ystech.aqtp.model.NewsType" fetch="select">
+            <column name="newsTypeDbid" />
+        </many-to-one>
+        <property name="title" type="string">
+            <column name="title" length="200" not-null="true" />
+        </property>
+        <property name="content" type="string">
+            <column name="content" length="65535" />
+        </property>
+        <property name="contentText" type="string">
+            <column name="contentText" length="65535" />
+        </property>
+         <many-to-one name="releasePerson" class="com.ystech.aqtp.model.User" fetch="select">
+            <column name="releasePerson" />
+        </many-to-one>
+        <property name="releaseDate" type="timestamp">
+            <column name="releaseDate" length="19" />
+        </property>
+        <property name="readNum" type="java.lang.Integer">
+            <column name="readNum" />
+        </property>
+        <property name="isBannerPicture" type="java.lang.Boolean">
+            <column name="isBannerPicture" />
+        </property>
+        <property name="isOnTime" type="java.lang.Boolean">
+            <column name="isOnTime" />
+        </property>
+        <property name="isStop" type="java.lang.Boolean">
+            <column name="isStop" />
+        </property>
+        <property name="isLatestNew" type="java.lang.Boolean">
+            <column name="isLatestNew" />
+        </property>
+        <property name="isTitlePicture" type="java.lang.Boolean">
+            <column name="isTitlePicture" />
+        </property>
+        <property name="titlePicture" type="string">
+            <column name="titlePicture" length="200" />
+        </property>
+        <property name="bannerPicture" type="string">
+            <column name="bannerPicture" length="200" />
+        </property>
+        <property name="introduction" type="string">
+            <column name="introduction" length="2000" />
+        </property>
+    </class>
+</hibernate-mapping>

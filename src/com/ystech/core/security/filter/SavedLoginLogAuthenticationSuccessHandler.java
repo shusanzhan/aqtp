@@ -41,6 +41,7 @@ public class SavedLoginLogAuthenticationSuccessHandler extends SavedRequestAware
 	            Authentication authentication) throws ServletException, IOException {
 	        SavedRequest savedRequest = requestCache.getRequest(request, response);
 
+	        System.out.println("执行onAuthenticationSuccess");
 	        if (savedRequest == null) {
 	            super.onAuthenticationSuccess(request, response, authentication);
 

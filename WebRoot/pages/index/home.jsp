@@ -130,10 +130,10 @@
 					    			</c:if>
 					    		</span>
 					    		<span style="width: 160px;float: left;">
-					    			<c:if test="${fn:length(quarantineCertificate.note)>10 }" var="status">
+					    			<c:if test="${fn:length(quarantineCertificate.note)>10 }"
+													var="status">
 					    				${fn:substring(quarantineCertificate.note,0,10) }...
-					    			</c:if>
-					    			<c:if test="${status==false }">
+					    			</c:if> <c:if test="${status==false }">
 					    				${quarantineCertificate.note}&nbsp;
 					    			</c:if>
 					    		</span>

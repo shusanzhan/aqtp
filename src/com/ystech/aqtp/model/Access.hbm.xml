@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-11-28 22:36:44 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.ystech.aqtp.model.Access" table="access">
+        <id name="dbid" type="java.lang.Integer">
+            <column name="dbid" />
+            <generator class="identity" />
+        </id>
+        <property name="access" type="java.lang.Integer">
+            <column name="access" />
+        </property>
+    </class>
+</hibernate-mapping>

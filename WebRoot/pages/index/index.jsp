@@ -10,46 +10,7 @@
 <title>仁安主页</title>
 </head>
 <body>
-	<div class="contWith top">
-		<div class="logo">
-		</div>
-		<div class="operater">
-			<div class="oper">
-				<a href="">加入收藏</a>
-				&nbsp;|&nbsp;
-				<a href="">设为首页</a>
-				&nbsp;|&nbsp;
-				<a href="">联系我们</a>
-			</div>
-			<div class="con">
-				<span style="color: #655d5d">联系电话：</span>
-				<span style="color: #df0611">400-929-1020</span>
-			</div>
-			<div></div>
-		</div>
-		<div class="clear"></div>
-	</div>
-	<div class="nav">
-		<div class="contWith">
-			<ul>
-				<li><a href="${ctx }/pages/index/index.jsp">首页</a></li>
-				<li class="liImg" style="width: 2px;"></li>
-				<li><a href="">仁安生态</a></li>
-				<li class="liImg" style="width: 2px;"></li>
-				<li><a href="">仁安产品</a></li>
-				<li class="liImg" style="width: 2px;"></li>
-				<li><a href="">仁安安全</a></li>
-				<li class="liImg" style="width: 2px;"></li>
-				<li><a href="">生产安全</a></li>
-				<li class="liImg" style="width: 2px;"></li>
-				<li><a href="">安全认证</a></li>
-				<li class="liImg" style="width: 2px;"></li>
-				<li><a href="">郑总承若</a></li>
-				<li class="liImg" style="width: 2px;"></li>
-				<li><a href="">质量追溯</a></li>
-			</ul>
-		</div>
-	</div>
+   <jsp:include page="header.jsp"></jsp:include>
 	<div id="container banner" class="banner">
 		<div id="coin-slider" class="skdslider">
 			<ul>
@@ -63,58 +24,77 @@
 	</div>
 	<div class="contWith contentPanel">
 		<div class="contBan conBanMar">
-			<div class="contTitle renaanjj">
+			<div class="contTitle renaanjj"  onclick="window.open('${ctx}/home/read?dbid=${renanIntro.dbid}')">
 			</div>
 			<div class="conImg">
-				<img alt="" src="${ctx }/images/index/conImg.jpg" >
+				<img alt="" src="${renanIntro.titlePicture }" width="285" height="122">
 			</div>
 			<div class="content">
-				<p style="color: #e76f16;font-size: 16px;line-height: 32px">我们一直致力于做最好的生态禽业</p>
-				安徽太阳禽业有限公司位于美丽的黄山脚下，宁国市郊，成立于1996年5月。公司注册资本4200万元，是安徽省唯一专营樱桃谷系......
+				<p style="color: #e76f16;font-size: 16px;line-height: 32px">${renanIntro.title }</p>
+				<c:if test="${fn:length(renanIntro.introduction) >55 }" var="status">
+					${fn:substring(renanIntro.introduction,0,55)  }......
+				</c:if>
+				<c:if test="${status==false }">
+					${renanTntro.introduction }
+				</c:if>
 			</div>
-			<div class="more moreJj">
+			<div class="more moreJj" onclick="window.open('${ctx}/home/read?dbid=${renanIntro.dbid}')">
 			</div>
 		</div>
 		<div class="contBan conBanMar">
 			<div class="contTitle renaanzxdt">
 			</div>
 			<div class="conImg">
-				<div class="comtentImg">
-					<img alt="" src="${ctx }/images/index/wenz.jpg">
+				<div class="comtentImg" onclick="window.open('${ctx}/home/read?dbid=${topIsOnTime.dbid}')">
+					<img alt="" src="${topIsOnTime.titlePicture }" width="110" height="60">
 				</div>
-				<div class="comtentTitle">
-					<p style="font-size: 16px;color: #033d08;">2013年人安农场成立</p>
-					<p>安徽太阳禽业有限公司位于美丽的黄山脚下系......</p>
+				<div class="comtentTitle" onclick="window.open('${ctx}/home/read?dbid=${topIsOnTime.dbid}')">
+					<p style="font-size: 16px;color: #033d08;">
+					<c:if test="${fn:length(topIsOnTime.title) >10 }" var="status">
+							${fn:substring(topIsOnTime.title,0,10)  }...
+						</c:if>
+						<c:if test="${status==false }">
+							${topIsOnTime.title }
+						</c:if>
+					</p>
+					<p><c:if test="${fn:length(topIsOnTime.introduction) >20 }" var="status">
+							${fn:substring(topIsOnTime.introduction,0,20)  }......
+						</c:if>
+						<c:if test="${status==false }">
+							${topIsOnTime.introduction }
+						</c:if>
+					</p>
 				</div>
 				<div class="content" style="width: 312px;">
 					<ul>
+						<c:forEach var="onTime" items="${isOnTimes }" begin="1" end="4">
 						<li >
 							<img alt="" src="${ctx }/images/index/icon.png" style="">
-							<a href="">安徽太阳禽业有限公司位于美丽的黄山脚下系</a>
-							<p > 2013-11-29 20：00:00
+							<a href="javascript:void(-1)" onclick="window.open('${ctx}/home/read?dbid=${onTime.dbid}')" title="${onTime.title}">
+								<c:if test="${fn:length(onTime.title) >20 }" var="status">
+									${fn:substring(onTime.title,0,20)  }......
+								</c:if>
+								<c:if test="${status==false }">
+									${onTime.title }
+								</c:if>
+							</a>
+							<p > <fmt:formatDate value="${onTime.releaseDate }" pattern="yyyy-MM-dd HH:mm"/>
 						</li>
-						<li >
-							<img alt="" src="${ctx }/images/index/icon.png" >
-							<a href="">安徽太阳禽业有限公司位于美丽的黄山脚脚下</a>
-							<p> 2013-11-29 20：00:00
-						</li>
-						<li >
-							<img alt="" src="${ctx }/images/index/icon.png">
-							<a href="">安徽太阳禽业有限公司位于美丽的黄山脚下脚</a>
-							<p> 2013-11-29 20：00:00
-						</li>
+						</c:forEach>
 					</ul>
 				</div>
-				<div class="more moreZx">
+				<div class="more moreZx" onclick="window.location.href='${ctx }/home/intro?newTypePDbid=${9 }'">
 				</div>
 			</div>
 		</div>
 		<div class="contBan conBanMar">
 			<div class="zhuis">
+			<form action="${ctx }/home/search" id="frm" name="frm">
 				<div class="zsInput">
-					<input type="text" >
-					<div class="zsSearch"></div>
+					<input type="text" id="batchNo" name="batchNo" value="${param.batchNo }" placeholder="请输入追溯码">
+					<div class="zsSearch" onclick="searchFrm()"></div>
 				</div>
+			</form>
 			</div>
 			<div class="contTitle renaanlxwm">
 			</div>
@@ -127,40 +107,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="buttomOpe">
-		<div class="contWith" style="width: 1000px; ">
-			<div style="margin-top: 12px;margin-bottom: 4px;color: #ffffff;">
-				<img alt="" src="${ctx }/images/index/home.png"><span style="padding-left: 5px;">资兴市XX路XX街道</span>
-				<img alt="" src="${ctx }/images/index/phone.png" style="padding-left: 40px;"><span  style="padding-left: 5px;">0451215161-41521-42 </span>
-			</div>
-			<div class="line"></div>
-			<div class="buttonUl">
-				<ul style="width: 100%;">
-					<li style="margin-left: 0px;"><a href="">网站首页</a></li>
-					<li class="buliImg">
-					<li><a href="">关于我们</a></li>
-					<li class="buliImg">
-					<li><a href="">创业加盟</a></li>
-					<li class="buliImg">
-					<li><a href="">资讯动态</a></li>
-					<li class="buliImg">
-					<li><a href="">生态养殖</a></li>
-					<li class="buliImg">
-					<li><a href="">在线留言</a></li>
-					<li class="buliImg">
-					<li><a href="">联系我们</a></li>
-					<li class="clear">
-				</ul>
-			</div>
-		</div>
-	</div>
-	<div class="buttomInf" >
-		<div class="contWith" style="width: 1000px;">
-			
-			<span >版权所有：资兴市人安生态禽业有限公司</span>
-			<span  style="padding-left: 40px;">技术支持：资兴市人安生态禽业有限公司 </span>
-		</div>
-	</div>
+	<jsp:include page="bottom.jsp"></jsp:include>
 </body>
 <script type="text/javascript" src="${ctx }/widgets/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="${ctx }/widgets/skdslider.js"></script>
@@ -169,5 +116,18 @@
 		$('#coin-slider').skdslider({'delay':5000, 'fadeSpeed': 2000,'autoStart':true});
 	});
     
+</script>
+<script type="text/javascript">
+function searchFrm(){
+	var qForm=$("#frm");
+    if(typeof(qForm)=="undefined") return;
+    var batchNo= $("#batchNo").val();
+    if(typeof(batchNo)!="undefined" && batchNo!=null && batchNo!=""){
+    }else{
+    	alert("请输入追溯码!");
+     	return false;
+    }
+    qForm.submit();
+}
 </script>
 </html>

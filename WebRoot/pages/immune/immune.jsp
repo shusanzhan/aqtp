@@ -53,7 +53,7 @@
 	function autoByName(id){
 		var id1 = "#"+id;
 		$(document).ready(function(){
-			$(id1).autocomplete("${ctx}/healthCare/autoDrag?",{
+			$(id1).autocomplete("${ctx}/healthCare/autoDrag?a=b",{
 				max: 20,      
 		        width: 130,    
 		        matchSubset:false,   
@@ -103,9 +103,14 @@
 		</c:if>
 		<table border="1" align="center" cellpadding="0" cellspacing="0" style="width: 92%;">
 			<tr height="42">
+				<td class="formTableTdLeft" style="width: 60px;">免疫名称:&nbsp;</td>
+				<td colspan="3"><input type="text" name="immune.name" id="name"
+					value="${immune.name }" class="input-xmedium field" title="免疫名称"	checkType="string,1,20" tip="免疫名称不能为空"><span style="color: red;">*</span></td>
+			</tr>
+			<tr height="42">
 				<td class="formTableTdLeft" style="width: 60px;">免疫员:&nbsp;</td>
 				<td ><input type="text" name="immune.immunePerson" id="immunePerson"
-					value="${immune.immunePerson }" class="input-medium field" title="名称"	checkType="string,1,20" tip="检疫名称不能为空"><span style="color: red;">*</span></td>
+					value="${immune.immunePerson }" class="input-medium field" title="免疫员"	checkType="string,1,20" tip="免疫员名称不能为空"><span style="color: red;">*</span></td>
 				<td class="formTableTdLeft" style="width: 60px;">免疫时间:&nbsp;</td>
 				<td ><input type="text" name="immune.immuneDate" id="immuneDate"
 					value="${immune.immuneDate }" class="input-medium field" title="免疫时间" readonly="readonly"	onFocus="WdatePicker({isShowClear:false,readOnly:true})"></td>

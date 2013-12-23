@@ -54,13 +54,11 @@ public class SpringSecurityFilter extends AbstractSecurityInterceptor implements
 		this.securityMetadataSource = securityMetadataSource;
 	}
 
-	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		FilterInvocation filterInvocation=new FilterInvocation(request, response, chain);
@@ -86,7 +84,6 @@ public class SpringSecurityFilter extends AbstractSecurityInterceptor implements
 		  super.afterInvocation(token, null);    
 		}    
 	}
-	@Override
 	public void init(FilterConfig arg0) throws ServletException {
 		// TODO Auto-generated method stub
 		

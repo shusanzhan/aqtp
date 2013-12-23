@@ -33,15 +33,14 @@ public class UserDetailsManageImpl implements UserDetailsService{
 		this.userManageImpl = userManageImpl;
 	}
 	
-	@Override
 	public UserDetails loadUserByUsername(String userId)throws UsernameNotFoundException {
 		 System.err.println("================= spring 登陆成功后调用此方法 第二步 调用userDetailsManageImpl");
 		 User user = userManageImpl.findUniqueBy("userId", userId);
 		 if(null!=user){
 			 Set<GrantedAuthority> authorities = obtionGrantedAuthorities(user);
-			 for (GrantedAuthority grantedAuthority : authorities) {
+			 /*for (GrantedAuthority grantedAuthority : authorities) {
 				System.out.println("grantedAuthorit======"+grantedAuthority.getAuthority());
-			}
+			 }*/
 			 user.setAuthorities(authorities);
 		    return user;
 		 }else{

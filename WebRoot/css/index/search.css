@@ -1,0 +1,59 @@
+@CHARSET "UTF-8";
+
+body {
+	font-size: 14px;
+	font-family: '微软雅黑', 'serif';
+	color: #686868;
+}
+
+img {
+	border: 0 px;
+}
+
+a {
+	text-decoration: none;
+	color: #000000;
+}
+
+body,h1,h2,h3,p,div,dl,dt,dd,ul,ol,li,table,th,td,form,button,input,textarea,legend,hr
+	{
+	margin: 0;
+	padding: 0;
+}
+
+div,li,ul,dl,dd,dt {
+	overflow: hidden;
+	width: auto;
+}
+
+.searchContent {
+	width: 780px;
+	margin-bottom: 24px;
+	font-size: 12px;
+}
+
+.searchTitle {
+	font-size: 16px;
+	color: #000000;
+	border-bottom: 1px dashed #CCCCCC;
+	padding-bottom: 12px;
+	padding-left: 12px;
+	
+}
+
+.searchPic {
+    float: left;
+    margin: 10px 5px 12px;
+    width: 180px;;
+}
+
+.introPicture {
+    cursor: pointer;
+    float: left;
+    width: 180px;;
+    height: 120px;
+}
+.searchPictureTitle {
+    text-align: center;
+    width: 100%;
+}

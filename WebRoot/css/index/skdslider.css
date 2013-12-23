@@ -1,14 +1,14 @@
 /* CSS Document */
 body{ margin:0; padding:0;}
 .skdslider{
- height: 455px;
+ height: 380px;
  position: relative;
 }
 .skdslider ul.slides{ margin:0; padding:0; list-style-type:none;}
 
 .skdslider ul.slides li
 {
-   height: 455px;
+   height: 380px;
    left: 0;
    position: absolute;
    top: 0;
@@ -24,7 +24,7 @@ body{ margin:0; padding:0;}
 	 background-image: url("../../images/index/skd/me.png");
 	 width: 100%;
 	 height: 24px;
-	 margin-top: 431px;
+	 margin-top: 356px;
 	 position: absolute;
 }
 .skdslider .slide-navs {

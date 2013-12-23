@@ -174,6 +174,16 @@ function validate(obj) {
 			change_tip(obj, null, "remove");
 			return true;
 		}
+	}else if (/^float/.test(obj.attr('checkType'))) {
+		if (!checkFloat(obj)) {
+			change_error_style(obj, "add");
+			change_tip(obj, null, "remove");
+			return false;
+		} else {
+			change_error_style(obj, "remove");
+			change_tip(obj, null, "remove");
+			return true;
+		}
 	} else if (/^string/.test(obj.attr('checkType'))) {
 		var state = checkString(obj);
 		if (!checkString(obj)) {
@@ -371,6 +381,35 @@ function checkString(obj) {
 		return false;
 	}
 	if (length > bigLength) {
+		return false;
+	}
+	return true;
+}
+/**
+ * 验证浮点数，先判断是否为浮点数，为整数在判断是否在给定的区间类
+ * 
+ * @param obj（实例：checkType=“float,1.0,100.0”）
+ * @returns {Boolean}
+ */
+function checkFloat(obj)
+{	
+	var value = obj.attr("value");
+	if(obj.attr('can_empty')=="Y" && value.length==0) 
+		return true;
+	if(!(/^([-]){0,1}([0-9]){1,}([.]){0,1}([0-9]){0,}$/.test(value)))
+	{
+		return false;
+	}
+	var floatValue = parseFloat(value);
+	var arr = obj.attr('checkType').split(",");
+	var smallFloat = parseFloat(arr[1]);
+	var bigFloat = parseFloat(arr[2]);
+	if(floatValue<smallFloat)
+	{
+		return false;
+	}
+	if(floatValue > bigFloat)
+	{
 		return false;
 	}
 	return true;

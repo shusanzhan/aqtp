@@ -192,6 +192,9 @@ public class HealthCareAction extends BaseController{
 	public void autoDrag() throws Exception {
 		HttpServletRequest request = this.getRequest();
 		String dragName = request.getParameter("q");
+		if(null==dragName||dragName.trim().length()<0){
+			dragName="";
+		}
 		List<Drag> drags=new ArrayList<Drag>();
 		drags= dragManageImpl.executeSql("select * from drag where name like ? or pingyin like ?", new Object[]{"%"+dragName+"%","%"+dragName+"%",});
 		if(null==drags||drags.size()<0){

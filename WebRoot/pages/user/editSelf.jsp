@@ -23,6 +23,7 @@ var upload1;
 window.onload = function() {
 	upload1 = new SWFUpload(
 			{
+				flash_url : "${ctx}/widgets/SWFUpload/swfupload/swfupload.swf",
 				// Backend Settings
 				upload_url : "${ctx}/swfUpload/uploadFile",
 				post_params : {
@@ -60,7 +61,9 @@ window.onload = function() {
 
 				custom_settings : {
 					progressTarget : "uploadFileContent",
-					cancelButtonId : "btnCancel1"
+					cancelButtonId : "btnCancel1",
+					titlePicture : "fileUpload",
+					fileUploadImage : "fileUploadImage"
 				},
 
 				// Debug Settings

@@ -20,7 +20,6 @@ import org.springframework.security.core.GrantedAuthority;
 public class SpringSecurityAccessDecisionManager implements
 		AccessDecisionManager {
 
-	@Override
 	public void decide(Authentication authentication, Object object,
 			Collection<ConfigAttribute> configAttributes)
 			throws AccessDeniedException, InsufficientAuthenticationException {
@@ -46,13 +45,11 @@ public class SpringSecurityAccessDecisionManager implements
 
 	}
 
-	@Override
 	public boolean supports(ConfigAttribute attribute) {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
-	@Override
 	public boolean supports(Class<?> clazz) {
 		// TODO Auto-generated method stub
 		return true;

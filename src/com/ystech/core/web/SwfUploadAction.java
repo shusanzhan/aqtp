@@ -72,13 +72,12 @@ public class SwfUploadAction extends BaseController{
 	public void uploadFile() {
 		File dataFile = null;
 		String filePath=null;
-		String targetPath=null;
 		try{
 			if (null!=file&&!file.getName().trim().equals("")) {// getName()返回文件名称，如果是空字符串，说明没有选择文件。
+				System.err.println("==============================================="+fileFileName);
 				dataFile = FileNameUtil.getResourceFile(fileFileName);
 				file.renameTo(dataFile);
 				filePath=dataFile.getAbsolutePath();
-				targetPath=dataFile.getParent()+System.getProperty("file.separator")+DateUtil.formatFile(new Date())+fileFileName;
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -87,7 +86,7 @@ public class SwfUploadAction extends BaseController{
 			renderText("failed|上传失败");
 			return;
 		}
-		renderText("success|"+ targetPath.replaceAll("\\\\", "/").replace(PathUtil.getWebRootPath(), ""));
+		renderText("success|"+ filePath.replaceAll("\\\\", "/").replace(PathUtil.getWebRootPath(), ""));
 		return ;
 	}
 	public void uploadImages() throws Exception {
@@ -174,11 +173,8 @@ public class SwfUploadAction extends BaseController{
 		String path = URLDecoder.decode(request.getParameter("fileUrl"), "utf-8");
 		try{
 			File file = new File(PathUtil.getWebRootPath() + path);
-			String targetFile = file.getName();
-			File fileTargetFile=new File(file.getParent()+System.getProperty("file.separator")+targetFile.substring(14, targetFile.length()));
 			boolean delete = file.delete();
-			boolean deleteFile = fileTargetFile.delete();
-			if (delete==true&&deleteFile==true) {
+			if (delete==true) {
 				renderText("success");
 				return ;
 			}else{

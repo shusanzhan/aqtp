@@ -23,7 +23,7 @@
         <many-to-one name="user" class="com.ystech.aqtp.model.User" fetch="select" not-found="ignore" >
             <column name="userId" />
         </many-to-one>
-        <set name="dimensionacodes" table="dimensionacode" inverse="true" lazy="true"  fetch="select" >
+        <set name="dimensionacodes" table="dimensionacode" inverse="true" lazy="true"  fetch="select" cascade="delete">
             <key>
                 <column name="dimensionaId" />
             </key>

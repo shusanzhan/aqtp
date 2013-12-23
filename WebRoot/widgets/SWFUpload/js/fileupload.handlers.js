@@ -145,15 +145,16 @@ function uploadProgress(file, bytesLoaded, bytesTotal) {
 //上传文件成功，修改状态、同时修改删除方法；获取后台传过来的url
 function uploadSuccess(file, serverData) {
 	var swfUpload = this;
+	var customSettings=swfUpload.customSettings;
 	try {
 		//第一步serverData返回数据
 		var fileSize=SWFUpload.speed.formatBytes(file.size);
 		if(null!=serverData&&undefined!=serverData&&serverData.length>0){
 			var returnResult=serverData.split("|");
 			if(returnResult[0]=="success"){//上传文件成功
+				$("#"+customSettings.titlePicture).val(returnResult[1]);
+				$("#"+customSettings.fileUploadImage).attr("src",returnResult[1]);
 				
-				$("#fileUpload").val(returnResult[1]);
-				$("#fileUploadImage").attr("src",returnResult[1]);
 				var uploadState="<span id='fileSize'>文件大小："+fileSize+"</span><span id='state' class='stateSuccess'>上传成功</span>";
 				$("#uploadState"+file.id).text("");
 				$("#uploadState"+file.id).append(uploadState);
@@ -166,7 +167,8 @@ function uploadSuccess(file, serverData) {
 							var event=e;
 							var obj=upload1;
 							obj.cancelQueue();
-							$("#fileUpload").val("");//删除时清空上传文件
+							$("#"+customSettings.titlePicture).val("");
+							$("#"+customSettings.fileUploadImage).attr("src","");
 							totalNum=totalNum-1;
 							if(totalNum<=0){//没有文件时，清空总的统计数据
 								$("#fileContent" + file.id).slideUp('fast');

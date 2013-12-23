@@ -56,7 +56,7 @@
 	<c:forEach var="chickenBatch" items="${page.result }">
 		<tr height="32" align="center">
 			<td><input type='checkbox' name="id" id="id1" value="${chickenBatch.dbid }"/></td>
-			<td><a href="${ctx}/ireportPdf/impage">${chickenBatch.name }</a></td>
+			<td>${chickenBatch.name }</td>
 			<td>${chickenBatch.batchNo }</td>
 			<td>${chickenBatch.grade.name }</td>
 			<td>${chickenBatch.breed.name }</td>
@@ -73,7 +73,7 @@
 			<td><a href="#" class="system_right_table_a"
 				onclick="window.location.href='${ctx }/chickenBatch/edit?dbid=${chickenBatch.dbid}'">编辑</a>
 				<a href="#" class="system_right_table_a"
-				onclick="$.utile.deleteById('${ctx }/chickenBatch/delete?dbids=${chickenBatch.dbid}','searchPageForm')">删除</a>
+				onclick="$.utile.operatorDataByDbid('${ctx }/chickenBatch/delete?dbids=${chickenBatch.dbid}','searchPageForm','确定要删除该批次信息吗？删除该批次将删除该批次的所有记录！')">删除</a>
 				<a href="#" class="system_right_table_a"
 				onclick="window.location.href='${ctx }/chickenBatch/index?dbid=${chickenBatch.dbid}'">批次主页</a>
 		</tr>
@@ -85,7 +85,7 @@
 </div>
 <div class="buttons" style="margin-top: 20px;text-align: left;margin-bottom: 20px;">
 <a class="ui-state-default" href="javascript:void(-1);" onclick="window.location.href='${ctx}/chickenBatch/add'">添加</a>
-<a class="ui-state-default" href="javascript:void(-1);" onclick="$.utile.deleteIds('${ctx }/chickenBatch/delete','searchPageForm')">删除</a>
+<a class="ui-state-default" href="javascript:void(-1);" onclick="$.utile.operatorDataByDbids('${ctx }/chickenBatch/delete','searchPageForm','确定要选择的删除该批次信息吗？删除该批次将删除该批次的所有记录！')">删除</a>
 </div>
 </body>
 </html>

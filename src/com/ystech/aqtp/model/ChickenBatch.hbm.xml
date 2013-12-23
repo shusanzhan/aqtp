@@ -35,37 +35,37 @@
         <property name="intoBarDate" type="timestamp">
             <column name="intoBarDate" length="19" />
         </property>
-        <set name="healthcares" table="healthcare" inverse="true" lazy="true" fetch="select">
+        <set name="healthcares" table="healthcare" inverse="true" lazy="true" fetch="select" cascade="delete">
             <key>
                 <column name="chickenBatchDbid" />
             </key>
             <one-to-many class="com.ystech.aqtp.model.HealthCare" />
         </set>
-        <set name="breaderbreeds" table="breaderbreed" inverse="true" lazy="true" fetch="select">
+        <set name="breaderbreeds" table="breaderbreed" inverse="true" lazy="true" fetch="select" cascade="delete">
             <key>
                 <column name="chickenBatchDbid" />
             </key>
             <one-to-many class="com.ystech.aqtp.model.BreaderBreed" />
         </set>
-        <set name="feedfeeders" table="feedfeeder" inverse="true" lazy="true" fetch="select">
+        <set name="feedfeeders" table="feedfeeder" inverse="true" lazy="true" fetch="select" cascade="delete">
             <key>
                 <column name="chickenBatchDbid" />
             </key>
             <one-to-many class="com.ystech.aqtp.model.FeedFeeder" />
         </set>
-        <set name="quarantinecertificates" table="quarantinecertificate" inverse="true" lazy="true" fetch="select">
+        <set name="quarantinecertificates" table="quarantinecertificate" inverse="true" lazy="true" fetch="select" cascade="delete">
             <key>
                 <column name="chickenBatchDbid" />
             </key>
             <one-to-many class="com.ystech.aqtp.model.QuarantineCertificate" />
         </set>
-        <set name="immunes" table="immune" inverse="true" lazy="true" fetch="select">
+        <set name="immunes" table="immune" inverse="true" lazy="true" fetch="select" cascade="delete">
             <key>
                 <column name="chickenBatchDbid" />
             </key>
             <one-to-many class="com.ystech.aqtp.model.Immune" />
         </set>
-        <set name="dimensionas" table="dimensiona" inverse="true" lazy="true" fetch="select">
+        <set name="dimensionas" table="dimensiona" inverse="true" lazy="true" fetch="select" cascade="delete">
             <key>
                 <column name="chickenBatchDbid" />
             </key>

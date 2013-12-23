@@ -61,7 +61,9 @@ window.onload = function() {
 
 				custom_settings : {
 					progressTarget : "uploadFileContent",
-					cancelButtonId : "btnCancel1"
+					cancelButtonId : "btnCancel1",
+					titlePicture : "fileUpload",
+					fileUploadImage : "fileUploadImage"
 				},
 
 				// Debug Settings

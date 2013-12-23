@@ -4,6 +4,7 @@
 package com.ystech.core.security.filter;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +24,6 @@ import com.ystech.aqtp.model.User;
 import com.ystech.aqtp.service.LoginLogManageImpl;
 import com.ystech.aqtp.service.UserManageImpl;
 import com.ystech.core.ip.IPSeeker;
-import com.ystech.core.security.SecurityUserHolder;
 import com.ystech.core.util.Md5;
 
 /**
@@ -76,7 +76,7 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 	        //验证用户账号与密码是否对应  
 	        username = username.trim();  
 	          
-	        User users = userManageImpl.findBy("userId", username).get(0);  
+	   	 User users = userManageImpl.findUniqueBy("userId", username); 
 	        
 	        if(users == null ) {  
 	    /* 
@@ -93,7 +93,7 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 	        } 
 	     */  
 	            throw new AuthenticationServiceException("用户名或者密码错误！");   
-	        }  
+	        } 
 	        String calcMD5 = Md5.calcMD5(password+"{"+users.getUserId()+"}"); 
 	        if(!users.getPassword().equals(calcMD5)){
 	        	throw new AuthenticationServiceException("用户名或者密码错误！");  
@@ -110,6 +110,7 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 	        Authentication authenticate = authenticationManager2.authenticate(authRequest);
 	        
 	        HttpSession session = request.getSession();
+	        session.setMaxInactiveInterval(60*60*24);
 	        //保存登录日志
 	        LoginLog loginLog = getLoginLog(request, session, users);
 	        loginLogManageImpl.save(loginLog);
@@ -157,11 +158,13 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 	private LoginLog getLoginLog(HttpServletRequest request,HttpSession session, User user) {
 		String ipAddr = getIpAddr(request);
 		LoginLog loginLog=new LoginLog();
-		loginLog.setUserId(user.getDbid());
+		if(null!=user&&user.getDbid()>0){
+			loginLog.setUserId(user.getDbid());
+			loginLog.setUserName(user.getUserId());
+		}
 		loginLog.setLoginDate(new Date());
 		loginLog.setIpAddress(getIpAddr(request));
 		loginLog.setSessionId(session.getId());
-		loginLog.setUserName(user.getUserId());
 		IPSeeker  ipSeeker=new IPSeeker();
 		if (ipSeeker.getCountry(ipAddr).contains("局域网")) {
 			loginLog.setLoginAddress(ipSeeker.getCountry(ipAddr));
