@@ -19,6 +19,7 @@ public class Breeder implements java.io.Serializable {
 	private String photo;
 	private String educationalBackground;
 	private String graduationSchool;
+	private String introduction;
 	private Set breaderbreeds = new HashSet(0);
 
 	public Breeder() {
@@ -107,6 +108,14 @@ public class Breeder implements java.io.Serializable {
 
 	public void setBreaderbreeds(Set breaderbreeds) {
 		this.breaderbreeds = breaderbreeds;
+	}
+
+	public String getIntroduction() {
+		return introduction;
+	}
+
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
 	}
 
 

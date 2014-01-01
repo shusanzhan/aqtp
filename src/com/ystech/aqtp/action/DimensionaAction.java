@@ -137,8 +137,8 @@ public class DimensionaAction extends BaseController{
 		return "dimCodeList";
 	}
 	/**
-	 * 功能描述：保存
-	 * 参数描述：
+	 * 功能描述：保存二维码
+	 * 参数描述：二维码的编码为该批次的最后一次号码
 	 * 逻辑描述：
 	 * @return
 	 * @throws Exception
@@ -160,14 +160,20 @@ public class DimensionaAction extends BaseController{
 			
 			Integer quantity = dimensiona.getQuantity();
 			dimensionaManageImpl.save(dimensiona);
-			Set<DimensionaCode> dimensionaCodes=new HashSet<DimensionaCode>();
+			List<DimensionaCode> dimensionaCodes2 = dimensionaCodeManageImpl.find("from DimensionaCode where dimensiona.chickenbatch.dbid=? order by code Desc", new Object[]{chickenBatch.getDbid()});
+			Integer code=0;
+			if(null!=dimensionaCodes2&&dimensionaCodes2.size()>0){
+				DimensionaCode dimensionaCode = dimensionaCodes2.get(0);
+				code=dimensionaCode.getCode();
+			}
 			if(quantity>0){
 				for (int i = 0; i < quantity; i++) {
+					code++; 	 	
 					DimensionaCode dimensionaCode=new DimensionaCode();
-					dimensionaCode.setCode(i+1);
+					dimensionaCode.setCode(code);
 					dimensionaCode.setDimensiona(dimensiona);
 					String name=dimensiona.getDbid()+""+(i+1);
-					String dimensionaPhoto = dimensionaPhoto(dimensiona, name);
+					String dimensionaPhoto = dimensionaPhoto(dimensiona, name,dimensionaCode);
 					dimensionaCode.setPhoto(dimensionaPhoto);
 					dimensionaCodeManageImpl.save(dimensionaCode);
 				}
@@ -273,13 +279,14 @@ public class DimensionaAction extends BaseController{
 		return ;
 	}
 	//生成二维码 
-	private String dimensionaPhoto(Dimensiona dimensiona,String name) { 
+	private String dimensionaPhoto(Dimensiona dimensiona,String name,DimensionaCode dimensionaCode) { 
 		String pathFile="";
 		 //String content ="dbid:"+dimensiona.getDbid()+";chickenBatchDbid:"+dimensiona.getChickenbatch().getDbid();  // "CN:男;COP:公司;ZW:职务";// 二维码内容
 		ChickenBatch chickenbatch = dimensiona.getChickenbatch();
 		/* String content ="鸡批次信息:"+chickenbatch.getName()+"为"+chickenbatch.getBatchNo()+",品级为"+chickenbatch.getGrade().getName()+",品系为"+chickenbatch.getBreed().getName()
 				 +".出栏总数量为："+chickenbatch.getCountNum()+"\r\n"+"http://cd.qq.com/a/20130815/002866.htm";*/
-		String content ="http://www.renanshengtai.com/wapHome/home?batchNo="+chickenbatch.getBatchNo();
+		String code = getCode(dimensionaCode.getCode().toString());
+		String content ="http://www.renanshengtai.com/wapHome/home?batchNo="+chickenbatch.getBatchNo()+code;
 	    try {  
 	    	String path =  PathUtil.getWebRootPath()+System.getProperty("file.separator")+
 	        		"dimensiona"+System.getProperty("file.separator")+
@@ -306,6 +313,18 @@ public class DimensionaAction extends BaseController{
 	    }  
 	    String pathResult = pathFile.replaceAll("\\\\", "/").replace(PathUtil.getWebRootPath(), "");
 	    return pathResult;
+	}
+	/**
+	 * @param code
+	 */
+	private String getCode(String code) {
+		String codeNum="";
+		int length = code.length();
+		for (int i = 0; i < 5-length; i++) {
+			codeNum=codeNum+"0";
+		}
+		codeNum=codeNum+code;
+		return codeNum;
 	}
 	/**
 	 * 功能描述：

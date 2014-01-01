@@ -18,9 +18,14 @@ public class NewsType implements java.io.Serializable {
 	public static Integer CON=8;//联系我们
 	public static Integer NEWESDT=9;//咨询动态
 	
+	public static Integer STATUSDISABLE=1;
+	public static Integer STATUSENABLE=0;
+	
 	private Integer dbid;
 	private String name;
 	private String note;
+	private String bannerUrl;
+	private Integer bannerStatus;
 	private NewsType parent;
 	private Set newses = new HashSet(0);
 
@@ -76,6 +81,22 @@ public class NewsType implements java.io.Serializable {
 
 	public void setNewses(Set newses) {
 		this.newses = newses;
+	}
+
+	public String getBannerUrl() {
+		return bannerUrl;
+	}
+
+	public void setBannerUrl(String bannerUrl) {
+		this.bannerUrl = bannerUrl;
+	}
+
+	public Integer getBannerStatus() {
+		return bannerStatus;
+	}
+
+	public void setBannerStatus(Integer bannerStatus) {
+		this.bannerStatus = bannerStatus;
 	}
 
 }

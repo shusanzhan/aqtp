@@ -5,20 +5,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="keywords" content="人安生态,人安土鸡,绿色食品可追溯，安全食品，湖南雪峰乌骨鸡，郴州雪峰乌骨鸡，乌骨鸡土鸡,绿色可追溯土鸡"/>
+<meta name="description" content="资兴市人安生生态，人安土鸡,绿色食品可追溯，安全食品，湖南雪峰乌骨鸡，郴州雪峰乌骨鸡，乌骨鸡土鸡"/>
+
 <link href="${ctx }/css/index/index.css" type="text/css" rel="stylesheet"></link>
 <link href="${ctx }/css/index/skdslider.css" type="text/css" rel="stylesheet">
-<title>仁安主页</title>
+<title>人安生态,人安土鸡,绿色食品可追溯，安全食品，湖南雪峰乌骨鸡，郴州雪峰乌骨鸡，乌骨鸡土鸡,绿色可追溯土鸡</title>
 </head>
 <body>
    <jsp:include page="header.jsp"></jsp:include>
 	<div id="container banner" class="banner">
 		<div id="coin-slider" class="skdslider">
 			<ul>
-				<li id="pb1"></li>
-				<li id="pb2" ></li>
-				<li id="pb3" ></li>
 				<li id="pb4" ></li>
-				<li id="pb5" ></li>
+				<li id="pb3" ></li>
+				<li id="pb2" ></li>
+				<li id="pb1"></li>
 			</ul>
 		</div>
 	</div>

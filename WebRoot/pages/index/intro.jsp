@@ -9,11 +9,14 @@
 <link href="${ctx }/css/index/list.css" type="text/css" rel="stylesheet">
 <title>人安生态---${parent.name }</title>
 </head>
+
 <body>
 <div class="container">
  <jsp:include page="header.jsp"></jsp:include>
- <div class="banner companyBanner">
-	</div>
+ <c:if test="${parent.bannerStatus==0 }">
+	 <div class="banner companyBanner" style="background-image: url('${parent.bannerUrl}');">
+	 </div>
+ </c:if>
   <div class="main">
     <div class="main_top">
       <div class="location">当前所在位置：&nbsp;  

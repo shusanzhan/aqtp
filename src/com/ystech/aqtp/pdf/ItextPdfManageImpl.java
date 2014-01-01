@@ -274,7 +274,9 @@ public class ItextPdfManageImpl {
 			
 			//批次信息
 			//String No="No"+dimensionaCode.getDimensiona().getDbid()+""+dimensionaCode.getCode()+""+dimensionaCode.getDimensiona().getChickenbatch().getBatchNo();
-			String No=dimensionaCode.getDimensiona().getChickenbatch().getBatchNo();
+			String code = dimensionaCode.getCode().toString();
+			String codeStr = getCode(code);
+			String No=dimensionaCode.getDimensiona().getChickenbatch().getBatchNo()+codeStr;
 			PdfPCell batchNoCell = setDimenisonValue(No);
 			batchNoCell.setBorder(0);
 			batchNoCell.setVerticalAlignment(PdfPCell.ALIGN_CENTER);
@@ -283,6 +285,19 @@ public class ItextPdfManageImpl {
 			pdfPTable.addCell(batchNoCell);
 		}
 		return pdfPTable;
+	}
+
+	/**
+	 * @param code
+	 */
+	private String getCode(String code) {
+		String codeNum="";
+		int length = code.length();
+		for (int i = 0; i < 5-length; i++) {
+			codeNum=codeNum+"0";
+		}
+		codeNum=codeNum+code;
+		return codeNum;
 	}
 	
 	/**

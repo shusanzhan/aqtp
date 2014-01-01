@@ -120,7 +120,7 @@
 			else if(node.menu==1){
 				menu=2;
 			}
-			$.utile.openDialog('${ctx }/newsType/edit?parentId='+parentId+"&menu="+menu,'添加',550,300);
+			$.utile.openDialog('${ctx }/newsType/edit?parentId='+parentId+"&menu="+menu,'添加',550,350);
 			hideRMenu();
 			/* var newNode = { name:"增加" + (addCount++)};
 			if (zTree.getSelectedNodes()[0]) {
@@ -132,7 +132,7 @@
 		}
 		function edit() {
 			var nodes = zTree.getSelectedNodes()[0];
-			$.utile.openDialog('${ctx }/newsType/edit?dbid='+nodes.id,'编辑',550,300);
+			$.utile.openDialog('${ctx }/newsType/edit?dbid='+nodes.id,'编辑',550,350);
 			hideRMenu();
 		}
 		function orderNum() {

@@ -173,7 +173,7 @@
 			    		<c:forEach items="${immunes }" var="immune" >
 				    		<div  style="text-align: left;border-bottom:1px dashed  #000000 ;height: 30px;line-height: 30px;">
 				    			<span style="width: 100px;float: left;">
-					    			<a target="" href="javascript:void(-1)" onclick="$.utile.openDialog('${ctx}/immune/showImmune?chickenBatchDbid=${chickenBatch.dbid }&dbid=${immune.dbid }','查看免疫信息',720,500)" style="">${immune.immunePerson }</a>
+					    			<a target="" href="javascript:void(-1)" onclick="$.utile.openDialog('${ctx}/immune/showImmune?chickenBatchDbid=${chickenBatch.dbid }&dbid=${immune.dbid }','查看免疫信息',720,500)" style="">${immune.name }</a>
 					    		</span> 
 					    		<span style="width: 80px;float: left;">
 					    		 	<fmt:formatDate value="${immune.immuneDate }" />	

@@ -24,6 +24,7 @@ import com.ystech.aqtp.model.Dimensiona;
 import com.ystech.aqtp.model.FeedFeeder;
 import com.ystech.aqtp.model.HealthCare;
 import com.ystech.aqtp.model.Immune;
+import com.ystech.aqtp.model.ImmuneDrag;
 import com.ystech.aqtp.model.News;
 import com.ystech.aqtp.model.NewsType;
 import com.ystech.aqtp.model.QuarantineCertificate;
@@ -86,7 +87,7 @@ public class WapHomeAction extends BaseController {
 	 */
 	public String home() throws Exception {
 		HttpServletRequest request = this.getRequest();
-		String batchNo = request.getParameter("batchNo");
+		String batchNo = getBatchNo(request);
 		try {
 			ChickenBatch chickenBatch = chickenBatchManageImpl.findUniqueBy("batchNo", batchNo);
 			request.setAttribute("chickenBatch", chickenBatch);
@@ -95,6 +96,21 @@ public class WapHomeAction extends BaseController {
 			return "error";
 		}
 		return "home";
+	}
+
+
+	/**
+	 * @param request
+	 * @return
+	 */
+	private String getBatchNo(HttpServletRequest request) {
+		String batchNo = request.getParameter("batchNo");
+		if (null!=batchNo&&batchNo.trim().length()>0) {
+			batchNo=batchNo.substring(0, batchNo.length()-5);
+		}else{
+			batchNo=null;
+		}
+		return batchNo;
 	}
 	/**
 	 * 功能描述：饲养饲料信息
@@ -105,7 +121,7 @@ public class WapHomeAction extends BaseController {
 	 */
 	public String fodder() throws Exception {
 		HttpServletRequest request = this.getRequest();
-		String batchNo = request.getParameter("batchNo");
+		String batchNo = getBatchNo(request);
 		try {
 			ChickenBatch chickenBatch = chickenBatchManageImpl.findUniqueBy("batchNo", batchNo);
 			List<FeedFeeder> feeders = feedFeederManageImpl.findBy("chickenbatch.dbid", chickenBatch.getDbid());
@@ -126,7 +142,7 @@ public class WapHomeAction extends BaseController {
 	 */
 	public String mianyi() throws Exception {
 		HttpServletRequest request = this.getRequest();
-		String batchNo = request.getParameter("batchNo");
+		String batchNo = getBatchNo(request);
 		try {
 			ChickenBatch chickenBatch = chickenBatchManageImpl.findUniqueBy("batchNo", batchNo);
 			List<Immune> immunes = immuneManageImpl.findBy("chickenbatch.dbid", chickenBatch.getDbid());
@@ -147,7 +163,7 @@ public class WapHomeAction extends BaseController {
 	 */
 	public String baojian() throws Exception {
 		HttpServletRequest request = this.getRequest();
-		String batchNo = request.getParameter("batchNo");
+		String batchNo = getBatchNo(request);
 		try {
 			ChickenBatch chickenBatch = chickenBatchManageImpl.findUniqueBy("batchNo", batchNo);
 			List<HealthCare> healthCares = healthCareManageImpl.findBy("chickenbatch.dbid", chickenBatch.getDbid());
@@ -168,7 +184,7 @@ public class WapHomeAction extends BaseController {
 	 */
 	public String jianyi() throws Exception {
 		HttpServletRequest request = this.getRequest();
-		String batchNo = request.getParameter("batchNo");
+		String batchNo = getBatchNo(request);
 		try {
 			ChickenBatch chickenBatch = chickenBatchManageImpl.findUniqueBy("batchNo", batchNo);
 			List<QuarantineCertificate> certificates = quarantineCertificateManageImpl.findBy("chickenbatch.dbid", chickenBatch.getDbid());

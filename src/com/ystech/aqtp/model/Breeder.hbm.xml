@@ -23,6 +23,9 @@
         <property name="photo" type="string">
             <column name="photo" length="50" />
         </property>
+           <property name="introduction" type="string">
+            <column name="introduction" length="60000" />
+        </property>
         <property name="educationalBackground" type="string">
             <column name="educationalBackground" />
         </property>

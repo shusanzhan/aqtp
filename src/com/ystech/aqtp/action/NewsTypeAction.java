@@ -65,6 +65,8 @@ public class NewsTypeAction extends BaseController{
 				newsType2.setName(newsType.getName());
 				newsType2.setNote(newsType.getNote());
 				newsType2.setParent(newsType.getParent());
+				newsType2.setBannerUrl(newsType.getBannerUrl());
+				newsType2.setBannerStatus(newsType.getBannerStatus());
 				newsTypeManageImpl.save(newsType2);
 			}else{
 				newsTypeManageImpl.save(newsType);

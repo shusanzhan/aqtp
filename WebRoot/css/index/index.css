@@ -30,7 +30,7 @@ div, li, ul, dl, dd, dt {
 	height: 100px;
 }
 .logo{
-	margin-left: 6px;margin-top:23px;background-image: url("../../images/index/logo.png");background-repeat: no-repeat;width: 350px;height: 64px;
+	margin-left: 6px;background-image: url("../../images/index/logo.png");background-repeat: no-repeat;width: 350px;height: 100px;
 	float: left;
 }
 .top .operater{
@@ -48,7 +48,7 @@ div, li, ul, dl, dd, dt {
 	font-size: 15px;
 }
 .nav ul{
-	list-style: none;
+	list-style: none;background-image: url("../../images/index/nav2.png");width: 1024px;
 }
 .nav li{
 	float: left;width: 125px;text-align: center;line-height: 36px;
@@ -66,13 +66,13 @@ div, li, ul, dl, dd, dt {
     background: url("../../images/index/banner/banner1.jpg") repeat-x scroll center center ;
 }
 #pb2 {
-    background: url("../../images/index/banner/banner1.jpg") repeat-x scroll center center ;
+    background: url("../../images/index/banner/banner2.jpg") repeat-x scroll center center ;
 }
 #pb3 {
-    background: url("../../images/index/banner/banner1.jpg") repeat-x scroll center center ;
+    background: url("../../images/index/banner/banner3.jpg") repeat-x scroll center center ;
 }
 #pb4 {
-    background: url("../../images/index/banner/banner1.jpg") repeat-x scroll center center ;
+    background: url("../../images/index/banner/banner4.jpg") repeat-x scroll center center ;
 }
 #pb5 {
     background: url("../../images/index/banner/banner1.jpg") repeat-x scroll center center ;

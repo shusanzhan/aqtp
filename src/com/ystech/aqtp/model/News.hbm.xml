@@ -20,7 +20,7 @@
         <property name="contentText" type="string">
             <column name="contentText" length="65535" />
         </property>
-         <many-to-one name="releasePerson" class="com.ystech.aqtp.model.User" fetch="select">
+         <many-to-one name="releasePerson" class="com.ystech.aqtp.model.User" fetch="select" not-found="ignore">
             <column name="releasePerson" />
         </many-to-one>
         <property name="releaseDate" type="timestamp">

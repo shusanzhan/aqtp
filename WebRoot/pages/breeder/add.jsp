@@ -167,6 +167,10 @@ window.onload = function() {
 				<td colspan="3"><input type="text" name="breeder.graduationSchool" id="graduationSchool"
 					value="${breeder.graduationSchool }" class="input-xlarge field" title="毕业学校"></td>
 			</tr>
+			<tr height="200">
+				<td class="formTableTdLeft" style="width: 60px;">简介:&nbsp;</td>
+				<td colspan="3"> <textarea rows="8" cols="10" id="introduction" class="textarea-xxlarge" name="breeder.introduction">${breeder.introduction }</textarea></td>
+			</tr>
 		</table>
 		<div class="buttons" style="margin-top: 20px;">
 			<a href="javascript:void(-1)"

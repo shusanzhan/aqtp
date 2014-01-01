@@ -151,6 +151,12 @@
 				</table>
 				</td>
 			</tr>
+			<tr height="32">
+				<td class="formTableTdLeft" style="width: 60px;">备注:&nbsp;</td>
+				<td colspan="3">
+					 <textarea rows="" cols="" id="note" class="textarea-xxlarge" name="healthCare.note">${healthCare.note }</textarea>
+				</td>
+			</tr>
 		</table>
 		<div class="buttons" style="margin-top: 20px;">
 			<a href="javascript:void()" 	onclick="$.utile.submitForm('frmId','${ctx}/healthCare/save')"

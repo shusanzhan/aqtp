@@ -286,8 +286,7 @@ public class HomeAction extends BaseController {
 	 */
 	private void leftMenu(HttpServletRequest request) throws Exception {
 		// 咨询动态
-		List<News> isOnTimes = newsManageImpl.findBy("newstype.dbid",
-				NewsType.NEWESDT);
+		List<News> isOnTimes = newsManageImpl.executeSql("select * from news where newsTypeDbid=? and isStop=? limit 3", new Object[]{NewsType.NEWESDT,1});
 		request.setAttribute("latestNews", isOnTimes);
 
 		// 查询新闻一级新闻类型

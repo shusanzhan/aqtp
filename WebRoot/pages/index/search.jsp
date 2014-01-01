@@ -110,11 +110,11 @@
 				    </c:if>
 				    <c:if test="${status==false }">
 		        		<c:forEach var="breaderBreed" items="${breaderBreeds }">
-			          		<div class="searchPic" >
-				          		<div class="introPicture">
-				          			<img src="${breaderBreed.breeder.photo }" width="180" height="120"></img>
-				          		</div>
-				          		<div class="searchPictureTitle"><p><a>${breaderBreed.name }</a></p></div>
+			          		<div style="margin-top: 24px;width: 99%;">
+			          			<img src="${breaderBreed.breeder.photo }" width="180" height="120" style="float: left; clear: left; width: 120px; height: 120px;padding-right: 12px;" /></img>
+			          			<p style="float: left;padding-left: 12px;padding-right: 12px;font-weight: bold;">${breaderBreed.name } </p>
+			          			${breaderBreed.breeder.introduction } 
+			          			<div class="clear"></div>
 			          		</div>
 			         	 </c:forEach>
 						 <div class="clear"></div>
@@ -150,7 +150,7 @@
 				    		<c:forEach items="${immunes }" var="immune" >
 					    		<div  style="text-align: left;height: 30px;line-height: 30px;">
 						    		<p>
-						    			<span style="color: #E76F16;font-size: 16px;line-height: 32px ">${immune.immunePerson }</span>
+						    			<span style="color: #E76F16;font-size: 16px;line-height: 32px ">${immune.name }</span>
 						    			 时间:<fmt:formatDate value="${immune.immuneDate }" />	&nbsp;&nbsp;&nbsp;&nbsp;
 						    			 药品:&nbsp;&nbsp;&nbsp;&nbsp;
 										<c:if test="${!empty(immune.immunedrags) }" var="status">

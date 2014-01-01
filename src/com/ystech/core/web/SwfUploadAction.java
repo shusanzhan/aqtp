@@ -81,6 +81,8 @@ public class SwfUploadAction extends BaseController{
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
+			renderText("error|上传失败");
+			return ;
 		}
 		if (dataFile == null && !dataFile.exists()) {
 			renderText("failed|上传失败");

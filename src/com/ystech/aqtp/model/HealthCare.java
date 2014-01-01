@@ -16,6 +16,7 @@ public class HealthCare implements java.io.Serializable {
 	private String name;
 	private Date beginDate;
 	private Date endDate;
+	private String note;
 	private Set healthcaredrags = new HashSet(0);
 
 	public HealthCare() {
@@ -76,6 +77,14 @@ public class HealthCare implements java.io.Serializable {
 
 	public void setHealthcaredrags(Set healthcaredrags) {
 		this.healthcaredrags = healthcaredrags;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
 	}
 
 }

@@ -4,24 +4,25 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel='stylesheet' type='text/css' href='${ctx }/css/wap/front.css' />
+<link rel='stylesheet' type='text/css' href='${ctx }/css/wap/index2.css' />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>网页查询饲料信息</title>
 </head>
 	<body class='global'>
-		<div class='module' id='content'>
-			<div class="nav" id='navigator'>
+			<div class="nav">
 				<ul>
-					<li><a href='${ctx }/wapHome/home?batchNo=${chickenBatch.batchNo}'>首页</a></li>
-					<li><a href='${ctx }/wapHome/fodder?batchNo=${chickenBatch.batchNo}'>饲料</a></li>
-					<li><a href='${ctx }/wapHome/mianyi?batchNo=${chickenBatch.batchNo}'>免疫</a></li>
-					<li><a href='${ctx }/wapHome/baojian?batchNo=${chickenBatch.batchNo}'>保健</a></li>
-					<li><a href='${ctx }/wapHome/jianyi?batchNo=${chickenBatch.batchNo}'>检疫</a></li>
+									<li><div><a href='${ctx }/wapHome/home?batchNo=${param.batchNo}'>首页</a></div></li>
+				<li><div><a href='${ctx }/wapHome/fodder?batchNo=${param.batchNo}'>饲料</a></div></li>
+				<li><div><a href='${ctx }/wapHome/mianyi?batchNo=${param.batchNo}'>免疫</a></div></li>
+				<li><div><a href='${ctx }/wapHome/baojian?batchNo=${param.batchNo}'>保健</a></div></li>
+				<li><div><a href='${ctx }/wapHome/jianyi?batchNo=${param.batchNo}'>检疫</a></div></li>
 				</ul>
 			</div>
-			<div class="list topnews">
-				<ul>
+			
+			
+			<div >
+
 					<c:if test="${empty(feeders) }" var="status">
 						 <li>
 	                        <strong><a>系统无数据</a></strong>
@@ -29,39 +30,50 @@
 					</c:if>
 					<c:if test="${status==false }">
 					<c:forEach var="feeder" items="${feeders }">
-						<li>
-	                        <strong><a>名称：</a></strong>
-	                        <span>
+					
+					<div class="group mainmessage">
+					<div>   
+					<div class="odd first"><h1>名称</h1></div>  
+					<div class="odd second">
+					<h1>
 	                        <c:if test="${empty(feeder.feeder.name)||fn:length(feeder.feeder.name)<=0 }" var="status">
 	                        	无数据
 	                        </c:if>
 	                        <c:if test="${status==false }">
 	                       	 ${feeder.feeder.name }
 	                        </c:if>
-	                        </span>
-	                    </li>
-	                   	<div class="content">
-	                   		<span > 组成:</span>
-	                   			
-	                   			<c:if test="${empty(feeder.feeder.elementsPercentage )||fn:length(feeder.feeder.elementsPercentage )<=0 }" var="status">
+	                 </h1>
+	                 </div>
+	                 </div>
+	                 <div> 
+	                 <div class="even first"><h1>组成:</h1></div>   
+	                 <div class="even second"><h1>
+						<c:if test="${empty(feeder.feeder.elementsPercentage )||fn:length(feeder.feeder.elementsPercentage )<=0 }" var="status">
 	                        	无数据
 		                        </c:if>
 		                        <c:if test="${status==false }">
 		                     	 ${feeder.feeder.elementsPercentage }
-		                        </c:if>
-							<br>
-							<span > 备注:</span>
-								<c:if test="${empty(feeder.feeder.note )||fn:length(feeder.feeder.note )<=0 }" var="status">
+		                        </c:if></h1>
+	                 </div>
+	                 </div>
+
+	                 <div> 
+	                 <div class="even first"><h1>备注:</h1></div>   
+	                 <div class="even second"><h1>
+						<c:if test="${empty(feeder.feeder.note )||fn:length(feeder.feeder.note )<=0 }" var="status">
 		                        	无数据
 		                        </c:if>
 		                        <c:if test="${status==false }">
 		                     	 ${feeder.feeder.note }
-		                     	</c:if>   
-	                    </div>
-					</c:forEach>
-                   </c:if> 
-                </ul>
-			</div>
-		</div> 
+		                     	</c:if>    
+		                     	</h1>
+	                 </div>
+	                 </div>
+	                 </div>
+	                 </c:forEach>
+	                 </c:if>
+	                 </div>
+
+
 	</body>
 </html>

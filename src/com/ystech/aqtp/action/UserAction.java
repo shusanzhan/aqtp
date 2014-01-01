@@ -142,6 +142,7 @@ public class UserAction extends BaseController{
 				breeder2.setGraduationSchool(breeder.getGraduationSchool());
 				breeder2.setPhoto(breeder.getPhoto());
 				breeder2.setSex(breeder.getSex());
+				breeder2.setIntroduction(breeder.getIntroduction());
 				breederManageImpl.save(breeder2);
 			}
 		}catch (Exception e) {
@@ -242,6 +243,7 @@ public class UserAction extends BaseController{
 			breeder2.setGraduationSchool(breeder.getGraduationSchool());
 			breeder2.setPhoto(breeder.getPhoto());
 			breeder2.setSex(breeder.getSex());
+			breeder2.setIntroduction(breeder.getIntroduction());
 			breederManageImpl.save(breeder2);
 		}catch (Exception e) {
 			e.printStackTrace();
