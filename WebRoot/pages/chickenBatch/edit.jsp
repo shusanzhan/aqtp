@@ -67,11 +67,11 @@
 			
 			<tr height="32">
 				<td class="formTableTdLeft">入栏日期:&nbsp;</td>
-				<td><input type="text" name="chickenBatch.outBarDate" id="outBarDate"
-					value='<fmt:formatDate value="${chickenBatch.outBarDate }"  pattern="yyyy-MM-dd" />' class="input-xmedium field"  onFocus="WdatePicker({isShowClear:false,readOnly:true})" title="入栏日期" checkType="string,10,20" tip="入栏日期不能为空"><span style="color: red;">*</span></td>
-				<td class="formTableTdLeft">出栏日期:&nbsp;</td>
 				<td><input type="text" name="chickenBatch.intoBarDate" id="intoBarDate"
-					value='<fmt:formatDate value="${chickenBatch.intoBarDate }"  pattern="yyyy-MM-dd"/>' class="input-xmedium field"  onFocus="WdatePicker({isShowClear:false,readOnly:true})" title="出栏日期" checkType="string,10,20" tip="出栏日期不能为空"><span style="color: red;">*</span></td>
+					value='<fmt:formatDate value="${chickenBatch.intoBarDate }"  pattern="yyyy-MM-dd" />' class="input-xmedium field"  onFocus="WdatePicker({isShowClear:false,readOnly:true})" title="入栏日期" checkType="string,10,20" tip="入栏日期不能为空"><span style="color: red;">*</span></td>
+				<td class="formTableTdLeft">出栏日期:&nbsp;</td>
+				<td><input type="text" name="chickenBatch.outBarDate" id="outBarDate"
+					value='<fmt:formatDate value="${chickenBatch.outBarDate }"  pattern="yyyy-MM-dd"/>' class="input-xmedium field"  onFocus="WdatePicker({isShowClear:false,readOnly:true})" title="出栏日期" checkType="string,10,20" tip="出栏日期不能为空"><span style="color: red;">*</span></td>
 			</tr>
 		</table>
 		<div class="buttons" style="margin-top: 20px;">

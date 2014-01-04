@@ -157,7 +157,7 @@ public class ItextPdfManageImpl {
 		PdfPCell breedLable = setLableCell("品级");
 		Breed breed = chickenBatch.getBreed();
 		PdfPCell breedValue=null;
-		if(null!=breedValue){
+		if(null!=breed){
 			breedValue = setCellValue(chickenBatch.getBreed().getName());
 		}
 		else{

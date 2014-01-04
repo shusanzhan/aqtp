@@ -41,9 +41,9 @@ function CheckForm()
    <div id="form">
       <div class="left">
          <div class="user">
-        	<input type="text" id="name" class="text" name=j_username maxlength="20" value="admin"></div>
+        	<input type="text" id="name" class="text" name=j_username maxlength="20" value=""></div>
          <div class="pwd">
-         <input type="password" id="password" class="text" name="j_password"  value="123456"></div>
+         <input type="password" id="password" class="text" name="j_password"  value=""></div>
       </div>
       <div class="right">
          <input type="button" class="submit" title="登录" onclick="if(CheckForm()){form1.submit();}" />

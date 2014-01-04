@@ -28,6 +28,7 @@
 			<li><div>
 					<a href='${ctx }/wapHome/jianyi?batchNo=${param.batchNo}'>检疫</a>
 				</div></li>
+				<li><div class="last"><a href='${ctx }/wapHome/user?batchNo=${param.batchNo}'>饲养员</a></div></li>
 		</ul>
 	</div>
 	<div>

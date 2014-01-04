@@ -28,6 +28,7 @@ import com.ystech.aqtp.model.ImmuneDrag;
 import com.ystech.aqtp.model.News;
 import com.ystech.aqtp.model.NewsType;
 import com.ystech.aqtp.model.QuarantineCertificate;
+import com.ystech.aqtp.service.BreaderBreedManageImpl;
 import com.ystech.aqtp.service.ChickenBatchManageImpl;
 import com.ystech.aqtp.service.FeedFeederManageImpl;
 import com.ystech.aqtp.service.HealthCareManageImpl;
@@ -52,6 +53,7 @@ public class WapHomeAction extends BaseController {
 	private ImmuneManageImpl immuneManageImpl;
 	private HealthCareManageImpl healthCareManageImpl;
 	private QuarantineCertificateManageImpl quarantineCertificateManageImpl;
+	private BreaderBreedManageImpl breaderBreedManageImpl;
 	@Resource
 	public void setChickenBatchManageImpl(
 			ChickenBatchManageImpl chickenBatchManageImpl) {
@@ -76,6 +78,12 @@ public class WapHomeAction extends BaseController {
 	public void setQuarantineCertificateManageImpl(
 			QuarantineCertificateManageImpl quarantineCertificateManageImpl) {
 		this.quarantineCertificateManageImpl = quarantineCertificateManageImpl;
+	}
+
+	@Resource
+	public void setBreaderBreedManageImpl(
+			BreaderBreedManageImpl breaderBreedManageImpl) {
+		this.breaderBreedManageImpl = breaderBreedManageImpl;
 	}
 
 
@@ -195,5 +203,27 @@ public class WapHomeAction extends BaseController {
 			return "error";
 		}
 		return "jianyi";
+	}
+	/**
+	 * 功能描述：
+	 * 参数描述：
+	 * 逻辑描述：
+	 * @return
+	 * @throws Exception
+	 */
+	public String user() throws Exception {
+		HttpServletRequest request = this.getRequest();
+		String batchNo = getBatchNo(request);
+		try {
+			ChickenBatch chickenBatch = chickenBatchManageImpl.findUniqueBy("batchNo", batchNo);
+			List<BreaderBreed> breederBreeds = breaderBreedManageImpl.findBy("chickenbatch.dbid", chickenBatch.getDbid());
+			request.setAttribute("breederBreeds", breederBreeds);
+			request.setAttribute("chickenBatch", chickenBatch);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+		return "user";
+
 	}
 }

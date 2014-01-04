@@ -100,7 +100,7 @@ public class HomeAction extends BaseController {
 	 */
 	public String search() throws Exception {
 		HttpServletRequest request = this.getRequest();
-		String batchNo = request.getParameter("batchNo");
+		String batchNo = getBatchNo(request);
 		leftMenu(request);
 		try {
 			ChickenBatch chickenBatch = chickenBatchManageImpl.findUniqueBy(
@@ -322,5 +322,18 @@ public class HomeAction extends BaseController {
         } 
         out.close(); 
         out = null; 
+	}
+	/**
+	 * @param request
+	 * @return
+	 */
+	private String getBatchNo(HttpServletRequest request) {
+		String batchNo = request.getParameter("batchNo");
+		if (null!=batchNo&&batchNo.trim().length()>0) {
+			batchNo=batchNo.substring(0, batchNo.length()-5);
+		}else{
+			batchNo=null;
+		}
+		return batchNo;
 	}
 }

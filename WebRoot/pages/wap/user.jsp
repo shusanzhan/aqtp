@@ -7,7 +7,7 @@
 <link rel='stylesheet' type='text/css' href='${ctx }/css/wap/index2.css' />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>网页查询主页面</title>
+<title>饲养员信息</title>
 </head>
 	<body class='global'>
 		<div class="nav">
@@ -21,15 +21,27 @@
 			</ul>
 		</div>
 		
-			<div class="mainmessage">
-			<div> <div class="odd first"><h1>名称</h1></div>    <div class="odd second"><h1>${chickenBatch.name }</h1></div></div>
-			<div> <div class="even first"><h1>品系</h1></div>   <div class="even second"><h1>${chickenBatch.breed.name}</h1></div></div>	
-			<div> <div class="odd first"><h1>品级</h1></div>    <div class="odd second"><h1>${chickenBatch.grade.name }</h1></div> </div>
-			<div> <div class="even first"><h1>出生日期</h1></div>   <div class="even second"><h1><fmt:formatDate value="${chickenBatch.birthday }" pattern="yyyy-MM-dd"/></h1></div></div>
-			<div> <div class="odd first"><h1>出栏日期</h1></div>    <div class="odd second"><h1><fmt:formatDate value="${chickenBatch.outBarDate}" pattern="yyyy-MM-dd"/></h1></div></div>
-			<div> <div class="even first"><h1>建议零售价</h1></div>    <div class="even second"><h1>${chickenBatch.grade.retailPrice}元/斤</h1></div></div>
+		
+					<div >
+
+					<c:if test="${empty(breederBreeds) }" var="status">
+						 <li>
+	                        <strong><a>系统无数据</a></strong>
+	                    </li>
+					</c:if>
+					<c:if test="${status==false }">
+					<c:forEach var="breederBreed" items="${breederBreeds }">
+					
+								<div class="group">
+				<div><h2>${breederBreed.name }</h2></div>
+				<div><h1>${breederBreed.breeder.graduationSchool } ${breederBreed.breeder.educationalBackground }</h1></div>
+				<div><img class="image" alt="" src="${breederBreed.breeder.photo }"></div>
+				<p>${breederBreed.breeder.introduction }</p>
 			</div>
-			<div class="logo"></div>
+					</c:forEach>
+                   </c:if> 
+                   
+			</div>
 		
 	</body>
 </html>
